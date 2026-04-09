@@ -48,3 +48,8 @@ dotnet build
 echo "✔ Build C# OK"
 
 echo "🎉 SUCESSO: C# está funcionando no Godot!"
+
+# Limpeza de resíduos
+cd /
+rm -rf /tmp/godot-test
+echo "🧹 Resíduos limpos"
