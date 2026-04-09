@@ -1,0 +1,53 @@
+{
+  "name": "Godot C# DevContainer",
+
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+
+  "containerEnv": {
+    "DOTNET_ROOT": "/usr/lib64/dotnet",
+    "DOTNET_SYSTEM_GLOBALIZATION_INVARIANT": "1"
+  },
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-dotnettools.csharp",
+        "geequlim.godot-tools",
+        "EditorConfig.EditorConfig"
+      ],
+      "settings": {
+        "dotnet.defaultSolution": "game/*.sln",
+
+        // 🔥 força modo estável
+        "dotnet.server.useOmnisharp": true,
+
+        // ❗ evita downloads automáticos de runtime
+        "dotnet.acquireRuntime.enable": false,
+
+        // qualidade de vida
+        "editor.formatOnSave": true,
+        "files.exclude": {
+          "**/.git": false
+        },
+        "editor.codeActionsOnSave": {
+          "source.fixAll": "always",
+          "source.organizeImports": "always"
+        },
+
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "terminal.integrated.autoReveal": true,
+        "terminal.integrated.profiles.linux": {
+          "bash": {
+            "path": "/bin/bash"
+          }
+        }
+      }
+    }
+  },
+
+  "postCreateCommand": "bash .devcontainer/run_post_create.sh",
+
+  "remoteUser": "root"
+}
