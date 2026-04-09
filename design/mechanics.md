@@ -1,34 +1,34 @@
-# Mecânicas do Jogo
+# Game Mechanics
 
-Este documento descreve as mecânicas fundamentais do jogo, servindo como a base para a implementação e o comportamento esperado.
+This document describes the fundamental game mechanics, serving as the basis for implementation and expected behavior.
 
-## 1. Personagem do Jogador (Player Character)
+## 1. Player Character
 
-O jogador é a entidade principal controlada pelo usuário, representado por um `CharacterBody2D` no Godot.
+The player is the main entity controlled by the user, represented by a `CharacterBody2D` in Godot.
 
-### 1.1. Movimento Básico
+### 1.1. Basic Movement
 
-O jogador pode se mover horizontalmente e verticalmente (pulo) em resposta a inputs.
-Detalhes específicos do movimento são definidos no contrato `/design/contracts/player_movement.md`.
+The player can move horizontally and vertically (jump) in response to inputs.
+Specific movement details are defined in the contract `/design/contracts/player_movement.md`.
 
-### 1.2. Gravidade
+### 1.2. Gravity
 
-O jogador está sujeito à gravidade, o que o faz cair quando não está em contato com uma superfície sólida. A gravidade deve ser configurável e consistente.
+The player is subject to gravity, which causes them to fall when not in contact with a solid surface. Gravity must be configurable and consistent.
 
-### 1.3. Colisão
+### 1.3. Collision
 
-O jogador interage fisicamente com o ambiente, colidindo com superfícies sólidas como o chão e paredes.
-A colisão com o chão é essencial para o movimento, para evitar que o jogador caia infinitamente e para permitir ações como o pulo.
-Detalhes específicos da colisão com o ambiente são definidos no contrato `/design/contracts/platformer_collision.md`.
+The player physically interacts with the environment, colliding with solid surfaces such as ground and walls.
+Collision with the ground is essential for movement, to prevent the player from falling infinitely and to allow actions like jumping.
+Specific collision details with the environment are defined in the contract `/design/contracts/platformer_collision.md`.
 
-## 2. Ambiente (Environment)
+## 2. Environment
 
-O ambiente é composto por elementos estáticos e interativos que o jogador pode interagir.
+The environment consists of static and interactive elements that the player can interact with.
 
-### 2.1. Chão (Ground)
+### 2.1. Ground
 
-O chão é um elemento fundamental do ambiente, representado por um `StaticBody2D`. Ele serve como a superfície primária onde o jogador pode andar, correr e pular. O chão deve possuir uma forma de colisão (`CollisionShape2D`) que impede o jogador de atravessá-lo.
+The ground is a fundamental element of the environment, represented by a `StaticBody2D`. It serves as the primary surface where the player can walk, run, and jump. The ground must have a collision shape (`CollisionShape2D`) that prevents the player from passing through it.
 
-## 3. Interações Físicas
+## 3. Physical Interactions
 
-As interações físicas são baseadas no sistema de física 2D do Godot. Entidades com `CollisionShape2D` interagem de acordo com suas propriedades de corpo (e.g., `CharacterBody2D` vs `StaticBody2D`), respeitando as leis de física configuradas no projeto.
+Physical interactions are based on Godot's 2D physics system. Entities with `CollisionShape2D` interact according to their body properties (e.g., `CharacterBody2D` vs `StaticBody2D`), respecting the physics laws configured in the project.
