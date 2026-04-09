@@ -7,55 +7,55 @@
 # 🚀 Quick Start (TL;DR)
 
 ```bash
-# 1. Suba o container
+# 1. Start container
 Dev Containers: Reopen in Container
 
-# 2. Rode validação
+# 2. Run validation
 dotnet build
 dotnet test
 
-# 3. (Opcional) Testes Godot
+# 3. (Optional) Godot tests
 godot --headless --path game -s addons/gdUnit4/bin/GdUnitCmdTool.gd -a run
-````
+```
 
 ---
 
-# 🧠 Como trabalhar neste projeto
+# 🧠 How to work on this project
 
-1. Leia:
+1. Read:
 
    * `IA/context.md`
    * `IA/task.md`
 
-2. Siga o fluxo:
+2. Follow the flow:
 
-   * Criar teste (FAIL)
-   * Rodar testes
-   * Implementar mínimo (PASS)
-   * Refatorar
-   * Atualizar `state.md`
+   * Create test (FAIL)
+   * Run tests
+   * Implement minimum (PASS)
+   * Refactor
+   * Update `state.md`
 
-👉 Tudo é guiado por **TDD + Tasks**
-
----
-
-# 📂 Estrutura principal
-
-```
-.devcontainer/   → Ambiente reprodutível (Docker)
-game/            → Projeto Godot
-tests/           → Testes .NET
-
-IA/              → Sistema de IA (contexto, tasks, estado)
-
-design/          → Regras do jogo (fonte de verdade)
-docs/            → APIs e arquitetura
-examples/        → Referências reutilizáveis
-```
+👉 Everything is guided by **TDD + Tasks**
 
 ---
 
-# 🔁 Fluxo de desenvolvimento
+# 📂 Main structure
+
+```
+.devcontainer/   → Reproducible environment (Docker)
+game/            → Godot project
+tests/           → .NET tests
+
+IA/              → AI system (context, tasks, state)
+
+design/          → Game rules (source of truth)
+docs/            → APIs and architecture
+examples/        → Reusable references
+```
+
+---
+
+# 🔄 Development flow
 
 ```text
 Contract → Task → Test → Fail → Code → Pass → Refactor → Update state
@@ -63,43 +63,43 @@ Contract → Task → Test → Fail → Code → Pass → Refactor → Update st
 
 ---
 
-# 🎯 Filosofia
+# 🎯 Philosophy
 
-✔ Comportamento
-✔ Testes
-✔ Execução via CLI
-✔ Pequenas iterações
-✔ IA como executor, não como decisor
-
----
-
-# 📚 Documentação completa
+✔ Behavior
+✔ Tests
+✔ CLI execution
+✔ Small iterations
+✔ AI as executor, not decision maker
 
 ---
 
-# 🔄 Atualização – Dev Container + IA (XP + TDD)
+# 📚 Full documentation
 
-Este projeto implementa um ambiente completo para:
+---
 
-* 🤖 Desenvolvimento assistido por IA
+# 🔄 Update – Dev Container + IA (XP + TDD)
+
+This project implements a complete environment for:
+
+* 🤖 AI-assisted development
 * 🧪 Test-Driven Development (TDD)
-* 🔁 Fluxo baseado em Extreme Programming (XP)
+* 🔄 Extreme Programming (XP) based flow
 
 ---
 
-# 🐳 Container (Fonte da Verdade)
+# 🐳 Container (Source of Truth)
 
-## 🎯 Objetivo
+## 🎯 Objective
 
-Ambiente:
+Environment:
 
-* Reprodutível
+* Reproducible
 * Headless
-* Automatizado
-* Independente de IDE
+* Automated
+* IDE independent
 
-> 🔥 Container = fonte da verdade
-> IDE = ferramenta auxiliar
+> 🔥 Container = source of truth
+> IDE = auxiliary tool
 
 ---
 
@@ -109,12 +109,12 @@ Ambiente:
 * .NET 8
 * Godot 4 (mono, headless)
 * GDUnit4
-* SCons (toolchain Godot)
-* Toolchain nativa (gcc, clang, cmake, ninja)
+* SCons (Godot toolchain)
+* Native toolchain (gcc, clang, cmake, ninja)
 
 ---
 
-## 🧱 Estrutura
+## 🧱 Structure
 
 ```
 .devcontainer/
@@ -127,21 +127,21 @@ Ambiente:
 
 ---
 
-## 🚀 Inicialização automática
+## 🚀 Automatic initialization
 
-Ao subir o container:
+When starting the container:
 
 ```bash
 postCreate.sh
 ```
 
-Cria automaticamente:
+Automatically creates:
 
-* Projeto Godot
-* Solution C#
-* Projeto principal (Game.Core)
-* Projeto de testes (xUnit)
-* Integração com GDUnit4
+* Godot project
+* C# Solution
+* Main project (Game.Core)
+* Test project (xUnit)
+* GDUnit4 integration
 
 ---
 
@@ -153,59 +153,59 @@ Cria automaticamente:
 
 ---
 
-# 🤖 Sistema de IA
+# 🤖 AI System
 
 ```
 IA/
-├── context.md      → Regras operacionais
-├── rules.md        → Restrições globais
-├── task.md         → Task ativa
-├── state.md        → Memória
-└── tasks/          → Histórico de tasks
+├── context.md      → Operational rules
+├── rules.md        → Global constraints
+├── task.md         → Active task
+├── state.md        → Memory
+└── tasks/          → Task history
 ```
 
 ---
 
 ## 🧠 context.md
 
-Define:
+Defines:
 
-* Como rodar projeto
-* Como testar
-* Regras de TDD
-* Fluxo XP
+* How to run the project
+* How to test
+* TDD rules
+* XP flow
 
 ---
 
-## 📏 rules.md
+## 📋 rules.md
 
-Define:
+Defines:
 
-* Restrições globais
-* Qualidade de código
-* Regras de execução
+* Global constraints
+* Code quality
+* Execution rules
 
 ---
 
 ## 📌 task.md
 
-Define:
+Defines:
 
-* O que deve ser feito AGORA
+* What must be done NOW
 
 ---
 
 ## 🧠 state.md
 
-Armazena:
+Stores:
 
-* Progresso
-* Decisões
-* Problemas
+* Progress
+* Decisions
+* Issues
 
 ---
 
-# 🧩 Sistema de Tasks
+# 🧩 Task System
 
 ```
 IA/tasks/
@@ -216,9 +216,9 @@ IA/tasks/
 
 ---
 
-## 🔁 Modelo
+## 🔄 Model
 
-Cada task segue:
+Each task follows:
 
 ```text
 Goal → Expected Behavior → Tests → Implementation → Done
@@ -226,15 +226,15 @@ Goal → Expected Behavior → Tests → Implementation → Done
 
 ---
 
-## ⚠️ Regras
+## ⚠️ Rules
 
-* Trabalhar em UMA task por vez
-* Não expandir escopo
-* Atualizar progresso continuamente
+* Work on ONE task at a time
+* Do not expand scope
+* Update progress continuously
 
 ---
 
-# 🎮 Design do Jogo
+# 🎮 Game Design
 
 ```
 design/
@@ -248,9 +248,9 @@ design/
 
 ---
 
-## 🧠 Fonte da verdade
+## 🧠 Source of truth
 
-👉 `/design` define comportamento do jogo
+👉 `/design` defines game behavior
 
 ---
 
@@ -260,7 +260,7 @@ design/
 design/contracts/
 ```
 
-Define comportamentos como:
+Defines behaviors as:
 
 ```text
 Given / When / Then
@@ -268,19 +268,19 @@ Given / When / Then
 
 ---
 
-## ⚠️ Regra
+## ⚠️ Rule
 
-Se código ≠ design:
+If code ≠ design:
 
-* Corrigir código
-  **OU**
-* Atualizar design
+* Fix code
+  **OR**
+* Update design
 
-Nunca divergir silenciosamente
+Never silently diverge
 
 ---
 
-# 📚 Documentação técnica
+# 📚 Technical documentation
 
 ```
 docs/
@@ -291,14 +291,14 @@ docs/
 
 ---
 
-## Uso
+## Usage
 
-* APIs externas → `/docs/api`
-* Arquitetura → `/docs/architecture`
+* External APIs → `/docs/api`
+* Architecture → `/docs/architecture`
 
 ---
 
-# 🧪 Exemplos reutilizáveis
+# 🧪 Reusable examples
 
 ```
 examples/
@@ -309,21 +309,21 @@ examples/
 
 ---
 
-## Regra
+## Rule
 
-Antes de implementar:
+Before implementing:
 
-👉 Verificar `/examples`
+👉 Check `/examples`
 
 ---
 
-# 🧪 Estratégia de Testes
+# 🧪 Testing Strategy
 
-## 🧠 .NET (PRIORIDADE)
+## 🧠 .NET (PRIORITY)
 
-* Lógica
-* Regras
-* Algoritmos
+* Logic
+* Rules
+* Algorithms
 
 ```bash
 dotnet test
@@ -331,7 +331,7 @@ dotnet test
 
 ---
 
-## 🎮 Godot (SECUNDÁRIO)
+## 🎮 Godot (SECONDARY)
 
 * Nodes
 * Scenes
@@ -343,42 +343,42 @@ godot --headless ...
 
 ---
 
-# 🔁 XP + TDD Loop
+# 🔄 XP + TDD Loop
 
 ```text
-1. Criar teste (FAIL)
-2. Rodar testes
-3. Implementar mínimo (PASS)
-4. Rodar novamente
-5. Refatorar
-6. Atualizar state.md
+1. Create test (FAIL)
+2. Run tests
+3. Implement minimum (PASS)
+4. Run again
+5. Refactor
+6. Update state.md
 ```
 
 ---
 
-# 🧠 Benefícios
+# 🧠 Benefits
 
-✔ Reprodutibilidade total
-✔ Desenvolvimento guiado por testes
-✔ IA com contexto controlado
-✔ Baixa regressão
-✔ Alta previsibilidade
-
----
-
-# 🚀 Futuro
-
-* CI/CD automático
-* Execução contínua de IA
-* Testes distribuídos
-* Integração com serviços externos
+✔ Total reproducibility
+✔ Test-driven development
+✔ AI with controlled context
+✔ Low regression
+✔ High predictability
 
 ---
 
-# 📌 Conclusão
+# 🚀 Future
 
-Este projeto não é apenas um setup de desenvolvimento.
+* Automatic CI/CD
+* Continuous AI execution
+* Distributed tests
+* External service integration
 
-> 🧠 É um sistema completo de execução orientado por IA + TDD + XP
+---
+
+# 📌 Conclusion
+
+This project is not just a development setup.
+
+> 🧠 It's a complete execution system oriented by AI + TDD + XP
 
 ---

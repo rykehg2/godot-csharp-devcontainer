@@ -1,32 +1,32 @@
 # 🗺️ Roadmap
 
-## 🟢 Fase 1 – Base
+## 🟢 Phase 1 – Foundation
 
-* [ ] Criar projeto Godot
-* [ ] Criar estrutura C#
-* [ ] Implementar movimento básico
-* [ ] Criar testes de movimento
-
----
-
-## 🟡 Fase 2 – Interação
-
-* [ ] Sistema de interação
-* [ ] Detecção de objetos
-* [ ] Testes de comportamento
+* [ ] Create Godot project
+* [ ] Create C# structure
+* [ ] Implement basic movement
+* [ ] Create movement tests
 
 ---
 
-## 🔵 Fase 3 – Expansão
+## 🟡 Phase 2 – Interaction
 
-* [ ] Sistema de eventos
-* [ ] Feedback visual
-* [ ] Integração com APIs externas
+* [ ] Interaction system
+* [ ] Object detection
+* [ ] Behavior tests
 
 ---
 
-## 🔴 Fase futura
+## 🔵 Phase 3 – Expansion
 
-* IA de inimigos
-* Sistema de progressão
-* Persistência
+* [ ] Event system
+* [ ] Visual feedback
+* [ ] External API integration
+
+---
+
+## 🔴 Future Phase
+
+* Enemy AI
+* Progression system
+* Persistence
