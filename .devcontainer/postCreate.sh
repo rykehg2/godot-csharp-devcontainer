@@ -76,12 +76,29 @@ dotnet sln game/GameSolution.sln add tests/Game.Core.Tests/Game.Core.Tests.cspro
 if [ ! -d "game/addons/gdUnit4" ]; then
     echo "🎮 Instalando GDUnit4..."
 
+    # Create a temporary directory for cloning
+    TMP_GDUNIT_DIR=$(mktemp -d -t gdunit4-XXXXXXXX)
+    echo "Cloning GDUnit4 into temporary directory: $TMP_GDUNIT_DIR"
+
+    # Clone the repository into the temporary directory
+    git clone https://github.com/MikeSchulze/gdUnit4.git "$TMP_GDUNIT_DIR" || { echo "Failed to clone GDUnit4 repository."; exit 1; }
+
+    # Ensure the target directory exists
     mkdir -p game/addons
-    cd game/addons
 
-    git clone https://github.com/MikeSchulze/gdUnit4.git
+    # Move the actual 'gdUnit4' addon folder from the cloned repo to the game's addons folder
+    # The GDUnit4 repository itself contains an 'addons/gdUnit4' folder at its root.
+    if [ -d "$TMP_GDUNIT_DIR/addons/gdUnit4" ]; then
+        mv "$TMP_GDUNIT_DIR/addons/gdUnit4" game/addons/ || { echo "Failed to move GDUnit4 addon."; exit 1; }
+        echo "Moved GDUnit4 addon to game/addons/gdUnit4"
+    else
+        echo "Error: 'addons/gdUnit4' not found in cloned repository at $TMP_GDUNIT_DIR. GDUnit4 installation failed."
+        exit 1
+    fi
 
-    cd ../..
+    # Clean up the temporary directory
+    rm -rf "$TMP_GDUNIT_DIR"
+    echo "Cleaned up temporary directory."
 
     echo "📦 Importando addons..."
     godot --headless --path game --import --quit || true

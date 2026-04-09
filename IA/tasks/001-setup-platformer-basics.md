@@ -33,6 +33,7 @@ Esta tarefa representa o ponto de partida do projeto conforme demonstrado nas fo
 
 ### Required Tests:
 
+*   [ ] **Core behavior:** Verificar se os nós `CharacterBody2D` (Player) e `StaticBody2D` (Ground) existem na cena principal.
 *   [ ] **Core behavior:** Verificar se o `CharacterBody2D` colide corretamente com o `StaticBody2D`.
 *   [ ] **Core behavior:** Validar se o script de movimento é carregado e responde aos comandos básicos do template.
 *   [ ] **Edge cases:** Garantir que as formas de colisão (`RectangleShape2D`) cobrem adequadamente os sprites visualizados.
@@ -81,10 +82,10 @@ Esta tarefa representa o ponto de partida do projeto conforme demonstrado nas fo
 
 ---
 
-# 📊 Progress
+# 📊 Progress (Updated)
 
-**current_step**: 0  
-**last_action**: none
+**current_step**: 1
+**last_action**: Attempted to run GDUnit4 tests, but failed due to environment setup issue (GdUnitCmdTool.gd not found). Corrected GDUnit4 installation in `postCreate.sh`.
 
 ---
 
