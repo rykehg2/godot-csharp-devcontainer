@@ -14,7 +14,7 @@ Pense assim:
 Sempre começar conversa com:
 
 ```
-You are working in a structured AI-driven dev environment.
+You are working in a structured AI-driven dev environment. Analize the hole project, start with README.md.
 
 Follow:
 - TDD
