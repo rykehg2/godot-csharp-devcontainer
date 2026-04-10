@@ -75,7 +75,7 @@ Esta tarefa representa o ponto de partida do projeto conforme demonstrado nas fo
 # 🔁 Execution Plan (TDD)
 
 1.  Write failing test (verificar existência do jogador na cena).
-2.  Run tests → MUST fail.
+2.  Run tests → MUST fail. (Expected: Scene not found or nodes not found)
 3.  Implement minimal code (montar a hierarquia de nós descrita no vídeo).
 4.  Run tests → MUST pass.
 5.  Refactor safely (ajustar formas de colisão e valores do script).
@@ -85,7 +85,8 @@ Esta tarefa representa o ponto de partida do projeto conforme demonstrado nas fo
 # 📊 Progress (Updated)
 
 **current_step**: 1
-**last_action**: Attempted to run GDUnit4 tests, but failed due to environment setup issue (GdUnitCmdTool.gd not found). Corrected GDUnit4 installation in `postCreate.sh`.
+**last_action**: Task initialized.
+**next_action**: Write failing test (verificar existência do jogador na cena).
 
 ---
 
@@ -93,8 +94,6 @@ Esta tarefa representa o ponto de partida do projeto conforme demonstrado nas fo
 
 *   **Uso de RectangleShape2D:** Escolhido para simplificar a colisão inicial tanto do chão quanto do player.
 *   **Ajuste de Script:** Alterar o valor padrão para -600 para garantir que o pulo/movimento seja perceptível durante o teste inicial.
-
----
 
 # ⚠️ Issues
 
@@ -117,9 +116,9 @@ A implementação segue estritamente a hierarquia e o fluxo de trabalho nativo d
 # ✅ Definition of Done
 
 *   [ ] Nós `StaticBody2D` e `CharacterBody2D` configurados corretamente.
-*   [ ] Formas de colisão ajustadas ao tamanho dos sprites.
-*   [ ] Script de movimento criado e valor de "-600" aplicado.
-*   [ ] Teste de execução realizado com sucesso, confirmando que o player não atravessa o chão.
+*   [ ] Formas de colisão ajustadas ao tamanho dos sprites. (Covered by test requirement)
+*   [ ] Script de movimento criado e valor de "-600" aplicado. (Covered by test requirement)
+*   [ ] Teste de execução realizado com sucesso, confirmando que o player não atravessa o chão. (Covered by test requirement)
 
 ---
 
