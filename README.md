@@ -15,8 +15,10 @@ dotnet build
 dotnet test
 
 # 3. (Optional) Godot tests
-godot --headless --path game -s addons/gdUnit4/bin/GdUnitCmdTool.gd -a run
-```
+bash .devcontainer/gdunit.sh -a res://test/
+````
+
+* IDEs errors like "GDScript server not connected" are expected.
 
 ---
 

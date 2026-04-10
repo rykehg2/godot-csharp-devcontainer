@@ -135,7 +135,7 @@ Used for:
 ## Run tests (Godot - INTEGRATION)
 
 ```bash
-godot --headless --path game -s addons/gdUnit4/bin/GdUnitCmdTool.gd -a run
+bash .devcontainer/gdunit.sh -a res://test/
 ```
 
 Used for:

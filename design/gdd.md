@@ -1,59 +1,59 @@
 # 🎮 Game Design Document (GDD)
 
-## 📌 Nome do jogo
+## 📌 Game Name
 Project Placeholder
 
 ---
 
-## 🎯 Visão
+## 🎯 Vision
 
-Um jogo 2D focado em mecânicas simples e evolutivas, com forte separação entre lógica (C#) e comportamento visual (Godot).
-
----
-
-## 🧠 Conceito
-
-O jogador controla um personagem que se move em um ambiente 2D, interage com objetos e evolui através de sistemas modulares.
+A 2D game focused on simple and evolutionary mechanics, with a strong separation between logic (C#) and visual behavior (Godot).
 
 ---
 
-## 🎮 Loop principal
+## 🧠 Concept
 
-1. Jogador se move
-2. Interage com o ambiente
-3. Ganha feedback (score, estado, evento)
-4. Sistema reage
-5. Loop continua
+The player controls a character that moves in a 2D environment, interacts with objects, and evolves through modular systems.
 
 ---
 
-## 🧱 Pilares do jogo
+## 🎮 Core Loop
 
-* Simplicidade
-* Modularidade
-* Testabilidade (TDD)
-* Feedback rápido
-
----
-
-## 📦 Escopo inicial
-
-* Movimento do jogador
-* Sistema básico de input
-* Interação simples (colisão ou trigger)
+1. Player moves
+2. Interacts with the environment
+3. Gains feedback (score, state, event)
+4. System reacts
+5. Loop continues
 
 ---
 
-## 🚫 Fora de escopo (por enquanto)
+## 🧱 Game Pillars
+
+* Simplicity
+* Modularity
+* Testability (TDD)
+* Fast Feedback
+
+---
+
+## 🧱 Initial Scope
+
+* Player movement
+* Basic input system
+* Simple interaction (collision or trigger)
+
+---
+
+## 🚫 Out of Scope (for now)
 
 * Multiplayer
-* UI complexa
-* Persistência avançada
+* Complex UI
+* Advanced persistence
 
 ---
 
-## 📈 Evolução futura
+## 📈 Future Evolution
 
-* Sistema de habilidades
-* IA de inimigos
-* Integração com API externa
+* Abilities system
+* Enemy AI
+* External API integration

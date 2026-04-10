@@ -1,10 +1,3 @@
-Você construiu algo poderoso — mas também chegou no ponto clássico:
-**se não tiver um fluxo simples de uso, vira peso em vez de vantagem.**
-
-Então vamos traduzir isso tudo para **uso real com ChatGPT (ou qualquer IA)**, sem dor.
-
----
-
 # 🧠 Como usar seu sistema na prática (simples mesmo)
 
 Pense assim:
@@ -15,6 +8,23 @@ Pense assim:
 ---
 
 # ⚡ Fluxo real (dia a dia)
+
+# 🥇 Melhor forma de começar
+
+Sempre começar conversa com:
+
+```
+You are working in a structured AI-driven dev environment.
+
+Follow:
+- TDD
+- XP loop
+- task-driven execution
+
+I will tell you the mode (FAST or FULL).
+```
+
+---
 
 ## 🥇 Loop padrão (90% do tempo)
 
@@ -80,9 +90,9 @@ Analyze and execute next step
 
 | Situação              | Modo    |
 | --------------------- | ------- |
-| Criar feature simples | ⚡ FAST  |
-| Criar classe          | ⚡ FAST  |
-| Ajustar teste         | ⚡ FAST  |
+| Criar feature simples | ⚡ FAST |
+| Criar classe          | ⚡ FAST |
+| Ajustar teste         | ⚡ FAST |
 | Bug estranho          | 🧠 FULL |
 | Refatoração           | 🧠 FULL |
 | Integração Godot      | 🧠 FULL |
@@ -182,25 +192,6 @@ Você não precisa colar todos os arquivos.
 
 * Você **já estruturou o pensamento no repo**
 * Agora só dá comandos curtos
-
----
-
-# 🔥 Setup ideal com ChatGPT
-
-## 🥇 Melhor forma
-
-Sempre começar conversa com:
-
-```
-You are working in a structured AI-driven dev environment.
-
-Follow:
-- TDD
-- XP loop
-- task-driven execution
-
-I will tell you the mode (FAST or FULL).
-```
 
 ---
 

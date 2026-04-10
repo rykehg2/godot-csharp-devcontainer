@@ -2,45 +2,45 @@
 
 ## 🎮 Player System
 
-Responsável por:
+Responsible for:
 
-* Movimento
-* Estado do jogador
-* Entrada (input)
+* Movement
+* Player state
+* Input
 
 ---
 
 ## 🧪 Core Logic (C#)
 
-Responsável por:
+Responsible for:
 
-* Regras de negócio
-* Cálculo de movimento
-* Decisões do jogo
+* Business rules
+* Movement calculation
+* Game decisions
 
-⚠️ Não deve depender diretamente de Godot
+⚠️ Must not depend directly on Godot
 
 ---
 
 ## 🎮 Godot Layer
 
-Responsável por:
+Responsible for:
 
-* Renderização
+* Rendering
 * Nodes
-* Cena
+* Scene
 
 ---
 
 ## 🔗 Comunicação
 
-* Godot → chama lógica C#
-* C# → retorna resultado
-* Comunicação via métodos simples ou signals
+* Godot → calls C# logic
+* C# → returns result
+* Communication via simple methods or signals
 
 ---
 
 ## 🧩 Princípios
 
-* Separação clara entre engine e lógica
-* Testes focados na camada C#
+* Clear separation between engine and logic
+* Tests focused on the C# layer

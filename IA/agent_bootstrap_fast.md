@@ -14,6 +14,8 @@ Use this mode for:
 1. IA/rules-lite.md
 2. IA/context.md (PARTIAL)
 3. IA/task.md
+4. IA/logs/last_gdunit_test.log (If relevant to task)
+5. IA/logs/last_dotnet_test.log (If relevant to task)
 
 ---
 
