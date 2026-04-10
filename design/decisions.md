@@ -1,53 +1,53 @@
 # 🧾 Decisions
 
-## 📌 Arquitetura
+## 📌 Architecture
 
-✔ Gameplay logic em C#  
-✔ Godot apenas como camada de engine  
+✔ Gameplay logic in C#  
+✔ Godot only as engine layer  
 
-Motivo:
-- Facilitar testes
-- Melhor separação de responsabilidades
+Reason:
+- Easier testing
+- Better separation of responsibilities
 
 ---
 
-## 🧪 Testes
+## 🧪 Testing
 
-✔ Priorizar testes .NET  
-✔ Usar Godot apenas quando necessário  
+✔ Prioritize .NET tests  
+✔ Use Godot only when necessary  
 
-Motivo:
+Reason:
 - Performance
-- Feedback rápido
+- Fast feedback
 
 ---
 
-## 🧱 Estrutura
+## 🧱 Structure
 
-✔ Separação:
+✔ Separation:
 
 * Scene (Godot)
 * Logic (C#)
 
-Motivo:
-- Manutenção
-- Clareza
+Reason:
+- Maintenance
+- Clarity
 
 ---
 
-## ⚙️ Execução
+## ⚙️ Execution
 
-✔ Tudo deve rodar via CLI  
+✔ Everything must run via CLI  
 
-Motivo:
-- Compatível com IA
-- Automação
+Reason:
+- AI compatible
+- Automation
 
 ---
 
-## 🔄 Atualizações
+## 🔄 Updates
 
-Sempre que uma decisão mudar:
+Whenever a decision changes:
 
-1. Atualizar este arquivo
-2. Garantir consistência com código
+1. Update this file
+2. Ensure consistency with code

@@ -1,22 +1,22 @@
-# Contrato: Colisão do Jogador com o Chão
+# Contract: Player Ground Collision
 
-Este contrato define o comportamento esperado para a interação de colisão entre o jogador e as superfícies de chão no ambiente.
+This contract defines the expected behavior for collision interaction between the player and ground surfaces in the environment.
 
-## Cenário: Colisão Básica com o Chão
+## Scenario: Basic Ground Collision
 
-**Dado** que o jogador (`CharacterBody2D`) está em uma posição vertical acima de uma superfície de chão (`StaticBody2D`)
-**E** o jogador está sujeito à gravidade, movendo-se para baixo
-**E** o chão possui uma `CollisionShape2D` configurada e ativa
+**Given** the player (`CharacterBody2D`) is in a vertical position above a ground surface (`StaticBody2D`)
+**And** the player is subject to gravity, moving downward
+**And** the ground has a configured and active `CollisionShape2D`
 
-**Quando** o jogador entra em contato com a superfície de colisão do chão
-**Então** o jogador deve parar seu movimento vertical descendente
-**E** o jogador não deve atravessar a superfície do chão
+**When** the player comes into contact with the ground collision surface
+**Then** the player must stop their downward vertical movement
+**And** the player must not pass through the ground surface
 
-## Cenário: Colisão com o Chão após um Pulo
+## Scenario: Ground Collision After Jump
 
-**Dado** que o jogador (`CharacterBody2D`) está no ar após um pulo
-**E** o jogador está caindo em direção ao chão
-**E** o chão possui uma `CollisionShape2D` configurada e ativa
+**Given** the player (`CharacterBody2D`) is in the air after a jump
+**And** the player is falling toward the ground
+**And** the ground has a configured and active `CollisionShape2D`
 
-**Quando** o jogador entra em contato com a superfície de colisão do chão
-**Então** o jogador deve parar seu movimento vertical descendente
+**When** the player comes into contact with the ground collision surface
+**Then** the player must stop their downward vertical movement

@@ -1,30 +1,14 @@
-# Godot-specific ignores
-.godot/
-*.import
-export.cfg
-export_presets.cfg
-*.cscn
-
-# C# / Mono
-.mono/
-bin/
-obj/
-*.sln
-*.csproj.user
-
-# IDE
+```
+# Editor/IDE files
 .vscode/
-.idea/
-*.swp
-*.swo
 
-# OS
-.DS_Store
-Thumbs.db
-
-# Logs
+# Logs and temp files
 *.log
-
-# Temporary files
 *.tmp
-~*
+*.swp
+
+# Environment files
+.env
+.env.local
+*.env.*
+```
