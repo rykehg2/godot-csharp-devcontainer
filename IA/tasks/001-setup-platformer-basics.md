@@ -10,22 +10,22 @@
 
 # 🎯 Goal
 
-Configurar a estrutura básica de um jogo de plataforma no Godot 4, estabelecendo um cenário estático e um personagem funcional com script de movimento.
+Setup the basic structure of a platformer game in Godot 4, establishing a static environment and a functional character with a movement script.
 
 ---
 
 # 📖 Context
 
-Esta tarefa representa o ponto de partida do projeto conforme demonstrado nas fontes. Ela define os componentes essenciais de física (corpo estático para o chão e corpo de personagem para o player) necessários para qualquer interação subsequente no jogo.
+This task represents the project's starting point as demonstrated in the sources. It defines the essential physics components (static body for the ground and character body for the player) required for any subsequent game interactions.
 
 ---
 
 # 🧪 Expected Behavior
 
-*   **Cenário:** Um `StaticBody2D` com um `Sprite2D` e um `CollisionShape2D` (RectangleShape2D) devidamente redimensionado para servir de chão.
-*   **Jogador:** Um `CharacterBody2D` contendo seu próprio `Sprite2D` e `CollisionShape2D`.
-*   **Movimentação:** Um script associado ao jogador que utilize o template padrão do Godot, com um ajuste específico de valor para -600 (provavelmente Jump Velocity) para permitir o teste de movimentação.
-*   **Interação:** Ao iniciar o teste, o personagem deve interagir fisicamente com o nível criado.
+*   **Environment:** A `StaticBody2D` with a `Sprite2D` and a `CollisionShape2D` (RectangleShape2D) properly resized to serve as the ground.
+*   **Player:** A `CharacterBody2D` containing its own `Sprite2D` and `CollisionShape2D`.
+*   **Movement:** A script associated with the player using the standard Godot template, with a specific adjustment of -600 (Jump Velocity) to allow movement testing.
+*   **Interaction:** Upon starting the test, the character must physically interact with the level.
 
 ---
 
@@ -33,10 +33,10 @@ Esta tarefa representa o ponto de partida do projeto conforme demonstrado nas fo
 
 ### Required Tests:
 
-*   [ ] **Core behavior:** Verificar se os nós `CharacterBody2D` (Player) e `StaticBody2D` (Ground) existem na cena principal.
-*   [ ] **Core behavior:** Verificar se o `CharacterBody2D` colide corretamente com o `StaticBody2D`.
-*   [ ] **Core behavior:** Validar se o script de movimento é carregado e responde aos comandos básicos do template.
-*   [ ] **Edge cases:** Garantir que as formas de colisão (`RectangleShape2D`) cobrem adequadamente os sprites visualizados.
+*   [ ] **Core behavior:** Verify that `CharacterBody2D` (Player) and `StaticBody2D` (Ground) nodes exist in the main scene.
+*   [ ] **Core behavior:** Verify that `CharacterBody2D` collides correctly with `StaticBody2D`.
+*   [ ] **Core behavior:** Validate that the movement script is loaded and responds to basic template commands.
+*   [ ] **Edge cases:** Ensure collision shapes (`RectangleShape2D`) adequately cover the visualized sprites.
 
 ---
 
@@ -74,11 +74,11 @@ Esta tarefa representa o ponto de partida do projeto conforme demonstrado nas fo
 
 # 🔁 Execution Plan (TDD)
 
-1.  Write failing test (verificar existência do jogador na cena).
+1.  Write failing test (verify player existence in scene).
 2.  Run tests → MUST fail. (Expected: Scene not found or nodes not found)
-3.  Implement minimal code (montar a hierarquia de nós descrita no vídeo).
+3.  Implement minimal code (assemble the node hierarchy).
 4.  Run tests → MUST pass.
-5.  Refactor safely (ajustar formas de colisão e valores do script).
+5.  Refactor safely (adjust collision shapes and script values).
 
 ---
 
@@ -86,39 +86,39 @@ Esta tarefa representa o ponto de partida do projeto conforme demonstrado nas fo
 
 **current_step**: 1
 **last_action**: Task initialized.
-**next_action**: Write failing test (verificar existência do jogador na cena).
+**next_action**: Write failing test (verify player existence in scene).
 
 ---
 
 # 🧠 Decisions
 
-*   **Uso de RectangleShape2D:** Escolhido para simplificar a colisão inicial tanto do chão quanto do player.
-*   **Ajuste de Script:** Alterar o valor padrão para -600 para garantir que o pulo/movimento seja perceptível durante o teste inicial.
+*   **Use of RectangleShape2D:** Chosen to simplify initial collision for both the ground and the player.
+*   **Script Adjustment:** Change default value to -600 to ensure jump/movement is noticeable during initial testing.
 
 # ⚠️ Issues
 
-*   Nenhuma reportada até o momento.
+*   None reported so far.
 
 ---
 
 # 📚 References
 
-*   Transcrição do vídeo: "Create A Platformer Game in 20 SECONDS! (Godot 4)".
+*   Video transcript: "Create A Platformer Game in 20 SECONDS! (Godot 4)".
 
 ---
 
 # 🧠 Design Alignment
 
-A implementação segue estritamente a hierarquia e o fluxo de trabalho nativo do Godot 4 para prototipagem rápida de plataformas, conforme orientado pelas fontes.
+The implementation strictly follows the Godot 4 native hierarchy and workflow for rapid platformer prototyping.
 
 ---
 
 # ✅ Definition of Done
 
-*   [ ] Nós `StaticBody2D` e `CharacterBody2D` configurados corretamente.
-*   [ ] Formas de colisão ajustadas ao tamanho dos sprites. (Covered by test requirement)
-*   [ ] Script de movimento criado e valor de "-600" aplicado. (Covered by test requirement)
-*   [ ] Teste de execução realizado com sucesso, confirmando que o player não atravessa o chão. (Covered by test requirement)
+*   [ ] `StaticBody2D` and `CharacterBody2D` nodes configured correctly.
+*   [ ] Collision shapes adjusted to sprite size. (Covered by test requirement)
+*   [ ] Movement script created and "-600" value applied. (Covered by test requirement)
+*   [ ] Execution test successfully performed, confirming the player does not fall through the floor. (Covered by test requirement)
 
 ---
 

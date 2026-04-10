@@ -1,13 +1,16 @@
 #!/bin/bash
 
-# Script customizado para rodar GDUnit4 em modo Headless no DevContainer
+# Custom script to run GDUnit4 in Headless mode in the DevContainer
 
+LOG_DIR="/workspaces/godot-csharp-devcontainer/IA/logs"
+LOG_FILE="$LOG_DIR/last_gdunit_test.log"
 GODOT_BIN=$(which godot)
 FILTERED_ARGS=""
+mkdir -p "$LOG_DIR"
 
-# Processar argumentos (ex: -a run)
+# Process arguments
 while [ $# -gt 0 ]; do
-    if [ "$1" = "--godot_binary" ] && [ $# -gt 1 ]; then
+    if [[ "$1" == "--godot_binary" ]] && [[ $# -gt 1 ]]; then
         GODOT_BIN="$2"
         shift 2
     else
@@ -16,29 +19,29 @@ while [ $# -gt 0 ]; do
     fi
 done
 
-if [ -z "$GODOT_BIN" ]; then
-    echo "❌ Erro: Executável do Godot não encontrado."
+if [[ -z "$GODOT_BIN" ]]; then
+    echo "❌ Error: Godot executable not found."
     exit 1
 fi
 
-echo "🚀 Iniciando testes Godot (Headless)..."
+echo "🚀 Starting Godot Tests (Headless)..." | tee "$LOG_FILE"
 
-# 1. Compilar C# (Obrigatório para GDUnit4 Mono)
-echo "📦 Compilando solução .NET..."
-dotnet build game/GameSolution.sln --debug
-if [ $? -ne 0 ]; then
-    echo "❌ Falha na compilação do C#."
+# 1. Compile C# (Required for GDUnit4 Mono)
+echo "📦 Compiling .NET Solution..." | tee -a "$LOG_FILE"
+dotnet build game/GameSolution.sln --debug >> "$LOG_FILE" 2>&1
+if [[ $? -ne 0 ]]; then
+    echo "❌ C# Compilation failed. Check $LOG_FILE"
     exit 1
 fi
 
-# 2. Executar Testes
-# Removido --remote-debug port 0 que causava erro no Godot 4.x
-"$GODOT_BIN" --headless --path game -d -s res://addons/gdUnit4/bin/GdUnitCmdTool.gd --ignoreHeadlessMode $FILTERED_ARGS
+# 2. Run Tests
+# Removed --remote-debug port 0 which caused errors in Godot 4.x
+"$GODOT_BIN" --headless --path game -d -s res://addons/gdUnit4/bin/GdUnitCmdTool.gd --ignoreHeadlessMode $FILTERED_ARGS 2>&1 | tee -a "$LOG_FILE"
 EXIT_CODE=$?
 
-echo "🏁 Execução de testes finalizada com código: $EXIT_CODE"
+echo "🏁 Test execution finished with code: $EXIT_CODE" | tee -a "$LOG_FILE"
 
-# 3. Limpeza/Logs (Opcional)
+# 3. Cleanup/Logs (Optional)
 "$GODOT_BIN" --headless --path game --quiet -s res://addons/gdUnit4/bin/GdUnitCopyLog.gd $FILTERED_ARGS > /dev/null 2>&1
 
 exit $EXIT_CODE

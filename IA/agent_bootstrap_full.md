@@ -17,6 +17,8 @@ Use this mode for:
 3. IA/context.md      → execution model
 4. IA/task.md         → current objective
 5. IA/state.md        → current state
+6. IA/logs/**         → history of recent executions and failures
+7. design/contracts/** → logic validation source
 
 ---
 

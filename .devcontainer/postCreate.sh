@@ -2,10 +2,11 @@
 
 set -e
 
-echo "🚀 Configurando ambiente..."
+echo "🚀 Configuring environment..."
 
-# Define o binário do Godot para os test adapters .NET do GDUnit4
+# Define Godot binary for GDUnit4 .NET test adapters
 export GODOT_BIN=$(which godot)
+mkdir -p /workspaces/godot-csharp-devcontainer/IA/logs
 
 # =========================
 # 🎮 GODOT PROJECT
@@ -14,8 +15,8 @@ export GODOT_BIN=$(which godot)
 mkdir -p game
 cd game
 
-if [ ! -f "project.godot" ]; then
-    echo "🎮 Criando projeto Godot..."
+if [[ ! -f "project.godot" ]]; then
+    echo "🎮 Creating Godot project..."
     # Create a basic project.godot file with C# support
     cat <<EOF > project.godot
 [application]
@@ -35,33 +36,33 @@ cd ..
 # 🧠 .NET SOLUTION
 # =========================
 
-if [ ! -f "game/GameSolution.sln" ]; then
-    echo "🧠 Criando solução C#..."
+if [[ ! -f "game/GameSolution.sln" ]]; then
+    echo "🧠 Creating C# Solution..."
     dotnet new sln -n GameSolution -o game
 fi
 
 # =========================
-# 🧠 PROJETO C# BASE
+# 🧠 BASE C# PROJECT
 # =========================
 
-if [ ! -f "game/Game.Core/Game.Core.csproj" ]; then
-    echo "📦 Criando projeto C# base..."
+if [[ ! -f "game/Game.Core/Game.Core.csproj" ]]; then
+    echo "📦 Creating Base C# Project..."
     dotnet new classlib -n Game.Core -o game/Game.Core
 fi
 
 # =========================
 # 🔗 SOLUTION
 # =========================
-echo "🔗 Configurando solução..."
+echo "🔗 Configuring Solution..."
 dotnet sln game/GameSolution.sln add game/Game.Core/Game.Core.csproj 2>/dev/null || true
-dotnet sln game/GameSolution.sln remove game/game.csproj >/dev/null 2>&1 || true # Remove any old reference to game.csproj
+dotnet sln game/GameSolution.sln remove game/game.csproj >/dev/null 2>&1 || true 
 
 # =========================
 # 🧪 TEST PROJECT
 # =========================
 
-if [ ! -d "tests/Game.Core.Tests" ]; then
-    echo "🧪 Criando projeto de testes (.NET)..."
+if [[ ! -d "tests/Game.Core.Tests" ]]; then
+    echo "🧪 Creating Test Project (.NET)..."
 
     mkdir -p tests
     cd tests
@@ -73,7 +74,7 @@ fi
 # 🔗 LINK TEST → CORE
 # =========================
 
-echo "🔗 Vinculando testes ao projeto principal..."
+echo "🔗 Linking tests to core project..."
 
 dotnet list tests/Game.Core.Tests/Game.Core.Tests.csproj reference \
   | grep "Game.Core.csproj" \
@@ -85,9 +86,9 @@ dotnet sln game/GameSolution.sln add tests/Game.Core.Tests/Game.Core.Tests.cspro
 # 🎮 GDUNIT4
 # =========================
 
-# Verifica se o script de comando existe para validar a instalação.
-if [ ! -f "game/addons/gdUnit4/bin/GdUnitCmdTool.gd" ]; then
-    echo "🎮 Instalando GDUnit4..."
+# Verify command script exists to validate installation
+if [[ ! -f "game/addons/gdUnit4/bin/GdUnitCmdTool.gd" ]]; then
+    echo "🎮 Installing GDUnit4..."
 
     # Create a temporary directory for cloning
     TMP_GDUNIT_DIR=$(mktemp -d -t gdunit4-XXXXXXXX)
@@ -100,13 +101,13 @@ if [ ! -f "game/addons/gdUnit4/bin/GdUnitCmdTool.gd" ]; then
     rm -rf game/addons/gdUnit4
     mkdir -p game/addons/gdUnit4
 
-    # Move apenas o conteúdo da pasta 'addons/gdUnit4' do repositório para o projeto
-    if [ -d "$TMP_GDUNIT_DIR/addons/gdUnit4" ]; then
+    # Move only the contents of 'addons/gdUnit4' from the repo to the project
+    if [[ -d "$TMP_GDUNIT_DIR/addons/gdUnit4" ]]; then
         cp -r "$TMP_GDUNIT_DIR/addons/gdUnit4/." game/addons/gdUnit4/
-        # Também copia o arquivo de projeto C# da raiz do repositório
+        # Also copy the C# project file from the repo root
         cp "$TMP_GDUNIT_DIR/gdUnit4.csproj" game/addons/gdUnit4/ 2>/dev/null || true
 
-        # Patch gdUnit4.csproj to target net8.0 instead of net9.0
+        # Patch gdUnit4.csproj to target net8.0 and LangVersion 12
         sed -i 's/<LangVersion>13.0<\/LangVersion>/<LangVersion>12.0<\/LangVersion>/' game/addons/gdUnit4/gdUnit4.csproj
         echo "Patched gdUnit4.csproj LangVersion to 12.0"
 
