@@ -44,6 +44,18 @@ Characteristics:
 
 ---
 
+## 🔄 SYNC MODES
+
+### TASK ⮕ CONTRACT
+Use: `agent_bootstrap_task_to_contract.md`
+When: You have an implementation task but need to formalize the design/behavior first.
+
+### CONTRACT ⮕ TASK
+Use: `agent_bootstrap_contract_to_task.md`
+When: New design/contract is created and needs to be turned into an actionable execution plan.
+
+---
+
 # 🧠 Mode Selection Heuristics
 
 ## Default
@@ -57,6 +69,12 @@ Start in:
 ## Switch to FULL MODE if ANY condition is true:
 
 ### 🔧 Complexity
+
+- **Contract/Task Mismatch:** If the Task doesn't have a corresponding Contract.
+  → Use 🔄 TASK ⮕ CONTRACT
+
+- **Design First:** If starting from a new requirement in `/design`.
+  → Use 🔄 CONTRACT ⮕ TASK
 
 - Task involves multiple files
 - Task involves architecture changes
