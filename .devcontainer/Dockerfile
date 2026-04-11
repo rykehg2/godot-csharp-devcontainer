@@ -55,7 +55,8 @@ RUN dnf install -y \
     && dnf clean all
 
 # SCons (igual Godot)
-RUN pip3 install scons==4.10.1
+RUN pip3 install scons==4.10.1 \
+    aider-chat
 
 # 🔥 (OPCIONAL mas poderoso)
 # Mono ajuda em compatibilidade com alguns tools do Godot

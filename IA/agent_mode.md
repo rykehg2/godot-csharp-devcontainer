@@ -16,6 +16,20 @@ Optimize:
 
 ---
 
+# 🔌 Interaction Modes
+
+## 💬 CHAT MODE (Human-in-the-loop)
+- **Usage:** Copy/Paste context into Browser/IDE Chat.
+- **Pros:** High control, user validates every step manually.
+- **Cons:** Slower, manual context synchronization.
+
+## 💻 CLI MODE (Autonomous)
+- **Usage:** Run `bash IA/bin/aider-task.sh` in terminal.
+- **Pros:** Repository map awareness, automated TDD loops, direct file system access.
+- **Cons:** Requires API credits, requires careful monitoring of "Auto-Apply" logic.
+
+---
+
 # ⚙️ Available Modes
 
 ## ⚡ FAST MODE
@@ -187,6 +201,15 @@ If uncertain:
 → ALWAYS choose FULL MODE
 
 ---
+
+# 🚨 The Self-Correction Rule
+
+1. **Agent Error?** Do NOT fix the file manually.
+2. **Feedback Loop:** Provide the error output to the terminal.
+3. **Update Memory:** Force the agent to fix the code AND update `IA/context.md` with a "Learned Lesson" if it's a recurring issue.
+
+---
+
 
 # 🎯 Priority Rules
 

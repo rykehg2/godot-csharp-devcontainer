@@ -1,15 +1,24 @@
 {
   "name": "Godot C# DevContainer",
-
   "build": {
     "dockerfile": "Dockerfile"
   },
-
   "containerEnv": {
     "DOTNET_ROOT": "/usr/lib64/dotnet",
-    "DOTNET_SYSTEM_GLOBALIZATION_INVARIANT": "1"
+    "DOTNET_SYSTEM_GLOBALIZATION_INVARIANT": "1",
+    // Available Model Aliases
+    "MODEL_GEMINI": "gemini-3.1-pro-preview",
+    "MODEL_CLAUDE": "claude-3-5-sonnet-20241022",
+    "MODEL_GPT4": "gpt-4o",
+    "MODEL_QWEN": "ollama/qwen2.5-coder",
+    // Centralização do Modelo: Altere apenas esta linha para trocar o modelo global do projeto
+    "AIDER_MODEL": "gemini-3.1-pro-preview",
+    // Mapeamento de Chaves (o Aider lerá estas variáveis automaticamente)
+    "GEMINI_API_KEY": "${localEnv:GEMINI_API_KEY}",
+    "ANTHROPIC_API_KEY": "${localEnv:ANTHROPIC_API_KEY}",
+    "OPENAI_API_KEY": "${localEnv:OPENAI_API_KEY}",
+    "AIDER_DARK_MODE": "true"
   },
-
   "customizations": {
     "vscode": {
       "extensions": [
@@ -19,13 +28,10 @@
       ],
       "settings": {
         "dotnet.defaultSolution": "game/*.sln",
-
         // 🔥 força modo estável
         "dotnet.server.useOmnisharp": true,
-
         // ❗ evita downloads automáticos de runtime
         "dotnet.acquireRuntime.enable": false,
-
         // qualidade de vida
         "editor.formatOnSave": true,
         "files.exclude": {
@@ -35,7 +41,6 @@
           "source.fixAll": "always",
           "source.organizeImports": "always"
         },
-
         "terminal.integrated.defaultProfile.linux": "bash",
         "terminal.integrated.autoReveal": true,
         "terminal.integrated.profiles.linux": {
@@ -46,8 +51,6 @@
       }
     }
   },
-
   "postCreateCommand": "bash .devcontainer/run_post_create.sh",
-
   "remoteUser": "root"
 }
