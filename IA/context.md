@@ -113,7 +113,7 @@ If a step fails, the agent is responsible for the fix.
 
 The developer can switch between:
 1. **Manual Chat:** Follow the prompt suggestions at the bottom of responses.
-2. **CLI Agent:** Run `python3 IA/bin/ia-agent.py FAST` for automated iteration.
+2. **CLI Agent:** Run `python3 IA/script/ia-agent.py FAST` for automated iteration.
 
 Regardless of the mode, the **Task System** remains the source of truth for progress.
 

@@ -131,7 +131,7 @@ if [[ ! -f "game/addons/gdUnit4/bin/GdUnitCmdTool.gd" ]]; then
     [ -d "$TMP_GDUNIT_DIR" ] && rm -rf "$TMP_GDUNIT_DIR"
     echo "Cleaned up temporary directory."
 
-    echo "📦 Importando addons..."
+    echo "📦 Importing addons..."
     godot --headless --path game --import --quit || true
 fi
 
@@ -139,11 +139,11 @@ fi
 if [ -f "game/addons/gdUnit4/gdUnit4.csproj" ]; then
     dotnet sln game/GameSolution.sln add game/addons/gdUnit4/gdUnit4.csproj 2>/dev/null || true
 else
-    echo "❌ Erro: 'game/addons/gdUnit4/gdUnit4.csproj' não encontrado após a instalação do GDUnit4."
+    echo "❌ Error: 'game/addons/gdUnit4/gdUnit4.csproj' not found after GDUnit4 installation."
 fi
 
 # =========================
-# 🧪 Teste inicial de exemplo
+# 🧪 Initial sample test
 # =========================
 
 cat <<EOF > tests/Game.Core.Tests/SampleTest.cs
@@ -163,18 +163,18 @@ EOF
 # 📦 RESTORE
 # =========================
 
-echo "📦 Restaurando dependências..."
+echo "📦 Restoring dependencies..."
 dotnet restore game/GameSolution.sln
 
 # =========================
 # 🧪 VALIDATION
 # =========================
 
-echo "🧪 Rodando testes .NET..."
+echo "🧪 Running .NET tests..."
 dotnet test game/GameSolution.sln || true
 
-echo "🎮 Rodando testes Godot..."
+echo "🎮 Running Godot tests..."
 bash .devcontainer/gdunit.sh -a run || true
 bash .devcontainer/gdunit.sh -a res://test/ || true
 
-echo "✅ Ambiente pronto"
+echo "✅ Environment ready"

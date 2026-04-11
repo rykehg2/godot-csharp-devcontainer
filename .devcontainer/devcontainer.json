@@ -11,9 +11,9 @@
     "MODEL_CLAUDE": "claude-3-5-sonnet-20241022",
     "MODEL_GPT4": "gpt-4o",
     "MODEL_QWEN": "ollama/qwen2.5-coder",
-    // Centralização do Modelo: Altere apenas esta linha para trocar o modelo global do projeto
-    "AIDER_MODEL": "gemini-3.1-pro-preview",
-    // Mapeamento de Chaves (o Aider lerá estas variáveis automaticamente)
+    // Model Centralization: Change only this line to swap the global project model
+    "AIDER_MODEL": "gemini/gemini-3.1-pro-preview",
+    // Key Mapping (Aider will read these variables automatically)
     "GEMINI_API_KEY": "${localEnv:GEMINI_API_KEY}",
     "ANTHROPIC_API_KEY": "${localEnv:ANTHROPIC_API_KEY}",
     "OPENAI_API_KEY": "${localEnv:OPENAI_API_KEY}",
@@ -28,11 +28,11 @@
       ],
       "settings": {
         "dotnet.defaultSolution": "game/*.sln",
-        // 🔥 força modo estável
+        // 🔥 force stable mode
         "dotnet.server.useOmnisharp": true,
-        // ❗ evita downloads automáticos de runtime
+        // ❗ prevents automatic runtime downloads
         "dotnet.acquireRuntime.enable": false,
-        // qualidade de vida
+        // quality of life
         "editor.formatOnSave": true,
         "files.exclude": {
           "**/.git": false

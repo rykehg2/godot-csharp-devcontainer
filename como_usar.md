@@ -41,13 +41,13 @@ I will tell you the mode (FAST or FULL).
 Para execução autônoma e direta no terminal, use o script de conveniência: 
 
 ```bash
-bash IA/bin/aider-task.sh 
+bash IA/script/aider-task.sh 
 ```
 
 ## Troca de Modelos: 
 O modelo padrão é definido no devcontainer.json. Para trocar rapidamente no terminal:
 ```
-AIDER_MODEL=$MODEL_CLAUDE bash IA/bin/aider-task.sh
+AIDER_MODEL=$MODEL_CLAUDE bash IA/script/aider-task.sh
 ```
 
 ---

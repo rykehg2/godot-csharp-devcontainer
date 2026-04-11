@@ -1,9 +1,9 @@
-# Fedora moderno
+# Modern Fedora
 FROM fedora:43
 
 RUN dnf -y update && dnf clean all
 
-# 🔧 TOOLCHAIN (baseado no build-containers)
+# 🔧 TOOLCHAIN (based on build-containers)
 RUN dnf install -y \
     git \
     wget \
@@ -18,7 +18,7 @@ RUN dnf install -y \
     cmake \
     ninja-build \
     pkgconf-pkg-config \
-    # libs runtime
+    # runtime libs
     libX11 \
     libXcursor \
     libXrandr \
@@ -34,7 +34,7 @@ RUN dnf install -y \
     libpng \
     libogg \
     libvorbis \
-    # 🔥 headers (IMPORTANTE)
+    # 🔥 headers (IMPORTANT)
     libX11-devel \
     libXcursor-devel \
     libXrandr-devel \
@@ -47,23 +47,23 @@ RUN dnf install -y \
     # 🔥 build deps
     openssl-devel \
     zlib-devel \
-    # 🔥 Vulkan (muito importante)
+    # 🔥 Vulkan (very important)
     vulkan-loader \
     vulkan-loader-devel \
     # .NET
     dotnet-sdk-8.0 \
     && dnf clean all
 
-# SCons (igual Godot)
+# SCons (same as Godot)
 RUN pip3 install scons==4.10.1 \
     aider-chat
 
-# 🔥 (OPCIONAL mas poderoso)
-# Mono ajuda em compatibilidade com alguns tools do Godot
+# 🔥 (OPTIONAL but powerful)
+# Mono helps with compatibility with some Godot tools
 RUN dnf install -y mono-complete || true
 
 # =========================
-# GODOT .NET (já validado)
+# GODOT .NET (already validated)
 # =========================
 
 ENV GODOT_VERSION=4.6.2
@@ -82,7 +82,7 @@ RUN chmod +x /usr/local/bin/godot
 ENV PATH="/usr/local/bin:$PATH"
 
 # =========================
-# VALIDAÇÃO
+# VALIDATION
 # =========================
 
 RUN godot --version
@@ -90,7 +90,7 @@ RUN dotnet --version
 
 WORKDIR /workspace
 
-# Teste automático de C#
+# Automatic C# test
 #COPY .devcontainer/tests/test_csharp.sh /test_csharp.sh
 COPY tests/test_csharp.sh /test_csharp.sh
 RUN chmod +x /test_csharp.sh && /test_csharp.sh

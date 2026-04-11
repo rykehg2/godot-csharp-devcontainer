@@ -40,7 +40,7 @@ I will tell you the mode (FAST or FULL).
 For autonomous execution directly in the terminal, use the convenience script:
 
 '''bash 
-bash IA/bin/aider-task.sh
+bash IA/script/aider-task.sh
 '''
 
 ## Model Swapping: 
@@ -48,7 +48,7 @@ bash IA/bin/aider-task.sh
 The default model is defined in devcontainer.json. To swap models on the fly: 
 
 '''
-AIDER_MODEL=$MODEL_CLAUDE bash IA/bin/aider-task.sh
+AIDER_MODEL=$MODEL_CLAUDE bash IA/script/aider-task.sh
 '''
 
 ---

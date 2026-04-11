@@ -24,7 +24,7 @@ Optimize:
 - **Cons:** Slower, manual context synchronization.
 
 ## 💻 CLI MODE (Autonomous)
-- **Usage:** Run `bash IA/bin/aider-task.sh` in terminal.
+- **Usage:** Run `bash IA/script/aider-task.sh` in terminal.
 - **Pros:** Repository map awareness, automated TDD loops, direct file system access.
 - **Cons:** Requires API credits, requires careful monitoring of "Auto-Apply" logic.
 

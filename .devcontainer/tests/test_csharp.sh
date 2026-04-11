@@ -1,19 +1,19 @@
 #!/bin/bash
 
-set -e  # falha automática
+set -e  # automatic failure
 
-echo "🧪 Testando suporte a C# no Godot..."
+echo "🧪 Testing C# support in Godot..."
 
-# Criar projeto temporário
+# Create temporary project
 mkdir -p /tmp/godot-test
 cd /tmp/godot-test
 
-# Inicializar projeto Godot
+# Initialize Godot project
 /usr/local/bin/godot --headless --path . --quit
 godot --headless --help
-echo "✔ Projeto criado"
+echo "✔ Project created"
 
-# Criar script C#
+# Create C# script
 cat <<EOF > Test.cs
 using Godot;
 
@@ -21,12 +21,12 @@ public partial class Test : Node
 {
     public override void _Ready()
     {
-        GD.Print("C# funcionando!");
+        GD.Print("C# working!");
     }
 }
 EOF
 
-# Criar arquivo .csproj manual (caso Godot não gere)
+# Create manual .csproj file (in case Godot doesn't generate it)
 cat <<EOF > godot-test.csproj
 <Project Sdk="Godot.NET.Sdk/4.0.0">
   <PropertyGroup>
@@ -35,21 +35,21 @@ cat <<EOF > godot-test.csproj
 </Project>
 EOF
 
-echo "✔ Arquivos C# criados"
+echo "✔ C# files created"
 
-# Restaurar dependências
+# Restore dependencies
 dotnet restore
 
 echo "✔ dotnet restore OK"
 
-# Build do projeto
+# Build project
 dotnet build
 
-echo "✔ Build C# OK"
+echo "✔ C# Build OK"
 
-echo "🎉 SUCESSO: C# está funcionando no Godot!"
+echo "🎉 SUCCESS: C# is working in Godot!"
 
-# Limpeza de resíduos
+# Cleanup of residuals
 cd /
 rm -rf /tmp/godot-test
-echo "🧹 Resíduos limpos"
+echo "🧹 Residuals cleaned"
