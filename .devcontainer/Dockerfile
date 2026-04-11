@@ -1,6 +1,9 @@
 # Fedora
 FROM fedora:41
 
+ENV LANG=C.UTF-8
+ENV LC_ALL=C.UTF-8
+
 RUN dnf -y update && dnf clean all
 
 # 🔧 TOOLCHAIN (based on build-containers)
@@ -9,6 +12,8 @@ RUN dnf install -y \
     wget \
     unzip \
     which \
+    python3.12 \
+    python3.12-devel \
     python3 \
     python3-pip \
     python3-devel \
@@ -16,11 +21,17 @@ RUN dnf install -y \
     python3-wheel \
     python3-numpy \
     python3-scipy \
+    python3-scikit-learn \
+    python3-pandas \
+    python3-aiohttp \
+    redhat-rpm-config \
     scons \
     gcc \
     gcc-c++ \
     make \
     clang \
+    rust \
+    cargo \
     cmake \
     ninja-build \
     pkgconf-pkg-config \
@@ -61,10 +72,10 @@ RUN dnf install -y \
     && dnf clean all
 
 # Create a virtual environment for Aider to avoid breaking system packages
-# and ensure it's available in the PATH
-RUN python3 -m venv /opt/aider-venv && \
+RUN python3.12 -m venv /opt/aider-venv && \
+    /opt/aider-venv/bin/python -m ensurepip && \
     /opt/aider-venv/bin/pip install --upgrade pip setuptools wheel && \
-    /opt/aider-venv/bin/pip install --no-build-isolation aider-chat
+    /opt/aider-venv/bin/pip install aider-chat
 
 ENV PATH="/opt/aider-venv/bin:$PATH"
 
@@ -75,32 +86,27 @@ RUN dnf install -y mono-complete || true
 # =========================
 # GODOT .NET (already validated)
 # =========================
-
 ENV GODOT_VERSION=4.6.2
 ENV GODOT_FILE_ZIP=Godot_v${GODOT_VERSION}-stable_mono_linux_x86_64
 ENV GODOT_FILE=Godot_v${GODOT_VERSION}-stable_mono_linux.x86_64
 
-RUN wget https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-stable/${GODOT_FILE_ZIP}.zip
-
-RUN unzip ${GODOT_FILE_ZIP}.zip
-RUN mv ${GODOT_FILE_ZIP}/* /usr/local/bin/
-RUN rm -rf ${GODOT_FILE_ZIP} ${GODOT_FILE_ZIP}.zip
-
-RUN mv /usr/local/bin/${GODOT_FILE} /usr/local/bin/godot
-RUN chmod +x /usr/local/bin/godot
+RUN wget https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-stable/${GODOT_FILE_ZIP}.zip && \
+    unzip ${GODOT_FILE_ZIP}.zip && \
+    mv ${GODOT_FILE_ZIP}/* /usr/local/bin/ && \
+    rm -rf ${GODOT_FILE_ZIP} ${GODOT_FILE_ZIP}.zip && \
+    mv /usr/local/bin/${GODOT_FILE} /usr/local/bin/godot && \
+    chmod +x /usr/local/bin/godot
 
 ENV PATH="/usr/local/bin:$PATH"
 
 # =========================
 # VALIDATION
 # =========================
-
 RUN godot --version
 RUN dotnet --version
 
 WORKDIR /workspace
 
 # Automatic C# test
-#COPY .devcontainer/tests/test_csharp.sh /test_csharp.sh
 COPY tests/test_csharp.sh /test_csharp.sh
 RUN chmod +x /test_csharp.sh && /test_csharp.sh
