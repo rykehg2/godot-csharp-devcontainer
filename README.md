@@ -15,7 +15,7 @@ Ensure your `GEMINI_API_KEY` or `ANTHROPIC_API_KEY` is set in your host environm
 
 # 2. Choose Interaction (CLI vs Chat)
 # For CLI (Aider):
-bash IA/script/aider-task.sh
+bash IA/scripts/aider-task.sh
 
 # For Chat: Follow guidance in how2use.md
 

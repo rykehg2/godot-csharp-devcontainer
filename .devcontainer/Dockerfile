@@ -1,5 +1,5 @@
-# Modern Fedora
-FROM fedora:43
+# Fedora
+FROM fedora:41
 
 RUN dnf -y update && dnf clean all
 
@@ -11,6 +11,12 @@ RUN dnf install -y \
     which \
     python3 \
     python3-pip \
+    python3-devel \
+    python3-setuptools \
+    python3-wheel \
+    python3-numpy \
+    python3-scipy \
+    scons \
     gcc \
     gcc-c++ \
     make \
@@ -54,9 +60,13 @@ RUN dnf install -y \
     dotnet-sdk-8.0 \
     && dnf clean all
 
-# SCons (same as Godot)
-RUN pip3 install scons==4.10.1 \
-    aider-chat
+# Create a virtual environment for Aider to avoid breaking system packages
+# and ensure it's available in the PATH
+RUN python3 -m venv /opt/aider-venv && \
+    /opt/aider-venv/bin/pip install --upgrade pip setuptools wheel && \
+    /opt/aider-venv/bin/pip install --no-build-isolation aider-chat
+
+ENV PATH="/opt/aider-venv/bin:$PATH"
 
 # 🔥 (OPTIONAL but powerful)
 # Mono helps with compatibility with some Godot tools

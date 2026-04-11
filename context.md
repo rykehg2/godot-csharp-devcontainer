@@ -2,22 +2,6 @@
 
 This file defines how any AI agent should interact with this project.
 
-# 🛠 Technology Stack
-- **Engine:** Godot 4.6.2 (C# Mono)
-- **Runtime:** .NET 8.0
-- **Test Frameworks:** xUnit (.NET logic), GDUnit4 (Godot scenes/nodes)
-- **Environment:** Fedora 41 Dev Container (Headless)
-
-# 🚀 Critical Commands
-- **Build:** `dotnet build game/GameSolution.sln`
-- **Test (.NET):** `dotnet test`
-- **Test (Godot):** `bash .devcontainer/gdunit.sh -a res://test/`
-- **Run ALL validation:** `dotnet build && dotnet test && bash .devcontainer/gdunit.sh -a res://test/`
-
-# 📝 Learned Lessons (Troubleshooting)
-* *C# Sync:* After adding new nodes with scripts, `dotnet build` is mandatory before running Godot tests.
-* *CLI Testing:* Always use the `--headless` flag when running Godot directly if not using the helper scripts.
-
 ---
 
 # 🧠 Pre-Implementation Checklist
@@ -97,14 +81,6 @@ IA/tasks/<task-file>.md
   * Decisions
   * Issues
   * status
-
----
-
-## 🚨 Failure Protocol
-If a step fails, the agent is responsible for the fix. 
-1. Analyze the CLI error log.
-2. Fix the code.
-3. Update the "Learned Lessons" section in this file if the error is environment-related.
 
 ---
 
