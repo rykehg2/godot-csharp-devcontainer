@@ -43,7 +43,7 @@ This task represents the project's starting point as demonstrated in the sources
 ### Test Type:
 
 *   Use Godot tests ONLY if:
-    *   Engine interaction is required (Node, Scene, Physics, Signals) — **Necessário para validar colisões e hierarquia de nós.**
+    *   Engine interaction is required (Node, Scene, Physics, Signals) — **Necessary to validate collisions and node hierarchy.**
 
 ---
 
@@ -51,16 +51,16 @@ This task represents the project's starting point as demonstrated in the sources
 
 ### ✅ Allowed:
 
-*   Criação de nós `Node2D`, `StaticBody2D`, `CharacterBody2D`, `Sprite2D` e `CollisionShape2D`.
-*   Criação e edição do script principal do personagem.
-*   Importação e atribuição de assets de imagem aos sprites.
+*   Creation of nodes `Node2D`, `StaticBody2D`, `CharacterBody2D`, `Sprite2D`, and `CollisionShape2D`.
+*   Creation and editing of the main character script.
+*   Importing and assigning image assets to sprites.
 
 ---
 
 ### ❌ Restricted:
 
-*   Configurações de input complexas fora do template padrão.
-*   Sistemas de partículas ou UI avançada.
+*   Complex input configurations outside the standard template.
+*   Particle systems or advanced UI.
 
 ---
 

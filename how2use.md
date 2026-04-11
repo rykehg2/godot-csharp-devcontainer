@@ -8,12 +8,23 @@ Think of it this way:
 ---
 # ⚡ Real workflow (day-to-day)
 
+# ⚙️ Initial Setup (API Keys)
+
+Before opening the container, you must ensure the API keys are available. The system is configured to pull these variables from your local host machine.
+
+1. **Linux/Mac:** Add to your `~/.bashrc` or `~/.zshrc`:
+   `export GEMINI_API_KEY="your_key_here"`
+2. **Windows (PowerShell):** `$env:GEMINI_API_KEY="your_key_here"`
+3. **Alternative:** Create a `.env` file in the project root (use `.env.example` as a template). VS Code will load these variables when starting the Dev Container.
+
+---
+
 # 🥇 Best way to start
 
 Always start the conversation with:
 
 ```
-You are working in a structured AI-driven dev environment. Analize the hole project, start with README.md.
+You are working in a structured AI-driven dev environment. Analyze entire project, start with README.md.
 
 Follow:
 - TDD
@@ -22,6 +33,24 @@ Follow:
 
 I will tell you the mode (FAST or FULL).
 ```
+---
+
+## 💻 CLI Mode (Aider) - Recommended
+
+For autonomous execution directly in the terminal, use the convenience script:
+
+'''bash 
+bash IA/scripts/aider-task.sh
+'''
+
+## Model Swapping: 
+
+The default model is defined in devcontainer.json. To swap models on the fly: 
+
+'''
+AIDER_MODEL=$MODEL_CLAUDE bash IA/scripts/aider-task.sh
+'''
+
 ---
 
 ## 🥇 Standard Loop (90% of the time)

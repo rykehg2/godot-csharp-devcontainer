@@ -107,13 +107,10 @@ if [[ ! -f "game/addons/gdUnit4/bin/GdUnitCmdTool.gd" ]]; then
         # Also copy the C# project file from the repo root
         cp "$TMP_GDUNIT_DIR/gdUnit4.csproj" game/addons/gdUnit4/ 2>/dev/null || true
 
-        # Patch gdUnit4.csproj to target net8.0 and LangVersion 12
+        # Patch gdUnit4.csproj to target net8.0 and LangVersion 12.0 (compatible with .NET 8)
+        sed -i 's/<TargetFramework>net9.0<\/TargetFramework>/<TargetFramework>net8.0<\/TargetFramework>/' game/addons/gdUnit4/gdUnit4.csproj
         sed -i 's/<LangVersion>13.0<\/LangVersion>/<LangVersion>12.0<\/LangVersion>/' game/addons/gdUnit4/gdUnit4.csproj
-        echo "Patched gdUnit4.csproj LangVersion to 12.0"
-
-        # Patch gdUnit4.csproj to use LangVersion 12.0 instead of 13.0 (compatible with .NET 8)
-        sed -i 's/<LangVersion>13.0<\/LangVersion>/<LangVersion>12.0<\/LangVersion>/' game/addons/gdUnit4/gdUnit4.csproj
-        echo "Patched gdUnit4.csproj LangVersion to 12.0"
+        echo "Patched gdUnit4.csproj to target net8.0 and LangVersion 12.0"
 
         # Enable ImplicitUsings to resolve LINQ issues globally in the addon
         grep -q "<ImplicitUsings>" game/addons/gdUnit4/gdUnit4.csproj || sed -i '/<LangVersion>12.0<\/LangVersion>/a \    <ImplicitUsings>enable</ImplicitUsings>' game/addons/gdUnit4/gdUnit4.csproj
@@ -131,7 +128,7 @@ if [[ ! -f "game/addons/gdUnit4/bin/GdUnitCmdTool.gd" ]]; then
     [ -d "$TMP_GDUNIT_DIR" ] && rm -rf "$TMP_GDUNIT_DIR"
     echo "Cleaned up temporary directory."
 
-    echo "📦 Importando addons..."
+    echo "📦 Importing addons..."
     godot --headless --path game --import --quit || true
 fi
 
@@ -139,11 +136,11 @@ fi
 if [ -f "game/addons/gdUnit4/gdUnit4.csproj" ]; then
     dotnet sln game/GameSolution.sln add game/addons/gdUnit4/gdUnit4.csproj 2>/dev/null || true
 else
-    echo "❌ Erro: 'game/addons/gdUnit4/gdUnit4.csproj' não encontrado após a instalação do GDUnit4."
+    echo "❌ Error: 'game/addons/gdUnit4/gdUnit4.csproj' not found after GDUnit4 installation."
 fi
 
 # =========================
-# 🧪 Teste inicial de exemplo
+# 🧪 Initial sample test
 # =========================
 
 cat <<EOF > tests/Game.Core.Tests/SampleTest.cs
@@ -163,18 +160,18 @@ EOF
 # 📦 RESTORE
 # =========================
 
-echo "📦 Restaurando dependências..."
+echo "📦 Restoring dependencies..."
 dotnet restore game/GameSolution.sln
 
 # =========================
 # 🧪 VALIDATION
 # =========================
 
-echo "🧪 Rodando testes .NET..."
+echo "🧪 Running .NET tests..."
 dotnet test game/GameSolution.sln || true
 
-echo "🎮 Rodando testes Godot..."
+echo "🎮 Running Godot tests..."
 bash .devcontainer/gdunit.sh -a run || true
 bash .devcontainer/gdunit.sh -a res://test/ || true
 
-echo "✅ Ambiente pronto"
+echo "✅ Environment ready"

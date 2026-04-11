@@ -1,24 +1,41 @@
-# Fedora moderno
-FROM fedora:43
+# Fedora
+FROM fedora:41
+
+ENV LANG=C.UTF-8
+ENV LC_ALL=C.UTF-8
 
 RUN dnf -y update && dnf clean all
 
-# 🔧 TOOLCHAIN (baseado no build-containers)
+# 🔧 TOOLCHAIN (based on build-containers)
 RUN dnf install -y \
     git \
     wget \
     unzip \
     which \
+    python3.12 \
+    python3.12-devel \
     python3 \
     python3-pip \
+    python3-devel \
+    python3-setuptools \
+    python3-wheel \
+    python3-numpy \
+    python3-scipy \
+    python3-scikit-learn \
+    python3-pandas \
+    python3-aiohttp \
+    redhat-rpm-config \
+    scons \
     gcc \
     gcc-c++ \
     make \
     clang \
+    rust \
+    cargo \
     cmake \
     ninja-build \
     pkgconf-pkg-config \
-    # libs runtime
+    # runtime libs
     libX11 \
     libXcursor \
     libXrandr \
@@ -34,7 +51,7 @@ RUN dnf install -y \
     libpng \
     libogg \
     libvorbis \
-    # 🔥 headers (IMPORTANTE)
+    # 🔥 headers (IMPORTANT)
     libX11-devel \
     libXcursor-devel \
     libXrandr-devel \
@@ -47,49 +64,49 @@ RUN dnf install -y \
     # 🔥 build deps
     openssl-devel \
     zlib-devel \
-    # 🔥 Vulkan (muito importante)
+    # 🔥 Vulkan (very important)
     vulkan-loader \
     vulkan-loader-devel \
     # .NET
     dotnet-sdk-8.0 \
     && dnf clean all
 
-# SCons (igual Godot)
-RUN pip3 install scons==4.10.1
+# Create a virtual environment for Aider to avoid breaking system packages
+RUN python3.12 -m venv /opt/aider-venv && \
+    /opt/aider-venv/bin/python -m ensurepip && \
+    /opt/aider-venv/bin/pip install --upgrade pip setuptools wheel && \
+    /opt/aider-venv/bin/pip install aider-chat
 
-# 🔥 (OPCIONAL mas poderoso)
-# Mono ajuda em compatibilidade com alguns tools do Godot
+ENV PATH="/opt/aider-venv/bin:$PATH"
+
+# 🔥 (OPTIONAL but powerful)
+# Mono helps with compatibility with some Godot tools
 RUN dnf install -y mono-complete || true
 
 # =========================
-# GODOT .NET (já validado)
+# GODOT .NET (already validated)
 # =========================
-
 ENV GODOT_VERSION=4.6.2
 ENV GODOT_FILE_ZIP=Godot_v${GODOT_VERSION}-stable_mono_linux_x86_64
 ENV GODOT_FILE=Godot_v${GODOT_VERSION}-stable_mono_linux.x86_64
 
-RUN wget https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-stable/${GODOT_FILE_ZIP}.zip
-
-RUN unzip ${GODOT_FILE_ZIP}.zip
-RUN mv ${GODOT_FILE_ZIP}/* /usr/local/bin/
-RUN rm -rf ${GODOT_FILE_ZIP} ${GODOT_FILE_ZIP}.zip
-
-RUN mv /usr/local/bin/${GODOT_FILE} /usr/local/bin/godot
-RUN chmod +x /usr/local/bin/godot
+RUN wget https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-stable/${GODOT_FILE_ZIP}.zip && \
+    unzip ${GODOT_FILE_ZIP}.zip && \
+    mv ${GODOT_FILE_ZIP}/* /usr/local/bin/ && \
+    rm -rf ${GODOT_FILE_ZIP} ${GODOT_FILE_ZIP}.zip && \
+    mv /usr/local/bin/${GODOT_FILE} /usr/local/bin/godot && \
+    chmod +x /usr/local/bin/godot
 
 ENV PATH="/usr/local/bin:$PATH"
 
 # =========================
-# VALIDAÇÃO
+# VALIDATION
 # =========================
-
 RUN godot --version
 RUN dotnet --version
 
 WORKDIR /workspace
 
-# Teste automático de C#
-#COPY .devcontainer/tests/test_csharp.sh /test_csharp.sh
+# Automatic C# test
 COPY tests/test_csharp.sh /test_csharp.sh
 RUN chmod +x /test_csharp.sh && /test_csharp.sh

@@ -10,6 +10,15 @@
 # 1. Start container
 Dev Containers: Reopen in Container
 
+## 🔑 API Keys
+Ensure your `GEMINI_API_KEY` or `ANTHROPIC_API_KEY` is set in your host environment or a `.env` file before starting the container.
+
+# 2. Choose Interaction (CLI vs Chat)
+# For CLI (Aider):
+bash IA/scripts/aider-task.sh
+
+# For Chat: Follow guidance in how2use.md
+
 # 2. Run validation
 dotnet build
 dotnet test
@@ -112,6 +121,7 @@ Environment:
 * Godot 4 (mono, headless)
 * GDUnit4
 * SCons (Godot toolchain)
+* Aider (AI CLI Agent)
 * Native toolchain (gcc, clang, cmake, ninja)
 
 ---

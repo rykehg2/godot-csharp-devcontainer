@@ -9,6 +9,17 @@ Pense assim:
 
 # ⚡ Fluxo real (dia a dia)
 
+# ⚙️ Configuração Inicial (API Keys)
+
+Antes de abrir o container, você precisa garantir que as chaves de API estejam disponíveis. O sistema está configurado para ler as variáveis de ambiente da sua máquina local.
+
+1. **No Linux/Mac:** Adicione ao seu `~/.bashrc` ou `~/.zshrc`:
+   `export GEMINI_API_KEY="sua_chave_aqui"`
+2. **No Windows (PowerShell):** `$env:GEMINI_API_KEY="sua_chave_aqui"`
+3. **Alternativa:** Crie um arquivo `.env` na raiz do projeto (use o `.env.example` como base). O VS Code carregará essas variáveis ao iniciar o Dev Container.
+
+---
+
 # 🥇 Melhor forma de começar
 
 Sempre começar conversa com:
@@ -22,6 +33,21 @@ Follow:
 - task-driven execution
 
 I will tell you the mode (FAST or FULL).
+```
+
+---
+
+## 💻 Modo CLI com Aider (Recomendado) 
+Para execução autônoma e direta no terminal, use o script de conveniência: 
+
+```bash
+bash IA/scripts/aider-task.sh 
+```
+
+## Troca de Modelos: 
+O modelo padrão é definido no devcontainer.json. Para trocar rapidamente no terminal:
+```
+AIDER_MODEL=$MODEL_CLAUDE bash IA/scripts/aider-task.sh
 ```
 
 ---

@@ -16,6 +16,20 @@ Optimize:
 
 ---
 
+# 🔌 Interaction Modes
+
+## 💬 CHAT MODE (Human-in-the-loop)
+- **Usage:** Copy/Paste context into Browser/IDE Chat.
+- **Pros:** High control, user validates every step manually.
+- **Cons:** Slower, manual context synchronization.
+
+## 💻 CLI MODE (Autonomous)
+- **Usage:** Run `bash IA/script/aider-task.sh` in terminal.
+- **Pros:** Repository map awareness, automated TDD loops, direct file system access.
+- **Cons:** Requires API credits, requires careful monitoring of "Auto-Apply" logic.
+
+---
+
 # ⚙️ Available Modes
 
 ## ⚡ FAST MODE
@@ -44,6 +58,18 @@ Characteristics:
 
 ---
 
+## 🔄 SYNC MODES
+
+### TASK ⮕ CONTRACT
+Use: `agent_bootstrap_task_to_contract.md`
+When: You have an implementation task but need to formalize the design/behavior first.
+
+### CONTRACT ⮕ TASK
+Use: `agent_bootstrap_contract_to_task.md`
+When: New design/contract is created and needs to be turned into an actionable execution plan.
+
+---
+
 # 🧠 Mode Selection Heuristics
 
 ## Default
@@ -57,6 +83,12 @@ Start in:
 ## Switch to FULL MODE if ANY condition is true:
 
 ### 🔧 Complexity
+
+- **Contract/Task Mismatch:** If the Task doesn't have a corresponding Contract.
+  → Use 🔄 TASK ⮕ CONTRACT
+
+- **Design First:** If starting from a new requirement in `/design`.
+  → Use 🔄 CONTRACT ⮕ TASK
 
 - Task involves multiple files
 - Task involves architecture changes
@@ -169,6 +201,15 @@ If uncertain:
 → ALWAYS choose FULL MODE
 
 ---
+
+# 🚨 The Self-Correction Rule
+
+1. **Agent Error?** Do NOT fix the file manually.
+2. **Feedback Loop:** Provide the error output to the terminal.
+3. **Update Memory:** Force the agent to fix the code AND update `IA/context.md` with a "Learned Lesson" if it's a recurring issue.
+
+---
+
 
 # 🎯 Priority Rules
 
