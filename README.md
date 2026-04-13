@@ -22,7 +22,7 @@ Before starting, ensure you have the following installed on your host machine:
 1. Open this project folder in **VS Code**.
 2. Press `F1` (or `Ctrl+Shift+P`) and select: **Dev Containers: Reopen in Container**.
 3. Ensure your `GEMINI_API_KEY` or `ANTHROPIC_API_KEY` is set in your host environment or a `.env` file for AI features. (Not mandatory).
-4. User your prefered IA chat code assist or configure AI agente CLI.
+4. User your preferred IA chat code assist (Copilot, Gemini, Qwen, Cline) or configure AI agente CLI.
 
 ### 🧪 Initial Validation
 Inside the container terminal, run:
