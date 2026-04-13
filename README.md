@@ -11,26 +11,24 @@ See the [LICENSE](LICENSE) file for details.
 
 # 🚀 Quick Start (TL;DR)
 
+### 🛠️ Prerequisites
+Before starting, ensure you have the following installed on your host machine:
+- **Docker Desktop** (or Docker Engine on Linux).
+- **VS Code**.
+- **Dev Containers Extension** (ms-vscode-remote.remote-containers).
+- **Godot Engine (4.x Mono/C#)**: Required locally for editor access and UI/Editor testing.
+
+### ⚙️ How to Start
+1. Open this project folder in **VS Code**.
+2. Press `F1` (or `Ctrl+Shift+P`) and select: **Dev Containers: Reopen in Container**.
+3. Ensure your `GEMINI_API_KEY` or `ANTHROPIC_API_KEY` is set in your host environment or a `.env` file for AI features. (Not mandatory).
+4. User your prefered IA chat code assist or configure AI agente CLI.
+
+### 🧪 Initial Validation
+Inside the container terminal, run:
 ```bash
-# 1. Start container
-Dev Containers: Reopen in Container
-
-## 🔑 API Keys
-Ensure your `GEMINI_API_KEY` or `ANTHROPIC_API_KEY` is set in your host environment or a `.env` file before starting the container.
-
-# 2. Choose Interaction (CLI vs Chat)
-# For CLI (Aider):
-bash IA/scripts/aider-task.sh
-
-# For Chat: Follow guidance in how2use.md
-
-# 2. Run validation
-dotnet build
 dotnet test
-
-# 3. (Optional) Godot tests
-bash .devcontainer/gdunit.sh -a res://test/
-````
+```
 
 * IDEs errors like "GDScript server not connected" are expected.
 
@@ -40,11 +38,14 @@ bash .devcontainer/gdunit.sh -a res://test/
 
 1. Read:
 
-   * `IA/context.md`
+   * `how2use.md` (Quick start guide for AI modes and CLI tools)
+   * `design/contracts` 
    * `IA/task.md`
+   * `IA/context.md`
 
 2. Follow the flow:
 
+   * Crate design (contract) or task
    * Create test (FAIL)
    * Run tests
    * Implement minimum (PASS)
@@ -59,14 +60,14 @@ bash .devcontainer/gdunit.sh -a res://test/
 
 ```
 .devcontainer/   → Reproducible environment (Docker)
-game/            → Godot project
-tests/           → .NET tests
+game/            → Godot project (created postCreate, IA and Dev work here)
+tests/           → .NET tests (created postCreate, IA and Dev work here)
 
-IA/              → AI system (context, tasks, state)
+IA/              → AI system (context, tasks, state, IA and Dev work here)
 
-design/          → Game rules (source of truth)
+design/          → Game rules (source of truth, Dev work here)
 docs/            → APIs and architecture
-examples/        → Reusable references
+examples/        → Reusable references for IA or Dev
 ```
 
 ---
@@ -74,7 +75,7 @@ examples/        → Reusable references
 # 🔄 Development flow
 
 ```text
-Contract → Task → Test → Fail → Code → Pass → Refactor → Update state
+Contract (dev) → Task (dev) → Test (IA) → Fail → Code (IA) → Pass → Refactor (IA) → Update state (IA)
 ```
 
 ---
@@ -121,7 +122,7 @@ Environment:
 
 ## ⚙️ Stack
 
-* Fedora 43
+* Fedora 41
 * .NET 8
 * Godot 4 (mono, headless)
 * GDUnit4

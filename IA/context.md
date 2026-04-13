@@ -10,13 +10,14 @@ This file defines how any AI agent should interact with this project.
 
 # 🚀 Critical Commands
 - **Build:** `dotnet build game/GameSolution.sln`
-- **Test (.NET):** `dotnet test`
+- **Test (.NET):** `dotnet test game/GameSolution.sln`
 - **Test (Godot):** `bash .devcontainer/gdunit.sh -a res://test/`
 - **Run ALL validation:** `dotnet build && dotnet test && bash .devcontainer/gdunit.sh -a res://test/`
 
 # 📝 Learned Lessons (Troubleshooting)
 * *C# Sync:* After adding new nodes with scripts, `dotnet build` is mandatory before running Godot tests.
 * *CLI Testing:* Always use the `--headless` flag when running Godot directly if not using the helper scripts.
+* *Solution Path:* Always run `dotnet` commands pointing to `game/GameSolution.sln` when at the project root to avoid MSB1003.
 
 ---
 

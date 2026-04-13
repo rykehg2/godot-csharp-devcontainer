@@ -86,7 +86,7 @@ dotnet sln game/GameSolution.sln add tests/Game.Core.Tests/Game.Core.Tests.cspro
 # 🎮 GDUNIT4
 # =========================
 
-# Verify command script exists to validate installation
+# Verify command script exists to validate installation 
 if [[ ! -f "game/addons/gdUnit4/bin/GdUnitCmdTool.gd" ]]; then
     echo "🎮 Installing GDUnit4..."
 
@@ -117,6 +117,9 @@ if [[ ! -f "game/addons/gdUnit4/bin/GdUnitCmdTool.gd" ]]; then
 
         # Specifically patch the failing test file to ensure System.Linq is present
         grep -q "using System.Linq;" game/addons/gdUnit4/test/dotnet/GdUnit4CSharpApiTest.cs || sed -i '/using Godot.Collections;/a using System.Linq;' game/addons/gdUnit4/test/dotnet/GdUnit4CSharpApiTest.cs
+        if [ -f "game/addons/gdUnit4/test/dotnet/GdUnit4CSharpApiTest.cs" ]; then
+            grep -q "using System.Linq;" game/addons/gdUnit4/test/dotnet/GdUnit4CSharpApiTest.cs || sed -i '/using Godot.Collections;/a using System.Linq;' game/addons/gdUnit4/test/dotnet/GdUnit4CSharpApiTest.cs
+        fi
 
         echo "Installed GDUnit4 addon files to game/addons/gdUnit4"
     else

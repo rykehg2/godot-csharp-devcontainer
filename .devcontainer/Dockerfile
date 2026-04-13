@@ -64,6 +64,7 @@ RUN dnf install -y \
     # 🔥 build deps
     openssl-devel \
     zlib-devel \
+    icu \
     # 🔥 Vulkan (very important)
     vulkan-loader \
     vulkan-loader-devel \
@@ -109,4 +110,4 @@ WORKDIR /workspace
 
 # Automatic C# test
 COPY tests/test_csharp.sh /test_csharp.sh
-RUN chmod +x /test_csharp.sh && /test_csharp.sh
+RUN sed -i 's/\r$//' /test_csharp.sh && chmod +x /test_csharp.sh && /test_csharp.sh

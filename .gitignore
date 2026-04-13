@@ -46,6 +46,10 @@ coverage/
 htmlcov/
 .coverage
 
+# Game and tests
+game/
+tests/
+
 # Compressed files
 *.zip
 *.gz
