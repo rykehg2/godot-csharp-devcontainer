@@ -55,7 +55,7 @@ AIDER_MODEL=$MODEL_CLAUDE bash IA/scripts/aider-task.sh
 
 ## 🥇 Standard Loop (90% of the time)
 
-You just need to send this to ChatGPT:
+You just need to send this to IA Chat:
 
 ```
 Use FAST MODE
@@ -272,12 +272,12 @@ Your entire system reduces to this:
 ## Real Loop:
 
 ```
-+1. Define task
-+2. Prompt: "Next step (FAST)"
-+3. Execute code
-+4. Run tests
-+5. Update state
-+6. Repeat
+1. Define task
+2. Prompt: "Next step (FAST)"
+3. Execute code
+4. Run tests
+5. Update state
+6. Repeat
 ```
 
 ---

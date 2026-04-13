@@ -54,7 +54,7 @@ AIDER_MODEL=$MODEL_CLAUDE bash IA/scripts/aider-task.sh
 
 ## 🥇 Loop padrão (90% do tempo)
 
-Você só precisa mandar isso pro ChatGPT:
+Você só precisa mandar isso pro Chat de IA:
 
 ```
 Use FAST MODE
