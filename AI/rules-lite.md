@@ -42,14 +42,14 @@ Contracts → Tests → Code
 
 1. Read context + task
 2. Execute ONE step
-3. Run tests
+3. Validate step (Tests or Logic)
 4. Update state
 5. Stop
 
 ---
 
 # ⚙️ Execution Rules
-
+* **Role Boundary:** Only touch files your role owns (see Knowledge Map).
 * Always run commands (never assume)
 * Always validate via CLI
 * Never claim success without execution

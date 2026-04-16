@@ -36,23 +36,17 @@ dotnet test
 
 # 🧠 How to work on this project
 
-1. Read:
+1. **Initialize the Agent:** Choose a role and mode from `AI/agent_mode.md` (e.g., "Initialize as Architect in FULL mode").
+2. **Follow the Assembly Line:**
+   * **Architect (Planner):** Refines `design/contracts` and decomposes features into `AI/tasks/XXX.md`.
+   * **Tester (Guardian):** Writes failing tests based on tasks and logs results in `AI/logs/`.
+   * **Developer (Executor):** Implements minimal logic in `game/` to turn the tests green.
+3. **Source of Truth:** 
+   * `AI/task.md` points to the active task.
+   * `AI/context.md` defines the technical rules.
+   * `design/contracts/` defines the behavioral requirements.
 
-   * `how2use.md` (Quick start guide for AI modes and CLI tools)
-   * `design/contracts` 
-   * `AI/task.md`
-   * `AI/context.md`
-
-2. Follow the flow:
-
-   * Crate design (contract) or task
-   * Create test (FAIL)
-   * Run tests
-   * Implement minimum (PASS)
-   * Refactor
-   * Update `state.md`
-
-👉 Everything is guided by **TDD + Tasks**
+👉 Everything is guided by **Specialized Agents + TDD + Tasks**
 
 ---
 
@@ -62,8 +56,7 @@ dotnet test
 .devcontainer/   → Reproducible environment (Docker)
 game/            → Godot project (created postCreate, IA and Dev work here)
 tests/           → .NET tests (created postCreate, IA and Dev work here)
-
-AI/              → AI system (context, tasks, state, IA and Dev work here)
+AI/              → AI system (agents, context, tasks, state, logs)
 
 design/          → Game rules (source of truth, Dev work here)
 docs/            → APIs and architecture
@@ -74,9 +67,10 @@ examples/        → Reusable references for IA or Dev
 
 # 🔄 Development flow
 
-```text
-Contract (dev) → Task (dev) → Test (AI) → Fail → Code (AI) → Pass → Refactor (AI) → Update state (AI)
-```
+1. **Architect:** Contract → Task
+2. **Tester:** Failing Test → Log Failure
+3. **Developer:** Implementation → Green Test
+4. **Tester:** Final Validation → Task Done
 
 ---
 
@@ -177,6 +171,8 @@ Automatically creates:
 AI/
 ├── context.md      → Operational rules
 ├── rules.md        → Global constraints
+├── agent_mode.md   → Agent Router (Role definitions)
+├── agents/         → Specialized Agent Bootstraps
 ├── task.md         → Active task
 ├── state.md        → Memory
 └── tasks/          → Task history

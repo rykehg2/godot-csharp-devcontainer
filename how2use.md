@@ -19,22 +19,6 @@ Before opening the container, you must ensure the API keys are available. The sy
 
 ---
 
-# 🥇 Best way to start
-
-Always start the conversation with:
-
-```
-You are working in a structured AI-driven dev environment. Analyze entire project, start with README.md.
-
-Follow:
-- TDD
-- XP loop
-- task-driven execution
-
-I will tell you the mode (FAST or FULL).
-```
----
-
 ## 💻 CLI Mode OpenCode - Recommended
 
 For autonomous execution directly in the terminal, use the convenience script:
@@ -43,39 +27,47 @@ For autonomous execution directly in the terminal, use the convenience script:
  TODO
 '''
 
+---
 
+# 🥇 Best way to start
 
+Always start the conversation with:
+
+```
+You are working in a structured, specialized AI assembly line. Analyze the project, starting with README.md and AI/agent_mode.md.
+
+Follow:
+- TDD
+- XP loop
+- task-driven execution
+
+- Role-based specialization (Architect, Tester, Developer) 
+- TDD & XP loops 
+- Task-driven execution 
+- I will initialize you in a specific ROLE and MODE.
+```
 ---
 
 ## 🥇 Standard Loop (90% of the time)
 
-You just need to send this to IA Chat:
+To start working, choose a role from `AI/agent_mode.md` and send:
 
 ```
-Use FAST MODE
-
-Load:
-
-AI/rules-lite.md
-AI/context.md (partial)
-AI/task.md
-Execute next step.
+Initialize as [ROLE] in [MODE] mode. 
+Execute next step from AI/task.md.
 ```
 
 👉 And that's it.
 
 ---
 
-
 ## 💬 Real Example
 
 You:
 
 ```
-Use FAST MODE
-
-Task: -(Add descrição ou só confie no task.md) (Add description or just trust task.md)
-
+Initialize as Developer in FAST mode. 
+Task: Fix the jumping gravity in player_movement.md. 
 Execute next step.
 ```
 
@@ -93,31 +85,22 @@ AI will:
 Only when something breaks or becomes complex:
 
 ```
-Use FULL MODE
-
-Load:
-
-- rules-lite.md
-- rules.md
-- context.md
-- task.md
-- state.md
-
-Analyze and execute next step
+Initialize as Architect in FULL mode. 
+Analyze the current project state and refine the contracts for the inventory system.
 ```
 
 ---
 
 # 🔥 Golden Rule
 
-| Situation              | Mode    |
-| ---------------------- | ------- |
-| Create simple feature  | ⚡ FAST |
-| Create class           | ⚡ FAST |
-| Adjust test            | ⚡ FAST |
-| Strange bug            | 🧠 FULL |
-| Refactoring            | 🧠 FULL |
-| Godot Integration      | 🧠 FULL |
+| Situation | Recommended Role | Mode |
+| :--- | :--- | :--- |
+| Planning new features / Updating GDD | **Architect** | 🧠 FULL |
+| Breaking down a big task into files | **Architect** | ⚡ FAST |
+| Writing new tests / Fixing test suite | **Tester** | 🧠 FULL |
+| Running tests and logging results | **Tester** | ⚡ FAST |
+| Implementing logic to pass a test | **Developer** | ⚡ FAST |
+| Complex refactoring / Optimization | **Developer** | 🧠 FULL |
 
 ---
 
@@ -150,8 +133,7 @@ AI/tasks/001-player-movement.md
 In ChatGPT:
 
 ```
-Use FAST MODE 
-Execute next step
+Initialize as [Role] in FAST mode. Execute next step
 ```
 
 ---
@@ -173,7 +155,7 @@ dotnet test
 or
 
 ```bash
-bash .devcontainer/gdunit.sh -a res://test/
+bash AI/gdunit.sh -a res://test/
 ```
 
 ## 5. Update state

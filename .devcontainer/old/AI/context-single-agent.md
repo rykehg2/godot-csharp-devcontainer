@@ -3,21 +3,21 @@
 This file defines how any AI agent should interact with this project.
 
 # 🛠 Technology Stack
-- **Engine:** Godot 4.3+ (C# Mono)
+- **Engine:** Godot 4.6.2 (C# Mono)
 - **Runtime:** .NET 8.0
 - **Test Frameworks:** xUnit (.NET logic), GDUnit4 (Godot scenes/nodes)
 - **Environment:** Fedora 41 Dev Container (Headless)
 
 # 🚀 Critical Commands
 - **Build:** `dotnet build game/GameSolution.sln`
-- **Test (.NET):** `bash AI/script/xunit.sh`
+- **Test (.NET):** `dotnet test game/GameSolution.sln`
 - **Test (Godot):** `bash AI/gdunit.sh -a res://test/`
-- **Run ALL validation:** `bash AI/script/validate.sh`
+- **Run ALL validation:** `dotnet build && dotnet test && bash AI/gdunit.sh -a res://test/`
 
 # 📝 Learned Lessons (Troubleshooting)
 * *C# Sync:* After adding new nodes with scripts, `dotnet build` is mandatory before running Godot tests.
-* *CLI Testing:* Always use the `--headless` flag when running Godot directly if not using helper scripts.
-* *Solution Path:* Always run `dotnet` commands pointing to `game/GameSolution.sln` to avoid MSB1003.
+* *CLI Testing:* Always use the `--headless` flag when running Godot directly if not using the helper scripts.
+* *Solution Path:* Always run `dotnet` commands pointing to `game/GameSolution.sln` when at the project root to avoid MSB1003.
 
 ---
 
@@ -101,17 +101,21 @@ AI/tasks/<task-file>.md
 
 ---
 
+## 🚨 Failure Protocol
+If a step fails, the agent is responsible for the fix. 
+1. Analyze the CLI error log.
+2. Fix the code.
+3. Update the "Learned Lessons" section in this file if the error is environment-related.
+
+---
+
 # 🔌 Interaction Strategy
 
-### 🤖 Role-Based Execution
-This project uses specialized agents defined in `AI/agent_mode.md`. 
-Before starting work, the agent must be initialized in a specific role (Architect, Tester, or Developer) and mode (Full or Fast).
+The developer can switch between:
+1. **Manual Chat:** Follow the prompt suggestions at the bottom of responses.
+2. **CLI Agent:** Run `bash AI/scripts/aider-task.sh` for automated TDD iterations.
 
-### 🛠️ Tools
-1. **Manual Chat:** Role selection via `AI/agent_mode.md`.
-2. **CLI Agent:** Automated iterations via `bash AI/scripts/aider-task.sh`.
-3. **Automation Scripts:** Helper scripts in `AI/script/` (xunit.sh, validate.sh, task-new.sh).
-3. **Source of Truth:** The **Task System** (`AI/tasks/`) remains the master record of progress regardless of the agent role.
+Regardless of the mode, the **Task System** remains the source of truth for progress.
 
 ## Execution Model
 
@@ -150,16 +154,25 @@ godot --headless --path game
 
 ## Run tests (.NET - FAST)
 
-**Script:** `bash AI/script/xunit.sh`
+```bash
+dotnet test
+```
 
 Used for:
+
 * Business logic
-* Pure C# code (Logs saved to `AI/logs/last_xunit_test.log`)
+* Pure C# code
+* Algorithms
+* Game rules
 
 ---
 
 ## Run tests (Godot - INTEGRATION)
-**Script:** `bash AI/gdunit.sh -a res://test/`
+
+```bash
+bash AI/gdunit.sh -a res://test/
+```
+
 Used for:
 
 * Scenes
@@ -188,8 +201,9 @@ dotnet build
 
 ## Run validation
 
-**Script:** `bash AI/script/validate.sh`
-Performs full build, runs xUnit, and runs GDUnit. Logs saved to `AI/logs/full_validation.log`.
+```bash
+dotnet build && dotnet test && godot --headless --path game -s addons/gdUnit4/bin/GdUnitCmdTool.gd -a run
+```
 
 ---
 
@@ -271,12 +285,43 @@ Tests must:
 
 ---
 
-# 🔁 Assembly Line Flow (Role-Based)
+# 🔁 Execution Flow (TASK-DRIVEN)
 
-1. **Architect:** Analyzes requirements → Updates `design/contracts` → Decomposes into `AI/tasks/XXX.md` (via `AI/script/task-new.sh`).
-2. **Tester:** Reads Task → Writes failing xUnit/GDUnit tests → Logs failure in `AI/logs/` and updates Task Work Log.
-3. **Developer:** Reads Task + Logs → Implements minimal code in `game/` → Verifies Green state (via `AI/script/xunit.sh`).
-4. **Tester (Final):** Runs full suite (via `AI/script/validate.sh`) → Validates against Contract → Marks Task as DONE.
+For each iteration:
+
+### 1. Read
+
+* context.md
+* rules.md
+* task.md
+* state.md
+* active task file
+
+---
+
+### 2. Analyze
+
+* Understand goal
+* Check scope
+* Identify current step
+
+---
+
+### 3. Execute ONE step
+
+Examples:
+
+* Create test
+* Run tests
+* Implement minimal logic
+* Refactor
+
+---
+
+### 4. Validate
+
+* Run tests
+* Confirm expected result
 
 ---
 

@@ -174,7 +174,7 @@ echo "🧪 Running .NET tests..."
 dotnet test game/GameSolution.sln || true
 
 echo "🎮 Running Godot tests..."
-bash .devcontainer/gdunit.sh -a run || true
-bash .devcontainer/gdunit.sh -a res://test/ || true
+bash AI/gdunit.sh -a run || true
+bash AI/gdunit.sh -a res://test/ || true
 
 echo "✅ Environment ready"

@@ -25,14 +25,13 @@ Antes de abrir o container, você precisa garantir que as chaves de API estejam 
 Sempre começar conversa com:
 
 ```
-You are working in a structured AI-driven dev environment. Analize the hole project, start with README.md.
+You are working in a structured, specialized AI assembly line. Analyze the project, starting with README.md and AI/agent_mode.md.
 
 Follow:
-- TDD
-- XP loop
-- task-driven execution
-
-I will tell you the mode (FAST or FULL).
+- Role-based specialization (Architect, Tester, Developer)
+- TDD & XP loops
+- Task-driven execution 
+- I will initialize you in a specific ROLE and MODE.
 ```
 
 ---
@@ -48,17 +47,11 @@ Para execução autônoma e direta no terminal, use o script de conveniência:
 
 ## 🥇 Loop padrão (90% do tempo)
 
-Você só precisa mandar isso pro Chat de IA:
+Escolha um papel em `AI/agent_mode.md` e envie:
 
 ```
-Use FAST MODE
-
-Load:
-- AI/rules-lite.md
-- AI/context.md (partial)
-- AI/task.md
-
-Execute next step.
+Initialize as [ROLE] in [MODE] mode. 
+Execute next step from AI/task.md.
 ```
 
 👉 E pronto.
@@ -70,11 +63,8 @@ Execute next step.
 Você:
 
 ```
-Use FAST MODE
-
-Task:
-(Add descrição ou só confie no task.md)
-
+Initialize as Developer in FAST mode. 
+Task: Corrigir a gravidade do pulo em player_movement.md. 
 Execute next step.
 ```
 
@@ -92,30 +82,22 @@ IA vai:
 Só quando algo quebra ou fica complexo:
 
 ```
-Use FULL MODE
-
-Load:
-- rules-lite.md
-- rules.md
-- context.md
-- task.md
-- state.md
-
-Analyze and execute next step
+Initialize as Architect in FULL mode. 
+Analyze the current project state and refine the contracts for the inventory system.
 ```
 
 ---
 
 # 🔥 Regra de ouro
 
-| Situação              | Modo    |
-| --------------------- | ------- |
-| Criar feature simples | ⚡ FAST |
-| Criar classe          | ⚡ FAST |
-| Ajustar teste         | ⚡ FAST |
-| Bug estranho          | 🧠 FULL |
-| Refatoração           | 🧠 FULL |
-| Integração Godot      | 🧠 FULL |
+| Situação | Papel Recomendado | Modo |
+| :--- | :--- | :--- |
+| Planejar novas features / GDD | **Architect** | 🧠 FULL |
+| Decompor tarefas grandes | **Architect** | ⚡ FAST |
+| Criar novos testes / Corrigir suíte | **Tester** | 🧠 FULL |
+| Rodar testes e atualizar logs | **Tester** | ⚡ FAST |
+| Implementar lógica (passar teste) | **Developer** | ⚡ FAST |
+| Refatoração complexa / Otimização | **Developer** | 🧠 FULL |
 
 ---
 
@@ -148,8 +130,7 @@ AI/tasks/001-player-movement.md
 No ChatGPT:
 
 ```
-Use FAST MODE
-Execute next step
+Initialize as [Role] in FAST mode. Execute next step
 ```
 
 ---

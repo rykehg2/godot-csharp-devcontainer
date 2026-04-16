@@ -26,9 +26,6 @@ RUN dnf install -y \
     python3-pandas \
     redhat-rpm-config \
     scons \
-    # aider deps
-    #rust \
-    #cargo \
     #godot build deps
     gcc \
     gcc-c++ \
@@ -72,11 +69,20 @@ RUN dnf install -y \
     vulkan-loader-devel \
     # .NET
     dotnet-sdk-8.0 \
+    # context-mode deps
+    nodejs \
+    npm \
     && dnf clean all
 
 # Install OpenCode
 RUN curl -fsSL https://opencode.ai/install | bash
 ENV PATH="/root/.opencode/bin:$PATH"
+
+# Instalar context-mode
+RUN git clone https://github.com/mksglu/context-mode.git /opt/context-mode \
+    && cd /opt/context-mode \
+    && npm install \
+    && npm install -g .
 
 # 🔥 (OPTIONAL but powerful)
 # Mono helps with compatibility with some Godot tools

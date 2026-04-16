@@ -10,6 +10,15 @@ Global rules that must always be followed.
 * Never skip validation steps
 * Never assume correctness without running tests
 * Always prefer simple solutions
+* **Role Authority:** Respect folder ownership (Architect: `design/`, Tester: `tests/`, Developer: `game/`).
+
+---
+
+# 👥 Role Ownership
+
+* **Architect:** Owns the "What" (Contracts, GDD) and "Decomposition" (Tasks).
+* **Tester:** Owns the "Validation" (Tests, Logs, Work Logs).
+* **Developer:** Owns the "Implementation" (Production code in `game/`).
 
 ---
 
@@ -44,7 +53,7 @@ Global rules that must always be followed.
 
 # 🔁 Execution Rules
 
-* Always follow the XP loop defined in context.md
+* Always follow the **Assembly Line Flow** defined in `context.md`.
 * Never jump directly to implementation
 * Never skip test execution
 * Always confirm test failure before coding
@@ -103,16 +112,15 @@ Avoid trial-and-error changes.
 # 🔗 Consistency Rule
 
 Ensure consistency between:
-
 * Code
 * Tests
 * Design (/design)
 * Documentation (/docs)
 
-If inconsistency is found:
-
-- Fix implementation
-- OR update design/docs
+**Order of Correction:**
+1. If Design is wrong: The **Architect** must update `/design/contracts`.
+2. If Tests are missing: The **Tester** must update `/tests`.
+3. If Code is wrong: The **Developer** must update `/game`.
 
 ---
 
