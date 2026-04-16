@@ -6,9 +6,9 @@ Objective: Formalize behavior by generating or updating a Contract based on a Ta
 
 # 📦 Load Order
 
-1. IA/rules-lite.md
-2. IA/context.md
-3. IA/task.md (The source)
+1. AI/rules-lite.md
+2. AI/context.md
+3. AI/task.md (The source)
 4. design/contracts/** (The target)
 
 ---

@@ -2,7 +2,7 @@
 
 # Custom script to run GDUnit4 in Headless mode in the DevContainer
 
-LOG_DIR="/workspaces/godot-csharp-devcontainer/IA/logs"
+LOG_DIR="/workspaces/godot-csharp-devcontainer/AI/logs"
 LOG_FILE="$LOG_DIR/last_gdunit_test.log"
 GODOT_BIN=$(which godot)
 FILTERED_ARGS=""

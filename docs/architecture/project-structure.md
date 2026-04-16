@@ -91,7 +91,7 @@ AI execution system.
 ## Structure
 
 ```text
-/IA/
+/AI/
 ├── context.md     → AI behavior rules
 ├── rules.md       → Global constraints
 ├── task.md        → Active task pointer

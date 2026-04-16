@@ -42,7 +42,7 @@ Example:
 
 Location:
 
-/IA/tasks/
+/AI/tasks/
 
 Defines:
 
@@ -86,7 +86,7 @@ Rules:
 
 Location:
 
-/IA/state.md
+/AI/state.md
 
 Tracks:
 

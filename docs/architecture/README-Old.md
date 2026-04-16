@@ -114,7 +114,7 @@ run_post_create.sh
 ## 🧠 Estrutura
 
 ```bash
-IA/
+AI/
 ├── context.md        # manual operacional
 ├── rules.md          # regras globais
 ├── state.md          # memória do sistema
@@ -167,7 +167,7 @@ Define a tarefa ativa:
 ```md
 # Current Task
 
-See: IA/tasks/001-some-feature.md
+See: AI/tasks/001-some-feature.md
 ```
 
 ---
@@ -177,7 +177,7 @@ See: IA/tasks/001-some-feature.md
 Sistema de tarefas versionadas:
 
 ```bash
-IA/tasks/
+AI/tasks/
 ├── 000-template.md
 ├── 001-feature.md
 ├── 002-feature.md
@@ -262,7 +262,7 @@ dotnet test && godot --headless --path game -s addons/gdUnit4/bin/GdUnitCmdTool.
 game/        # projeto Godot
 tests/       # testes .NET
 
-IA/          # sistema de IA
+AI/          # sistema de IA
 design/      # regras e mecânicas do jogo
 docs/        # documentação técnica
 examples/    # exemplos reutilizáveis

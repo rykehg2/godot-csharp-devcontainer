@@ -8,12 +8,12 @@ RUN dnf -y update && dnf clean all
 
 # 🔧 TOOLCHAIN (based on build-containers)
 RUN dnf install -y \
+    # Tools
     git \
     wget \
+    curl \
     unzip \
     which \
-    python3.12 \
-    python3.12-devel \
     python3 \
     python3-pip \
     python3-devel \
@@ -22,16 +22,18 @@ RUN dnf install -y \
     python3-numpy \
     python3-scipy \
     python3-scikit-learn \
-    python3-pandas \
     python3-aiohttp \
+    python3-pandas \
     redhat-rpm-config \
     scons \
+    # aider deps
+    #rust \
+    #cargo \
+    #godot build deps
     gcc \
     gcc-c++ \
     make \
     clang \
-    rust \
-    cargo \
     cmake \
     ninja-build \
     pkgconf-pkg-config \
@@ -72,13 +74,9 @@ RUN dnf install -y \
     dotnet-sdk-8.0 \
     && dnf clean all
 
-# Create a virtual environment for Aider to avoid breaking system packages
-RUN python3.12 -m venv /opt/aider-venv && \
-    /opt/aider-venv/bin/python -m ensurepip && \
-    /opt/aider-venv/bin/pip install --upgrade pip setuptools wheel && \
-    /opt/aider-venv/bin/pip install aider-chat
-
-ENV PATH="/opt/aider-venv/bin:$PATH"
+# Install OpenCode
+RUN curl -fsSL https://opencode.ai/install | bash
+ENV PATH="/root/.opencode/bin:$PATH"
 
 # 🔥 (OPTIONAL but powerful)
 # Mono helps with compatibility with some Godot tools

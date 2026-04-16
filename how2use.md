@@ -35,21 +35,15 @@ I will tell you the mode (FAST or FULL).
 ```
 ---
 
-## 💻 CLI Mode (Aider) - Recommended
+## 💻 CLI Mode OpenCode - Recommended
 
 For autonomous execution directly in the terminal, use the convenience script:
 
 '''bash 
-bash IA/scripts/aider-task.sh
+ TODO
 '''
 
-## Model Swapping: 
 
-The default model is defined in devcontainer.json. To swap models on the fly: 
-
-'''
-AIDER_MODEL=$MODEL_CLAUDE bash IA/scripts/aider-task.sh
-'''
 
 ---
 
@@ -62,9 +56,9 @@ Use FAST MODE
 
 Load:
 
-IA/rules-lite.md
-IA/context.md (partial)
-IA/task.md
+AI/rules-lite.md
+AI/context.md (partial)
+AI/task.md
 Execute next step.
 ```
 
@@ -140,13 +134,13 @@ So your workflow becomes:
 You edit:
 
 ```
-IA/task.md
+AI/task.md
 ```
 
 Pointing to:
 
 ```
-IA/tasks/001-player-movement.md
+AI/tasks/001-player-movement.md
 ```
 
 ---

@@ -12,12 +12,12 @@ Use this mode for:
 
 # 📦 Load Hierarchy (STRICT ORDER)
 
-1. IA/rules-lite.md   → fast decisions
-2. IA/rules.md        → full validation
-3. IA/context.md      → execution model
-4. IA/task.md         → current objective
-5. IA/state.md        → current state
-6. IA/logs/**         → history of recent executions and failures
+1. AI/rules-lite.md   → fast decisions
+2. AI/rules.md        → full validation
+3. AI/context.md      → execution model
+4. AI/task.md         → current objective
+5. AI/state.md        → current state
+6. AI/logs/**         → history of recent executions and failures
 7. design/contracts/** → logic validation source
 
 ---

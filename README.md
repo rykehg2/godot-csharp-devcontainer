@@ -40,8 +40,8 @@ dotnet test
 
    * `how2use.md` (Quick start guide for AI modes and CLI tools)
    * `design/contracts` 
-   * `IA/task.md`
-   * `IA/context.md`
+   * `AI/task.md`
+   * `AI/context.md`
 
 2. Follow the flow:
 
@@ -63,7 +63,7 @@ dotnet test
 game/            → Godot project (created postCreate, IA and Dev work here)
 tests/           → .NET tests (created postCreate, IA and Dev work here)
 
-IA/              → AI system (context, tasks, state, IA and Dev work here)
+AI/              → AI system (context, tasks, state, IA and Dev work here)
 
 design/          → Game rules (source of truth, Dev work here)
 docs/            → APIs and architecture
@@ -75,7 +75,7 @@ examples/        → Reusable references for IA or Dev
 # 🔄 Development flow
 
 ```text
-Contract (dev) → Task (dev) → Test (IA) → Fail → Code (IA) → Pass → Refactor (IA) → Update state (IA)
+Contract (dev) → Task (dev) → Test (AI) → Fail → Code (AI) → Pass → Refactor (AI) → Update state (AI)
 ```
 
 ---
@@ -127,7 +127,7 @@ Environment:
 * Godot 4 (mono, headless)
 * GDUnit4
 * SCons (Godot toolchain)
-* Aider (AI CLI Agent)
+* OpenCode (AI CLI Agent)
 * Native toolchain (gcc, clang, cmake, ninja)
 
 ---
@@ -174,7 +174,7 @@ Automatically creates:
 # 🤖 AI System
 
 ```
-IA/
+AI/
 ├── context.md      → Operational rules
 ├── rules.md        → Global constraints
 ├── task.md         → Active task
@@ -226,7 +226,7 @@ Stores:
 # 🧩 Task System
 
 ```
-IA/tasks/
+AI/tasks/
 ├── 000-template.md
 ├── 001-feature-x.md
 ├── 002-bugfix-y.md

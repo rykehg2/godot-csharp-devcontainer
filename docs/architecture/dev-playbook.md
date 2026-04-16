@@ -28,7 +28,7 @@ Example:
 
 2. Create a task:
 
-/IA/tasks/
+/AI/tasks/
 
 Define:
 
@@ -40,7 +40,7 @@ Define:
 
 3. Activate task:
 
-/IA/task.md
+/AI/task.md
 
 ---
 

@@ -11,11 +11,11 @@ Use this mode for:
 
 # 📦 Load Order (STRICT)
 
-1. IA/rules-lite.md
-2. IA/context.md (PARTIAL)
-3. IA/task.md
-4. IA/logs/last_gdunit_test.log (If relevant to task)
-5. IA/logs/last_dotnet_test.log (If relevant to task)
+1. AI/rules-lite.md
+2. AI/context.md (PARTIAL)
+3. AI/task.md
+4. AI/logs/last_gdunit_test.log (If relevant to task)
+5. AI/logs/last_dotnet_test.log (If relevant to task)
 
 ---
 

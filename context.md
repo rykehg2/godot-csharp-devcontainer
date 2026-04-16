@@ -52,13 +52,13 @@ Tasks must NOT:
 The current task is defined in:
 
 ```text
-IA/task.md
+AI/task.md
 ```
 
 Which points to:
 
 ```text
-IA/tasks/<task-file>.md
+AI/tasks/<task-file>.md
 ```
 
 ---
@@ -88,7 +88,7 @@ IA/tasks/<task-file>.md
 
 The developer can switch between:
 1. **Manual Chat:** Follow the prompt suggestions at the bottom of responses.
-2. **CLI Agent:** Run `bash IA/scripts/aider-task.sh` for automated TDD iterations.
+2. **CLI Agent:** Run `bash AI/scripts/aider-task.sh` for automated TDD iterations.
 
 Regardless of the mode, the **Task System** remains the source of truth for progress.
 

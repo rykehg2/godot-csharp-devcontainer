@@ -7,17 +7,14 @@
     "DOTNET_ROOT": "/usr/lib64/dotnet",
     "DOTNET_SYSTEM_GLOBALIZATION_INVARIANT": "0",
     // Available Model Aliases
-    "MODEL_GEMINI": "gemini-3.1-pro-preview",
+    "MODEL_GEMINI_FAST": "gemini-3.1-pro-preview",
     "MODEL_CLAUDE": "claude-3-5-sonnet-20241022",
     "MODEL_GPT4": "gpt-4o",
     "MODEL_QWEN": "ollama/qwen2.5-coder",
-    // Model Centralization: Change only this line to swap the global project model
-    "AIDER_MODEL": "gemini/gemini-3.1-pro-preview",
-    // Key Mapping (Aider will read these variables automatically)
+    // Key Mapping (OpenCode will read these variables)
     "GEMINI_API_KEY": "${localEnv:GEMINI_API_KEY}",
     "ANTHROPIC_API_KEY": "${localEnv:ANTHROPIC_API_KEY}",
-    "OPENAI_API_KEY": "${localEnv:OPENAI_API_KEY}",
-    "AIDER_DARK_MODE": "true"
+    "OPENAI_API_KEY": "${localEnv:OPENAI_API_KEY}"
   },
   "customizations": {
     "vscode": {

@@ -24,7 +24,7 @@ Optimize:
 - **Cons:** Slower, manual context synchronization.
 
 ## 💻 CLI MODE (Autonomous)
-- **Usage:** Run `bash IA/script/aider-task.sh` in terminal.
+- **Usage:** Run `bash AI/script/aider-task.sh` in terminal.
 - **Pros:** Repository map awareness, automated TDD loops, direct file system access.
 - **Cons:** Requires API credits, requires careful monitoring of "Auto-Apply" logic.
 
@@ -206,7 +206,7 @@ If uncertain:
 
 1. **Agent Error?** Do NOT fix the file manually.
 2. **Feedback Loop:** Provide the error output to the terminal.
-3. **Update Memory:** Force the agent to fix the code AND update `IA/context.md` with a "Learned Lesson" if it's a recurring issue.
+3. **Update Memory:** Force the agent to fix the code AND update `AI/context.md` with a "Learned Lesson" if it's a recurring issue.
 
 ---
 
@@ -223,7 +223,7 @@ If uncertain:
 
 Before each step:
 
-1. Read `IA/task.md`
+1. Read `AI/task.md`
 2. Evaluate complexity
 3. Choose mode
 4. Load appropriate bootstrap

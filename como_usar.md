@@ -37,17 +37,11 @@ I will tell you the mode (FAST or FULL).
 
 ---
 
-## 💻 Modo CLI com Aider (Recomendado) 
+## 💻 Modo CLI com OpenCode (Recomendado) 
 Para execução autônoma e direta no terminal, use o script de conveniência: 
 
 ```bash
-bash IA/scripts/aider-task.sh 
-```
-
-## Troca de Modelos: 
-O modelo padrão é definido no devcontainer.json. Para trocar rapidamente no terminal:
-```
-AIDER_MODEL=$MODEL_CLAUDE bash IA/scripts/aider-task.sh
+ TODO
 ```
 
 ---
@@ -60,9 +54,9 @@ Você só precisa mandar isso pro Chat de IA:
 Use FAST MODE
 
 Load:
-- IA/rules-lite.md
-- IA/context.md (partial)
-- IA/task.md
+- AI/rules-lite.md
+- AI/context.md (partial)
+- AI/task.md
 
 Execute next step.
 ```
@@ -138,13 +132,13 @@ Então seu fluxo vira:
 Você edita:
 
 ```
-IA/task.md
+AI/task.md
 ```
 
 Apontando para:
 
 ```
-IA/tasks/001-player-movement.md
+AI/tasks/001-player-movement.md
 ```
 
 ---

@@ -6,7 +6,7 @@ echo "🚀 Configuring environment..."
 
 # Define Godot binary for GDUnit4 .NET test adapters
 export GODOT_BIN=$(which godot)
-mkdir -p /workspaces/godot-csharp-devcontainer/IA/logs
+mkdir -p /workspaces/godot-csharp-devcontainer/AI/logs
 
 # =========================
 # 🎮 GODOT PROJECT
