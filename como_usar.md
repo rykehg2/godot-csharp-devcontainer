@@ -36,11 +36,15 @@ Follow:
 
 ---
 
-## 💻 Modo CLI com OpenCode (Recomendado) 
-Para execução autônoma e direta no terminal, use o script de conveniência: 
+## 💻 Modo CLI com OpenCode & Context-Mode (Recomendado) 
+Para execução autônoma e direta no terminal: 
 
 ```bash
- TODO
+# Para iniciar uma sessão interativa com o OpenCode:
+opencode
+
+# Para gerar o contexto atualizado para uma LLM externa:
+context-mode .
 ```
 
 ---

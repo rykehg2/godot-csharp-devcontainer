@@ -109,9 +109,10 @@ Before starting work, the agent must be initialized in a specific role (Architec
 
 ### 🛠️ Tools
 1. **Manual Chat:** Role selection via `AI/agent_mode.md`.
-2. **CLI Agent:** Automated iterations via `bash AI/scripts/aider-task.sh`.
-3. **Automation Scripts:** Helper scripts in `AI/script/` (xunit.sh, validate.sh, task-new.sh).
-3. **Source of Truth:** The **Task System** (`AI/tasks/`) remains the master record of progress regardless of the agent role.
+2. **CLI Agent:** Automated iterations via **OpenCode** (`opencode`).
+3. **Context Management:** **context-mode** utility to gather project state and rules for the LLM.
+4. **Automation Scripts:** Helper scripts in `AI/script/` (xunit.sh, validate.sh, task-new.sh).
+5. **Source of Truth:** The **Task System** (`AI/tasks/`) remains the master record of progress regardless of the agent role.
 
 ## Execution Model
 
