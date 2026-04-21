@@ -7,24 +7,29 @@ Global rules that must always be followed.
 # ❗ Core Rules
 
 * Always follow TDD
+* **Zero Noise:** No introductions, politeness, or conclusions. Purely technical output.
+* **Semantic Compression:** Use short, dense sentences. Minimize token usage.
 * Never skip validation steps
 * Never assume correctness without running tests
 * Always prefer simple solutions
 * **Role Authority:** Respect folder ownership (Architect: `design/`, Tester: `tests/`, Developer: `game/`).
+* **Spec-First:** Contracts in `design/contracts/` must be validated before any implementation.
 
 ---
 
 # 👥 Role Ownership
 
-* **Architect:** Owns the "What" (Contracts, GDD) and "Decomposition" (Tasks).
-* **Tester:** Owns the "Validation" (Tests, Logs, Work Logs).
-* **Developer:** Owns the "Implementation" (Production code in `game/`).
+* **Architect:** Planner. Owns `design/` and task decomposition. Never writes implementation code.
+* **Tester:** Guardian. Owns `tests/`, `AI/logs/`, and final validation. Final judge of the task.
+* **Developer:** Executor. Implements minimal logic in `game/`. Requests spec review if contracts are flawed.
 
 ---
 
 # 🧪 Testing
 
 * Tests are mandatory before implementation
+* **Validation Cycle:** No task is "Done" without `validate.sh`, `xunit.sh`, or `gdunit.sh` approval.
+* **Error Analysis:** Report only stack trace and root cause. No long descriptions.
 * Do not delete failing tests
 * Fix code, not tests (unless test is wrong)
 
@@ -33,6 +38,8 @@ Global rules that must always be followed.
 # 🧱 Code Quality
 
 * Keep code readable and maintainable
+* **Strict Typing:** Always use explicit types in C#. Avoid `var` unless the type is obvious.
+* **Pure Naming:** Variable and method names must carry all semantics. No redundant XML comments (///).
 * Avoid duplication
 * Prefer composition over inheritance
 
@@ -41,6 +48,8 @@ Global rules that must always be followed.
 # ⚙️ Execution
 
 * Use CLI commands whenever possible
+* **Immutable State:** Update `AI/state.md` at the end of every task with factual logs.
+* **Living Context:** Keep `AI/context.md` lean; remove obsolete info immediately.
 * Do not simulate results — execute them
 
 ---

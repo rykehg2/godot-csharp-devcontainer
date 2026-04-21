@@ -50,6 +50,25 @@ dotnet test
 
 ---
 
+## 🛠 Validation Loop & Feedback Cycle (SDD)
+
+This project strictly adheres to **Spec-Driven Development (SDD)** principles. In this workflow, the specification is the single source of truth, and code is treated as a secondary artifact derived from it. To ensure system integrity when working with AI agents, we implement a rigorous feedback loop:
+
+### 1. Validation Scripts as Reality Anchors
+Consistent with the "Clean Code for AI Agents" philosophy, AI output must be validated by deterministic tools. Our automated scripts close the gap between generation and correctness:
+* `AI/script/validate.sh`: Performs static analysis and contract integrity checks.
+* `AI/script/gdunit.sh` & `xunit.sh`: Ensure that C#/Godot implementations satisfy technical requirements without hallucinations.
+
+### 2. Spec-First & TDD Workflow
+No agent is authorized to write implementation code unless:
+1.  The contract in `design/contracts/` has been validated.
+2.  Unit tests (TDD) are defined and failing.
+3.  The validation scripts provide the final "green light" for task completion.
+
+> **Golden Rule:** Task success is not defined by how "correct" the code looks, but by passing the validation scripts. This eliminates semantic noise and focuses on technical precision.
+
+---
+
 # 📂 Main structure
 
 ```
