@@ -1,42 +1,27 @@
-# 🧠 Systems
+# 🧠 Systems Architecture
 
 ## 🎮 Player System
-
-Responsible for:
-
-* Movement
-* Player state
-* Input
+- **Controller:** Input handling and state management.
+- **Physics Logic:** C# class within `Game.Core` (Pure Logic).
 
 ---
 
-## 🧪 Core Logic (C#)
-
-Responsible for:
-
-* Business rules
-* Movement calculation
-* Game decisions
-
-⚠️ Must not depend directly on Godot
+## 🧪 Core Logic Layer (`Game.Core`)
+- **Authority:** Contains all math and decision-making logic.
+- **Constraint:** ⚠️ Zero dependency on `Godot` namespace for business rules.
+- **Unit Testing:** Validated via `xUnit` in `tests/Game.Core.Tests`.
 
 ---
 
-## 🎮 Godot Layer
-
-Responsible for:
-
-* Rendering
-* Nodes
-* Scene
+## 🎮 Engine Layer (Godot)
+- **Proxy Nodes:** `CharacterBody2D` and `StaticBody2D` receive visuals and physical shapes.
+- **Bridge:** Script attached to nodes delegates calls to `Game.Core`.
 
 ---
 
-## 🔗 Comunicação
-
-* Godot → calls C# logic
-* C# → returns result
-* Communication via simple methods or signals
+## 🔗 Communication Pattern
+- **Downwards:** Godot callbacks (`_PhysicsProcess`) -> C# Logic methods.
+- **Upwards:** C# Logic Events/Signals -> Godot visual updates.
 
 ---
 

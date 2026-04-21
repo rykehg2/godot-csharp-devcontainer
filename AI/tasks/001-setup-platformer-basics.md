@@ -10,13 +10,14 @@
 
 # 🎯 Goal
 
-Setup the basic structure of a platformer game in Godot 4, establishing a static environment and a functional character with a movement script.
+Setup the basic platformer physics foundation in Godot 4, implementing gravity, ground collision, and jump impulse based on defined contracts.
 
 ---
 
 # 📖 Context
 
-This task represents the project's starting point as demonstrated in the sources. It defines the essential physics components (static body for the ground and character body for the player) required for any subsequent game interactions.
+This is the project's bootstrap task. It implements the behaviors defined in `design/contracts/basic_movement.feature`. 
+Success is defined by passing physics integration tests in a headless environment.
 
 ---
 
@@ -33,10 +34,10 @@ This task represents the project's starting point as demonstrated in the sources
 
 ### Required Tests:
 
-*   [ ] **Core behavior:** Verify that `CharacterBody2D` (Player) and `StaticBody2D` (Ground) nodes exist in the main scene.
-*   [ ] **Core behavior:** Verify that `CharacterBody2D` collides correctly with `StaticBody2D`.
-*   [ ] **Core behavior:** Validate that the movement script is loaded and responds to basic template commands.
-*   [ ] **Edge cases:** Ensure collision shapes (`RectangleShape2D`) adequately cover the visualized sprites.
+*   [ ] **Contract Validation:** `Player` node must exist and have a `CharacterBody2D` component.
+*   [ ] **Contract Validation:** `Ground` node must exist and have a `StaticBody2D` component.
+*   [ ] **Physics:** Gravity must apply downward force when the player is in mid-air.
+*   [ ] **Physics:** Jump velocity must be exactly `-600.0` upon trigger.
 
 ---
 
@@ -84,9 +85,9 @@ This task represents the project's starting point as demonstrated in the sources
 
 # 📊 Progress (Updated)
 
-**current_step**: 1
-**last_action**: Task initialized.
-**next_action**: Write failing test (verify player existence in scene).
+**current_step**: 2
+**last_action**: Design aligned with SDD. Contracts created.
+**next_action**: Initialize Tester to write failing integration tests in `tests/`.
 
 ---
 
@@ -109,7 +110,9 @@ This task represents the project's starting point as demonstrated in the sources
 
 # 🧠 Design Alignment
 
-The implementation strictly follows the Godot 4 native hierarchy and workflow for rapid platformer prototyping.
+Linked to:
+- **GDD:** `design/gdd.md`
+- **Contract:** `design/contracts/basic_movement.feature`
 
 ---
 

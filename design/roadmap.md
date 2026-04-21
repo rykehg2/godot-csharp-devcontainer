@@ -1,27 +1,18 @@
 # 🗺️ Roadmap
 
-## 🟢 Phase 1 – Foundation
-
-* [ ] Create Godot project
-* [ ] Create C# structure
-* [ ] Implement basic movement
-* [ ] Create movement tests
+## 🟢 Phase 1: Physics Foundation (Active)
+- [x] 000: Project Bootstrap (DevContainer & .NET Setup)
+- [ ] 001: Setup Platformer Basics (Player/Ground Physics) 🏗️
+- [ ] 002: Refined Player Input (WASD/Space Integration)
 
 ---
 
-## 🟡 Phase 2 – Interaction
-
-* [ ] Interaction system
-* [ ] Object detection
-* [ ] Behavior tests
+## 🟡 Phase 2: Core Mechanics
+- [ ] 003: Simple Enemy AI (Patrol)
+- [ ] 004: Collectibles & Scoring System
 
 ---
-
-## 🔵 Phase 3 – Expansion
-
-* [ ] Event system
-* [ ] Visual feedback
-* [ ] External API integration
+## 🔵 Phase 3: Polish & Expansion
 
 ---
 
