@@ -24,7 +24,9 @@ Before opening the container, you must ensure the API keys are available. The sy
 For autonomous execution directly in the terminal, use the convenience script:
 
 '''bash 
- TODO
+opencode
+/model <-- chose model
+
 '''
 
 ---
