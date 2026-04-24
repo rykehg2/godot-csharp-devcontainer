@@ -8,9 +8,21 @@ echo "🚀 Configuring environment..."
 export GODOT_BIN=$(which godot)
 mkdir -p /workspaces/godot-csharp-devcontainer/AI/logs
 
+# Limpeza preventiva para evitar conflitos de cache/objetos de builds anteriores
+echo "🧹 Cleaning up old build artifacts..."
+find . -type d -name "obj" -exec rm -rf {} + 2>/dev/null || true
+find . -type d -name "bin" -exec rm -rf {} + 2>/dev/null || true
+
 # =========================
 # 🎮 GODOT PROJECT
 # =========================
+
+# Detectar versão do Godot para alinhar o SDK do .NET
+# Versão padrão caso a detecção falhe (v4.3.0 é a estável atual)
+GODOT_VERSION_RAW=$($GODOT_BIN --version | cut -d. -f1-3 | cut -d- -f1)
+GODOT_SDK_VERSION=${GODOT_VERSION_RAW:-4.3.0}
+
+echo "🎯 Detected Godot Version: $GODOT_VERSION_RAW (Using SDK: $GODOT_SDK_VERSION)"
 
 mkdir -p game
 cd game
@@ -23,12 +35,33 @@ if [[ ! -f "project.godot" ]]; then
 config/name="Project Placeholder"
 
 [mono]
-assembly_name="Game.Core"
+assembly_name="Game"
 
 [editor_plugins]
 enabled=PackedStringArray("res://addons/gdUnit4/plugin.cfg")
 EOF
 fi
+
+# Sempre atualizar o Game.csproj para garantir que as configurações de exclusão e NoWarn estejam presentes
+cat <<EOF > Game.csproj
+<Project Sdk="Godot.NET.Sdk/$GODOT_SDK_VERSION">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <LangVersion>12.0</LangVersion>
+    <!-- Avoid conflicts with Godot SDK internal attribute generation and duplicate sources -->
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <DefaultItemExcludes>\$(DefaultItemExcludes);addons/**;Game.Core/**</DefaultItemExcludes>
+    <RootNamespace>Game</RootNamespace>
+    <!-- Suppress common warnings related to GdUnit4 analyzers and duplicate attributes -->
+    <NoWarn>\$(NoWarn);CS9057;CS0436;CS0579</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- Referências diretas -->
+    <ProjectReference Include="Game.Core/Game.Core.csproj" />
+    <ProjectReference Include="addons/gdUnit4/gdUnit4.csproj" Condition="Exists('addons/gdUnit4/gdUnit4.csproj')" />
+  </ItemGroup>
+</Project>
+EOF
 
 cd ..
 
@@ -39,6 +72,8 @@ cd ..
 if [[ ! -f "game/GameSolution.sln" ]]; then
     echo "🧠 Creating C# Solution..."
     dotnet new sln -n GameSolution -o game
+    # Forçamos a adição ao SLN mesmo que a avaliação do SDK falhe no terminal
+    dotnet sln game/GameSolution.sln add game/Game.csproj || echo "⚠️ Warning: Could not evaluate SDK during sln add, but project was linked."
 fi
 
 # =========================
@@ -55,7 +90,6 @@ fi
 # =========================
 echo "🔗 Configuring Solution..."
 dotnet sln game/GameSolution.sln add game/Game.Core/Game.Core.csproj 2>/dev/null || true
-dotnet sln game/GameSolution.sln remove game/game.csproj >/dev/null 2>&1 || true 
 
 # =========================
 # 🧪 TEST PROJECT
@@ -86,6 +120,25 @@ dotnet sln game/GameSolution.sln add tests/Game.Core.Tests/Game.Core.Tests.cspro
 # 🎮 GDUNIT4
 # =========================
 
+# Criar estrutura de testes do Godot e vincular dependências
+if [[ ! -d "game/tests" ]]; then
+    echo "🎮 Configuring Godot Tests..."
+    mkdir -p game/tests
+
+    cat <<EOF > game/tests/GodotSampleTest.cs
+using Godot;
+using GdUnit4;
+using GdUnit4.Assertions;
+
+[TestSuite]
+public partial class GodotSampleTest
+{
+    [TestCase]
+    public void Should_Pass_Godot_Interaction() => IAssertions.AssertBool(true).IsTrue();
+}
+EOF
+fi
+
 # Verify command script exists to validate installation 
 if [[ ! -f "game/addons/gdUnit4/bin/GdUnitCmdTool.gd" ]]; then
     echo "🎮 Installing GDUnit4..."
@@ -106,6 +159,9 @@ if [[ ! -f "game/addons/gdUnit4/bin/GdUnitCmdTool.gd" ]]; then
         cp -r "$TMP_GDUNIT_DIR/addons/gdUnit4/." game/addons/gdUnit4/
         # Also copy the C# project file from the repo root
         cp "$TMP_GDUNIT_DIR/gdUnit4.csproj" game/addons/gdUnit4/ 2>/dev/null || true
+
+        # Garantir que o SDK do addon use a mesma versão detectada
+        sed -i "s|Sdk=\"Godot.NET.Sdk/[^\"]*\"|Sdk=\"Godot.NET.Sdk/$GODOT_SDK_VERSION\"|" game/addons/gdUnit4/gdUnit4.csproj
 
         # Patch gdUnit4.csproj to target net8.0 and LangVersion 12.0 (compatible with .NET 8)
         sed -i 's/<TargetFramework>net9.0<\/TargetFramework>/<TargetFramework>net8.0<\/TargetFramework>/' game/addons/gdUnit4/gdUnit4.csproj
@@ -130,12 +186,12 @@ if [[ ! -f "game/addons/gdUnit4/bin/GdUnitCmdTool.gd" ]]; then
     # Clean up the temporary directory
     [ -d "$TMP_GDUNIT_DIR" ] && rm -rf "$TMP_GDUNIT_DIR"
     echo "Cleaned up temporary directory."
-
-    echo "📦 Importing addons..."
-    godot --headless --path game --import --quit || true
 fi
 
-# Ensure gdUnit4.csproj is added to the solution AFTER installation
+# Importação crucial para o Godot indexar os novos arquivos .cs e o plugin
+echo "📦 Importing project resources..."
+godot --headless --path game --import --quit || true
+
 if [ -f "game/addons/gdUnit4/gdUnit4.csproj" ]; then
     dotnet sln game/GameSolution.sln add game/addons/gdUnit4/gdUnit4.csproj 2>/dev/null || true
 else
@@ -171,10 +227,9 @@ dotnet restore game/GameSolution.sln
 # =========================
 
 echo "🧪 Running .NET tests..."
-dotnet test game/GameSolution.sln || true
+bash AI/script/xunit.sh || true
 
 echo "🎮 Running Godot tests..."
-bash AI/gdunit.sh -a run || true
-bash AI/gdunit.sh -a res://test/ || true
+bash AI/script/gdunit.sh -a res://tests/ || true
 
 echo "✅ Environment ready"

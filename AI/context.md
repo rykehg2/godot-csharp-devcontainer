@@ -11,7 +11,7 @@ This file defines how any AI agent should interact with this project.
 # 🚀 Critical Commands
 - **Build:** `dotnet build game/GameSolution.sln`
 - **Test (.NET):** `bash AI/script/xunit.sh`
-- **Test (Godot):** `bash AI/gdunit.sh -a res://test/`
+- **Test (Godot):** `bash AI/script/gdunit.sh -a res://tests/`
 - **Run ALL validation:** `bash AI/script/validate.sh`
 
 # 📝 Learned Lessons (Troubleshooting)
@@ -160,7 +160,7 @@ Used for:
 ---
 
 ## Run tests (Godot - INTEGRATION)
-**Script:** `bash AI/gdunit.sh -a res://test/`
+**Script:** `bash AI/gdunit.sh -a res://tests/`
 Used for:
 
 * Scenes

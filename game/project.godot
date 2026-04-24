@@ -1,0 +1,8 @@
+[application]
+config/name="Project Placeholder"
+
+[mono]
+assembly_name="Game"
+
+[editor_plugins]
+enabled=PackedStringArray("res://addons/gdUnit4/plugin.cfg")

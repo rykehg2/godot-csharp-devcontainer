@@ -6,7 +6,9 @@ LOG_DIR="/workspaces/godot-csharp-devcontainer/AI/logs"
 LOG_FILE="$LOG_DIR/last_gdunit_test.log"
 GODOT_BIN=$(which godot)
 FILTERED_ARGS=""
-mkdir -p "$LOG_DIR"
+if [ ! -d "$LOG_DIR" ]; then
+    mkdir -p "$LOG_DIR"
+fi
 
 # Process arguments
 while [ $# -gt 0 ]; do

@@ -1,0 +1,91 @@
+🚀 Starting Godot Tests (Headless)...
+📝 Log File: /workspaces/godot-csharp-devcontainer/AI/logs/last_gdunit_test.log
+✅ GodotSampleTest.cs found at: /workspaces/godot-csharp-devcontainer/game/tests/GodotSampleTest.cs
+🔍 Refreshing Godot project metadata...
+Godot Engine v4.6.2.stable.mono.official.71f334935 - https://godotengine.org
+
+[   0% ] [90m[1mfirst_scan_filesystem[22m | Started Project initialization (5 steps)[39m[0m
+[   0% ] [90m[1mfirst_scan_filesystem[22m | Scanning file structure...[39m[0m
+[  16% ] [90m[1mfirst_scan_filesystem[22m | Loading global class names...[39m[0m
+[  33% ] [90m[1mfirst_scan_filesystem[22m | Verifying GDExtensions...[39m[0m
+[  50% ] [90m[1mfirst_scan_filesystem[22m | Creating autoload scripts...[39m[0m
+[  66% ] [90m[1mfirst_scan_filesystem[22m | Initializing plugins...[39m[0m
+[38;2;218;165;32mIt was recognized that GdUnit4 is running in a test environment, therefore the GdUnit4 plugin will not be executed![0m
+[  83% ] [90m[1mfirst_scan_filesystem[22m | Starting file scan...[39m[0m
+[92m[ DONE ][39m [1mfirst_scan_filesystem[22m
+[0m
+[   0% ] [90m[1mupdate_scripts_classes[22m | Started Registering global classes... (2 steps)[39m[0m
+[   0% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  33% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[92m[ DONE ][39m [1mupdate_scripts_classes[22m
+[0m
+[   0% ] [90m[1mloading_editor_layout[22m | Started Loading editor (5 steps)[39m[0m
+[   0% ] [90m[1mloading_editor_layout[22m | Loading editor layout...[39m[0m
+[  16% ] [90m[1mloading_editor_layout[22m | Loading docks...[39m[0m
+[92m[ DONE ][39m [1mloading_editor_layout[22m
+[0m
+📦 Compiling .NET Solution...
+MSBuild version 17.8.43+f0cbb1397 for .NET
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  Game.Core -> /workspaces/godot-csharp-devcontainer/game/Game.Core/bin/Debug/net8.0/Game.Core.dll
+  Game.Core.Tests -> /workspaces/godot-csharp-devcontainer/tests/Game.Core.Tests/bin/Debug/net8.0/Game.Core.Tests.dll
+  gdUnit4 -> /workspaces/godot-csharp-devcontainer/game/addons/gdUnit4/.godot/mono/temp/bin/Debug/gdUnit4.dll
+  Game -> /workspaces/godot-csharp-devcontainer/game/.godot/mono/temp/bin/Debug/Game.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:06.27
+📦 Compiling .NET Solution...
+MSBuild version 17.8.43+f0cbb1397 for .NET
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  Game.Core -> /workspaces/godot-csharp-devcontainer/game/Game.Core/bin/Debug/net8.0/Game.Core.dll
+  Game.Core.Tests -> /workspaces/godot-csharp-devcontainer/tests/Game.Core.Tests/bin/Debug/net8.0/Game.Core.Tests.dll
+  gdUnit4 -> /workspaces/godot-csharp-devcontainer/game/addons/gdUnit4/.godot/mono/temp/bin/Debug/gdUnit4.dll
+  Game -> /workspaces/godot-csharp-devcontainer/game/.godot/mono/temp/bin/Debug/Game.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:05.44
+✅ Game.dll found at: /workspaces/godot-csharp-devcontainer/game/.godot/mono/temp/bin/Debug/Game.dll
+🔍 Syncing C# classes to Godot...
+Godot Engine v4.6.2.stable.mono.official.71f334935 - https://godotengine.org
+
+[   0% ] [90m[1mfirst_scan_filesystem[22m | Started Project initialization (5 steps)[39m[0m
+[   0% ] [90m[1mfirst_scan_filesystem[22m | Scanning file structure...[39m[0m
+[  16% ] [90m[1mfirst_scan_filesystem[22m | Loading global class names...[39m[0m
+[  33% ] [90m[1mfirst_scan_filesystem[22m | Verifying GDExtensions...[39m[0m
+[  50% ] [90m[1mfirst_scan_filesystem[22m | Creating autoload scripts...[39m[0m
+[  66% ] [90m[1mfirst_scan_filesystem[22m | Initializing plugins...[39m[0m
+[38;2;218;165;32mIt was recognized that GdUnit4 is running in a test environment, therefore the GdUnit4 plugin will not be executed![0m
+[  83% ] [90m[1mfirst_scan_filesystem[22m | Starting file scan...[39m[0m
+[92m[ DONE ][39m [1mfirst_scan_filesystem[22m
+[0m
+[   0% ] [90m[1mloading_editor_layout[22m | Started Loading editor (5 steps)[39m[0m
+[   0% ] [90m[1mloading_editor_layout[22m | Loading editor layout...[39m[0m
+[  16% ] [90m[1mloading_editor_layout[22m | Loading docks...[39m[0m
+[92m[ DONE ][39m [1mloading_editor_layout[22m
+[0m
+Godot Engine v4.6.2.stable.mono.official.71f334935 - https://godotengine.org
+
+[2J[H[38;2;233;150;122m
+--------------------------------------------------------------------------------------------------
+GdUnit4 Comandline Tool
+--------------------------------------------------------------------------------------------------[0m
+[38;2;218;165;32m
+Headless mode is ignored by option '--ignoreHeadlessMode'"
+
+Please note that tests that use UI interaction do not work correctly in headless mode.
+Godot 'InputEvents' are not transported by the Godot engine in headless mode and therefore
+have no effect in the test!
+[0m
+Scanning for test suites in: res://tests/
+[38;2;255;255;0mNo test cases found, abort test run![0m
+[38;2;233;150;122mExit code: 0[0m
+Finallize .. done
+🏁 Test execution finished with code: 0
