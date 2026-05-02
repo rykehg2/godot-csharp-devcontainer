@@ -55,8 +55,8 @@ fi
 cat <<EOF > Game.csproj
 <Project Sdk="Godot.NET.Sdk/$GODOT_SDK_VERSION">
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
-    <LangVersion>13.0</LangVersion>
+    <TargetFramework>net10.0</TargetFramework>
+    <LangVersion>14.0</LangVersion>
     <!-- Avoid conflicts with Godot SDK internal attribute generation and duplicate sources -->
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <RollForward>Major</RollForward>
@@ -82,12 +82,17 @@ cd ..
 # 🧠 .NET SOLUTION
 # =========================
 
-if [[ ! -f "game/GameSolution.sln" ]]; then
+if [[ ! -f "game/GameSolution.sln" && ! -f "game/GameSolution.slnx" ]]; then
     echo "🧠 Creating C# Solution..."
     dotnet new sln -n GameSolution -o game
-    # Forçamos a adição ao SLN mesmo que a avaliação do SDK falhe no terminal
-    dotnet sln game/GameSolution.sln add game/Game.csproj || echo "⚠️ Warning: Could not evaluate SDK during sln add, but project was linked."
 fi
+
+# Detectar caminho da solução dinamicamente (.sln ou .slnx)
+SLN_PATH=$(find game -maxdepth 1 \( -name "*.sln" -o -name "*.slnx" \) | head -n 1)
+echo "🔍 Using solution file: $SLN_PATH"
+
+# Vincular projeto principal
+dotnet sln "$SLN_PATH" add game/Game.csproj || echo "⚠️ Warning: Could not evaluate SDK during sln add, but project was linked."
 
 # =========================
 # 🧠 BASE C# PROJECT
@@ -102,7 +107,7 @@ fi
 # 🔗 SOLUTION
 # =========================
 echo "🔗 Configuring Solution..."
-dotnet sln game/GameSolution.sln add game/Game.Core/Game.Core.csproj 2>/dev/null || true
+dotnet sln "$SLN_PATH" add game/Game.Core/Game.Core.csproj 2>/dev/null || true
 
 # =========================
 # 🧪 TEST PROJECT
@@ -127,7 +132,7 @@ dotnet list tests/Game.Core.Tests/Game.Core.Tests.csproj reference \
   | grep "Game.Core.csproj" \
   || dotnet add tests/Game.Core.Tests/Game.Core.Tests.csproj reference game/Game.Core/Game.Core.csproj
 
-dotnet sln game/GameSolution.sln add tests/Game.Core.Tests/Game.Core.Tests.csproj 2>/dev/null || true
+dotnet sln "$SLN_PATH" add tests/Game.Core.Tests/Game.Core.Tests.csproj 2>/dev/null || true
 
 # =========================
 # 🎮 GDUNIT4
@@ -202,7 +207,7 @@ echo "📦 Importing project resources..."
 godot --headless --path game --import --quit || true
 
 if [ -f "game/addons/gdUnit4/gdUnit4.csproj" ]; then
-    dotnet sln game/GameSolution.sln add game/addons/gdUnit4/gdUnit4.csproj 2>/dev/null || true
+    dotnet sln "$SLN_PATH" add game/addons/gdUnit4/gdUnit4.csproj 2>/dev/null || true
 else
     echo "❌ Error: 'game/addons/gdUnit4/gdUnit4.csproj' not found after GDUnit4 installation."
 fi
@@ -229,7 +234,7 @@ EOF
 # =========================
 
 echo "📦 Restoring dependencies..."
-dotnet restore game/GameSolution.sln
+dotnet restore "$SLN_PATH"
 
 # =========================
 # 🧪 VALIDATION

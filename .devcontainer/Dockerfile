@@ -67,8 +67,8 @@ RUN dnf install -y \
     # 🔥 Vulkan (very important)
     vulkan-loader \
     vulkan-loader-devel \
-    # .NET
-    dotnet-sdk-9.0 \
+    # .NET 10 LTS
+    dotnet-sdk-10.0 \
     # context-mode deps
     nodejs \
     npm \

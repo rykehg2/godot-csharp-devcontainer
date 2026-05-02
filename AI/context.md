@@ -4,7 +4,7 @@ This file defines how any AI agent should interact with this project.
 
 # 🛠 Technology Stack
 - **Engine:** Godot 4.3+ (C# Mono)
-- **Runtime:** .NET 8.0
+- **Runtime:** .NET 10.0
 - **Test Frameworks:** xUnit (.NET logic), GDUnit4 (Godot scenes/nodes)
 - **Environment:** Fedora 41 Dev Container (Headless)
 
