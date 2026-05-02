@@ -160,12 +160,14 @@ fi
 if [[ ! -f "game/addons/gdUnit4/bin/GdUnitCmdTool.gd" ]]; then
     echo "🎮 Installing GDUnit4..."
 
+    # Versão estável específica compatível com Godot 4.x
+    GDUNIT_VERSION="v6.1.3"
     # Create a temporary directory for cloning
     TMP_GDUNIT_DIR=$(mktemp -d -t gdunit4-XXXXXXXX)
-    echo "Cloning GDUnit4 into temporary directory: $TMP_GDUNIT_DIR"
+    echo "Cloning GDUnit4 ($GDUNIT_VERSION) into temporary directory: $TMP_GDUNIT_DIR"
 
     # Clone the repository into the temporary directory
-    git clone https://github.com/MikeSchulze/gdUnit4.git "$TMP_GDUNIT_DIR" || { echo "Failed to clone GDUnit4 repository."; exit 1; }
+    git clone --branch "$GDUNIT_VERSION" --depth 1 https://github.com/MikeSchulze/gdUnit4.git "$TMP_GDUNIT_DIR" || { echo "Failed to clone GDUnit4 repository."; exit 1; }
 
     # Remove existing gdUnit4 addon to ensure a clean install
     rm -rf game/addons/gdUnit4
