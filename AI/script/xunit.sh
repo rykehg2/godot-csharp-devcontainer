@@ -19,10 +19,22 @@ fi
 echo "🧪 Running xUnit tests..." | tee "$LOG_FILE"
 echo "📄 Log File: $LOG_FILE" | tee -a "$LOG_FILE"
 
+# Localiza dinamicamente a solução (.sln ou .slnx)
+SLN_PATH=$(find "$PROJECT_ROOT/game" -maxdepth 1 \( -name "*.slnx" -o -name "*.sln" \) | head -n 1)
+
+if [ -z "$SLN_PATH" ]; then
+    echo "❌ Error: No solution (.slnx or .sln) file found in $PROJECT_ROOT/game" | tee -a "$LOG_FILE"
+    exit 1
+fi
+
+# Focamos no projeto específico de testes para evitar falhas de build de outros 
+# projetos irrelevantes (como os testes internos do GDUnit4)
+TEST_PROJECT="$PROJECT_ROOT/tests/Game.Core.Tests/Game.Core.Tests.csproj"
+
 # Run dotnet test pointing to the solution
 # Usamos um filtro para rodar apenas os testes do projeto (Game.Core.Tests) 
 # e evitar carregar os testes internos do addon gdUnit4 durante a validação de lógica.
-dotnet test "$PROJECT_ROOT/game/GameSolution.sln" \
+dotnet test "$TEST_PROJECT" \
     --filter "FullyQualifiedName!~gdUnit4" \
     --logger "console;verbosity=normal" 2>&1 | tee -a "$LOG_FILE"
 

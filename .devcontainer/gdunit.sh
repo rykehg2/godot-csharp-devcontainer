@@ -30,7 +30,8 @@ echo "🚀 Starting Godot Tests (Headless)..." | tee "$LOG_FILE"
 
 # 1. Compile C# (Required for GDUnit4 Mono)
 echo "📦 Compiling .NET Solution..." | tee -a "$LOG_FILE"
-dotnet build game/GameSolution.sln --debug >> "$LOG_FILE" 2>&1
+SLN_PATH=$(find game -maxdepth 1 \( -name "*.slnx" -o -name "*.sln" \) | head -n 1)
+dotnet build "$SLN_PATH" --debug >> "$LOG_FILE" 2>&1
 if [[ $? -ne 0 ]]; then
     echo "❌ C# Compilation failed. Check $LOG_FILE"
     exit 1

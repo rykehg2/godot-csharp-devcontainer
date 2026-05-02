@@ -31,6 +31,7 @@ target/
 *.godot/
 addons/
 bin/
+obj/
 
 # Environment
 .env

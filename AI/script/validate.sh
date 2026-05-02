@@ -14,8 +14,15 @@ fi
 echo "🚀 Starting Full Validation..." | tee "$LOG_FILE"
 echo "📄 Log File: $LOG_FILE" | tee -a "$LOG_FILE"
 
+SLN_PATH=$(find "$PROJECT_ROOT/game" -maxdepth 1 \( -name "*.slnx" -o -name "*.sln" \) | head -n 1)
+
+if [ -z "$SLN_PATH" ]; then
+    echo "❌ Error: No solution (.slnx or .sln) file found in $PROJECT_ROOT/game" | tee -a "$LOG_FILE"
+    exit 1
+fi
+
 echo "🔨 Building Solution..." | tee -a "$LOG_FILE"
-dotnet build "$PROJECT_ROOT/game/GameSolution.sln" >> "$LOG_FILE" 2>&1
+dotnet build "$SLN_PATH" >> "$LOG_FILE" 2>&1
 if [ $? -ne 0 ]; then echo "❌ Build Failed" | tee -a "$LOG_FILE"; exit 1; fi
 
 echo "🧪 Running C# Logic Tests (xUnit)..." | tee -a "$LOG_FILE"
