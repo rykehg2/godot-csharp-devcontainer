@@ -1,15 +1,41 @@
 #!/bin/bash
 
 # Script to run xUnit tests and log output for AI analysis
-LOG_DIR="/workspaces/godot-csharp-devcontainer/AI/logs"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
+
+LOG_DIR="$PROJECT_ROOT/AI/logs"
 LOG_FILE="$LOG_DIR/last_xunit_test.log"
-mkdir -p "$LOG_DIR"
+if [ ! -d "$LOG_DIR" ]; then
+    mkdir -p "$LOG_DIR"
+fi
+
+# O adaptador de testes do GDUnit4 exige a variável GODOT_BIN definida.
+# Caso não esteja no ambiente, tentamos localizar o binário automaticamente.
+if [ -z "$GODOT_BIN" ]; then
+    export GODOT_BIN=$(which godot 2>/dev/null)
+fi
 
 echo "🧪 Running xUnit tests..." | tee "$LOG_FILE"
+echo "📄 Log File: $LOG_FILE" | tee -a "$LOG_FILE"
+
+# Localiza dinamicamente a solução (.sln ou .slnx)
+SLN_PATH=$(find "$PROJECT_ROOT/game" -maxdepth 1 \( -name "*.slnx" -o -name "*.sln" \) | head -n 1)
+
+if [ -z "$SLN_PATH" ]; then
+    echo "❌ Error: No solution (.slnx or .sln) file found in $PROJECT_ROOT/game" | tee -a "$LOG_FILE"
+    exit 1
+fi
+
+# Focamos no projeto específico de testes para evitar falhas de build de outros 
+# projetos irrelevantes (como os testes internos do GDUnit4)
+TEST_PROJECT="$PROJECT_ROOT/tests/Game.Core.Tests/Game.Core.Tests.csproj"
 
 # Run dotnet test pointing to the solution
-# Using --logger "console;verbosity=normal" to ensure logs are readable by AI
-dotnet test /workspaces/godot-csharp-devcontainer/game/GameSolution.sln \
+# Usamos um filtro para rodar apenas os testes do projeto (Game.Core.Tests) 
+# e evitar carregar os testes internos do addon gdUnit4 durante a validação de lógica.
+dotnet test "$TEST_PROJECT" \
+    --filter "FullyQualifiedName!~gdUnit4" \
     --logger "console;verbosity=normal" 2>&1 | tee -a "$LOG_FILE"
 
 EXIT_CODE=${PIPESTATUS[0]}

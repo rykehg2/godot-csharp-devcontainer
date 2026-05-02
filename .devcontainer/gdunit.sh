@@ -6,7 +6,9 @@ LOG_DIR="/workspaces/godot-csharp-devcontainer/AI/logs"
 LOG_FILE="$LOG_DIR/last_gdunit_test.log"
 GODOT_BIN=$(which godot)
 FILTERED_ARGS=""
-mkdir -p "$LOG_DIR"
+if [ ! -d "$LOG_DIR" ]; then
+    mkdir -p "$LOG_DIR"
+fi
 
 # Process arguments
 while [ $# -gt 0 ]; do
@@ -28,7 +30,8 @@ echo "🚀 Starting Godot Tests (Headless)..." | tee "$LOG_FILE"
 
 # 1. Compile C# (Required for GDUnit4 Mono)
 echo "📦 Compiling .NET Solution..." | tee -a "$LOG_FILE"
-dotnet build game/GameSolution.sln --debug >> "$LOG_FILE" 2>&1
+SLN_PATH=$(find game -maxdepth 1 \( -name "*.slnx" -o -name "*.sln" \) | head -n 1)
+dotnet build "$SLN_PATH" --debug >> "$LOG_FILE" 2>&1
 if [[ $? -ne 0 ]]; then
     echo "❌ C# Compilation failed. Check $LOG_FILE"
     exit 1

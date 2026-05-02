@@ -2,11 +2,27 @@
 
 # Custom script to run GDUnit4 in Headless mode in the DevContainer
 
-LOG_DIR="/workspaces/godot-csharp-devcontainer/AI/logs"
+# Directory setup
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
+
+LOG_DIR="$PROJECT_ROOT/AI/logs"
 LOG_FILE="$LOG_DIR/last_gdunit_test.log"
 GODOT_BIN=$(which godot)
 FILTERED_ARGS=""
-mkdir -p "$LOG_DIR"
+
+# Silence Godot root warning in logs
+export GODOT_SILENCE_ROOT_WARNING=1
+
+# --- CRITICAL: .NET 10 COMPATIBILITY ---
+# Força o RollForward para Major em todo o processo para aceitar o host do Godot
+export DOTNET_ROLL_FORWARD=Major
+
+# Make sure log directory exists and is writable
+if ! mkdir -p "$LOG_DIR"; then
+    echo "❌ Critical Error: Could not create log directory $LOG_DIR"
+    exit 1
+fi
 
 # Process arguments
 while [ $# -gt 0 ]; do
@@ -19,29 +35,108 @@ while [ $# -gt 0 ]; do
     fi
 done
 
-if [[ -z "$GODOT_BIN" ]]; then
-    echo "❌ Error: Godot executable not found."
-    exit 1
-fi
-
 echo "🚀 Starting Godot Tests (Headless)..." | tee "$LOG_FILE"
+echo "📝 Log File: $LOG_FILE" | tee -a "$LOG_FILE"
 
-# 1. Compile C# (Required for GDUnit4 Mono)
-echo "📦 Compiling .NET Solution..." | tee -a "$LOG_FILE"
-dotnet build game/GameSolution.sln --debug >> "$LOG_FILE" 2>&1
-if [[ $? -ne 0 ]]; then
-    echo "❌ C# Compilation failed. Check $LOG_FILE"
+if [[ -z "$GODOT_BIN" ]]; then
+    echo "❌ Error: Godot executable not found." | tee -a "$LOG_FILE"
     exit 1
 fi
 
-# 2. Run Tests
-# Removed --remote-debug port 0 which caused errors in Godot 4.x
-"$GODOT_BIN" --headless --path game -d -s res://addons/gdUnit4/bin/GdUnitCmdTool.gd --ignoreHeadlessMode $FILTERED_ARGS 2>&1 | tee -a "$LOG_FILE"
+# --- DIAGNOSTIC: .NET HOST TRACE ---
+# Habilita o rastreamento detalhado para entender por que a assembly falha ao carregar
+export COREHOST_TRACE=1
+export COREHOST_TRACEFILE="$LOG_DIR/dotnet_host_trace.log"
+
+# --- DIAGNOSTIC START ---
+echo "🔍 [DEBUG] Checking project.godot for GdUnit4 activation..." | tee -a "$LOG_FILE"
+grep -H "gdUnit4" "$PROJECT_ROOT/game/project.godot" >> "$LOG_FILE" 2>&1 || echo "⚠️ GdUnit4 not mentioned in project.godot" | tee -a "$LOG_FILE"
+
+echo "📂 [DEBUG] Listing test files in game/tests/:" | tee -a "$LOG_FILE"
+ls -la "$PROJECT_ROOT/game/tests/" >> "$LOG_FILE" 2>&1
+# --- DIAGNOSTIC END ---
+
+# Debugging: Check for the presence of the test file
+if [ -f "$PROJECT_ROOT/game/tests/GodotSampleTest.cs" ]; then
+    echo "✅ GodotSampleTest.cs found at: $PROJECT_ROOT/game/tests/GodotSampleTest.cs" | tee -a "$LOG_FILE"
+else
+    echo "❌ GodotSampleTest.cs NOT found at: $PROJECT_ROOT/game/tests/GodotSampleTest.cs" | tee -a "$LOG_FILE"
+fi
+
+# Garante que o Godot importe os recursos e sincronize os metadados do C# antes da compilação
+echo "🔍 Initializing Godot project metadata..." | tee -a "$LOG_FILE"
+"$GODOT_BIN" --headless --path game --import --quit >> "$LOG_FILE" 2>&1 || true
+
+# 1. Compile C#
+if [ -f "$PROJECT_ROOT/game/Game.csproj" ]; then
+    echo "📦 Cleaning and Compiling .NET Solution..." | tee -a "$LOG_FILE"
+    
+    # Localiza a solução (.sln ou .slnx) dinamicamente
+    SLN_PATH=$(find "$PROJECT_ROOT/game" -maxdepth 1 \( -name "*.sln" -o -name "*.slnx" \) | head -n 1)
+    
+    if [ -n "$SLN_PATH" ]; then
+        dotnet clean "$SLN_PATH" >> "$LOG_FILE" 2>&1
+        dotnet build "$SLN_PATH" --debug -c Debug >> "$LOG_FILE" 2>&1
+    else
+        # Fallback para o projeto se a solução não for encontrada
+        dotnet build "$PROJECT_ROOT/game/Game.csproj" --debug -c Debug >> "$LOG_FILE" 2>&1
+    fi
+fi
+
+if [ $? -ne 0 ]; then
+    echo "❌ C# Compilation failed. Check $LOG_FILE" | tee -a "$LOG_FILE"
+    exit 1
+fi
+
+# Debugging: Check if Game.dll exists and contains the test
+GAME_DLL_PATH="$PROJECT_ROOT/game/.godot/mono/temp/bin/Debug/Game.dll"
+if [ -f "$GAME_DLL_PATH" ]; then
+    echo "✅ Game.dll found at: $GAME_DLL_PATH" | tee -a "$LOG_FILE"
+else
+    echo "❌ Game.dll NOT found at: $GAME_DLL_PATH" | tee -a "$LOG_FILE"
+    echo "This indicates a compilation issue or incorrect output path." | tee -a "$LOG_FILE"
+    exit 1 # Exit if Game.dll is not found, as tests cannot run without it.
+fi
+
+# Debugging: Sincronização de DLLs de dependências (Addons e Subprojetos)
+# Garante que todas as dependências estejam na mesma pasta da Game.dll para evitar falha de carregamento
+echo "🔄 Syncing all dependency assemblies..." >> "$LOG_FILE"
+TEMP_BIN_DIR="$PROJECT_ROOT/game/.godot/mono/temp/bin/Debug"
+
+# CRITICAL: Godot 4.6 loads the project assembly from .godot/mono/temp/bin/<config>/
+# The AssemblyDependencyResolver uses the deps.json to resolve dependencies.
+# GodotSharp.dll MUST remain in the output dir for the resolver to find it.
+# Removing it causes ".NET: Failed to load project assembly".
+echo "✅ Dependencies in output folder:" >> "$LOG_FILE"
+ls "$TEMP_BIN_DIR"/*.dll >> "$LOG_FILE" 2>&1
+
+# 2. Re-import para sincronizar classes C# compiladas
+echo "🔍 Syncing C# classes to Godot..." | tee -a "$LOG_FILE"
+
+# Primeiro importamos, depois usamos o editor para gerar metadados de scripts
+export GODOT_SILENCE_ROOT_WARNING=1
+"$GODOT_BIN" --headless --path game --import --quit >> "$LOG_FILE" 2>&1 || true
+# O passo --editor foi removido pois o dotnet build + --import já são suficientes e mais estáveis aqui
+
+# 3. Run Tests
+# Adicionamos explicitamente a verbosidade e garantimos que o Godot veja as variáveis de ambiente
+"$GODOT_BIN" --headless --path game -v -d -s res://addons/gdUnit4/bin/GdUnitCmdTool.gd --ignoreHeadlessMode $FILTERED_ARGS 2>&1 | tee -a "$LOG_FILE"
 EXIT_CODE=$?
 
+# Limpa as variáveis de trace para não afetar outros comandos
+if [ $EXIT_CODE -ne 0 ] && [ -f "$COREHOST_TRACEFILE" ]; then
+    echo "❌ Execution failed. Extracting critical .NET load errors:" | tee -a "$LOG_FILE"
+    grep -iE "resolve|failed|not found" "$COREHOST_TRACEFILE" | tail -n 20 >> "$LOG_FILE"
+fi
+
+unset COREHOST_TRACE
+unset COREHOST_TRACEFILE
+echo "🔍 .NET Trace saved to: $LOG_DIR/dotnet_host_trace.log" | tee -a "$LOG_FILE"
+
 echo "🏁 Test execution finished with code: $EXIT_CODE" | tee -a "$LOG_FILE"
+ls -l "$LOG_FILE" # Verificação visual no terminal
 
 # 3. Cleanup/Logs (Optional)
-"$GODOT_BIN" --headless --path game --quiet -s res://addons/gdUnit4/bin/GdUnitCopyLog.gd $FILTERED_ARGS > /dev/null 2>&1
+#"$GODOT_BIN" --headless --path game --quiet -s res://addons/gdUnit4/bin/GdUnitCopyLog.gd $FILTERED_ARGS > /dev/null 2>&1
 
 exit $EXIT_CODE
