@@ -24,7 +24,7 @@
         "EditorConfig.EditorConfig"
       ],
       "settings": {
-        "dotnet.defaultSolution": "game/*.sln",
+        "dotnet.defaultSolution": "game/*.sln*",
         // 🔥 force stable mode
         "dotnet.server.useOmnisharp": true,
         // ❗ prevents automatic runtime downloads

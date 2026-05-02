@@ -23,11 +23,12 @@ Before starting, ensure you have the following installed on your host machine:
 2. Press `F1` (or `Ctrl+Shift+P`) and select: **Dev Containers: Reopen in Container**.
 3. Ensure your `GEMINI_API_KEY` or `ANTHROPIC_API_KEY` is set in your host environment or a `.env` file for AI features. (Not mandatory).
 4. Use your preferred AI chat code assist (Copilot, Gemini, Qwen, Cline, Continue...) or the OpenCode CLI agent.
+5. **CLI Shortcuts:** Use `opencode` for the AI agent or `context-mode .` to refresh LLM context.
 
 ### 🧪 Initial Validation
 Inside the container terminal, run:
 ```bash
-dotnet test
+dotnet test && bash AI/script/validate.sh
 ```
 
 * IDEs errors like "GDScript server not connected" are expected.
@@ -136,7 +137,7 @@ Environment:
 ## ⚙️ Stack
 
 * Fedora 41
-* .NET 8
+* .NET 10
 * Godot 4 (mono, headless)
 * GDUnit4
 * SCons (Godot toolchain)
