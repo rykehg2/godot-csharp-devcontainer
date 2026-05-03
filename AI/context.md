@@ -9,15 +9,30 @@ This file defines how any AI agent should interact with this project.
 - **Environment:** Fedora 41 Dev Container (Headless)
 
 # 🚀 Critical Commands
-- **Build:** `dotnet build game/GameSolution.sln`
+- **Build:** `dotnet build src/GameSolution.slnx`
 - **Test (.NET):** `bash AI/script/xunit.sh`
 - **Test (Godot):** `bash AI/script/gdunit.sh -a res://tests/`
 - **Run ALL validation:** `bash AI/script/validate.sh`
 
-# 📝 Learned Lessons (Troubleshooting)
+# 📂 Project Structure
+**src/** (Main Source & Solution)
+- `GameSolution.slnx`: Arquivo de solução central do .NET 10.
+- **Game.Core/**: Lógica de domínio (sem dependência de Godot).
+  - `Domain/`: Entidades e regras de negócio.
+  - `Services/`: Serviços de domínio e algoritmos.
+  - `ValueObjects/`: Estruturas de dados imutáveis.
+- **Game.Godot/**: Camada da Engine.
+  - `Scenes/`: Cenas e hierarquia de nodes.
+  - `Scripts/`: Lógica de Nodes (`Nodes/`), UI (`UI/`) e Autoloads (`Managers/`).
+- **xunitTests/**: Projetos de testes unitários técnicos para o Core.
+
+**AI/**: Prompts, tarefas e logs operacionais.
+**design/**: Contratos de comportamento e GDD (Fonte da Verdade).
+
+# � Learned Lessons (Troubleshooting)
 * *C# Sync:* After adding new nodes with scripts, `dotnet build` is mandatory before running Godot tests.
 * *CLI Testing:* Always use the `--headless` flag when running Godot directly if not using helper scripts.
-* *Solution Path:* Always run `dotnet` commands pointing to `game/GameSolution.sln` to avoid MSB1003.
+* *Solution Path:* Always run `dotnet` commands pointing to `src/GameSolution.slnx` to avoid MSB1003.
 
 ---
 
@@ -144,7 +159,7 @@ Before writing code:
 ## Run project
 
 ```bash
-godot --headless --path game
+godot --headless --path src/Game.Godot
 ```
 
 ---
@@ -274,10 +289,12 @@ Tests must:
 
 # 🔁 Assembly Line Flow (Role-Based)
 
-1. **Architect:** Analyzes requirements → Updates `design/contracts` → Decomposes into `AI/tasks/XXX.md` (via `AI/script/task-new.sh`).
-2. **Tester:** Reads Task → Writes failing xUnit/GDUnit tests → Logs failure in `AI/logs/` and updates Task Work Log.
-3. **Developer:** Reads Task + Logs → Implements minimal code in `game/` → Verifies Green state (via `AI/script/xunit.sh`).
-4. **Tester (Final):** Runs full suite (via `AI/script/validate.sh`) → Validates against Contract → Marks Task as DONE.
+1. **Planner:** Discovery with PO → Updates `design/gdd.md` and `roadmap.md`.
+2. **Architect:** Contract formalization (ensuring tasks are linked in contracts) → Decomposes into `AI/tasks/XXX.md` (via `AI/script/task-init.sh`).
+3. **Tester (Red):** Reads Task → Writes failing tests → Logs failure in `AI/logs/`.
+4. **Developer (Green):** Reads Task + Logs → Implements minimal code → Verifies local pass.
+5. **Tester (Done):** Runs full suite (`validate.sh`) → Final validation against Contracts → Marks Task as DONE.
+6. **Reviewer:** Audits handoff → Compresses context into `design/review.md` → Cleans agent states.
 
 ---
 

@@ -1,27 +1,22 @@
-# 🧠 Project State
+# 🧠 Global Project State
 
-Tracks current progress and decisions.
+*High-level overview and synchronization hub.*
 
 ---
 
-## 📍 Current Status
+## 📍 Project Pulse
 * Last completed task: None
 * Current task: 001-setup-platformer-basics
+* Active Agent: None
 
 ---
 
-## 🧪 Test Status
-* Passing: None
-* Failing: None
+----
+## 📂 Specialized States
+* 📅 **Planner:** `AI/states/state_planner.md`
+* 🏛️ **Architect:** `AI/states/state_architect.md`
+* 🧪 **Tester:** `AI/states/state_tester.md`
+* 💻 **Developer:** `AI/states/state_developer.md`
+* 🧐 **Reviewer:** `AI/states/state_reviewer.md`
 
 ---
-
-## ⚠️ Known Issues
-
----
-
-
-## 📌 Notes
-
-* This project is designed for AI-assisted execution.
-* The environment is ready for the first task.

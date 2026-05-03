@@ -4,7 +4,7 @@ AI/          → process authority, specialized agent roles, and tasks
 design/      → source of truth for gameplay mechanics and contracts
 docs/        → technical specs and architecture
 examples/    → implementation reference and patterns
-game/        → production code (implementation)
+src/        → production code (implementation)
 tests/       → behavioral validation (xUnit and GDUnit)
 
 ## Source of Truth Priority (IMPORTANT)
