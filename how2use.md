@@ -17,15 +17,18 @@ Think of it this way:
 
 ## 💻 CLI Mode OpenCode - Recommended
 
-For autonomous execution directly in the terminal, use the convenience script:
+For autonomous execution directly in the terminal, use the convenience scripts:
 
-'''bash 
+```bash
+# Start interactive session with OpenCode:
 opencode
-/model <-- chose model
+/model <-- choose model
 
-'''
+# Generate context for external LLM (paste bin):
+context-mode .
+```
 
-To generate a context to external LLM (Paste bin): context-mode
+> **Note:** `context-mode` is installed in the container via npm from `/opt/context-mode`.
 
 ---
 
@@ -92,7 +95,7 @@ Initialize as Planner in FULL mode to discover the "Inventory System".
 | Plan features / Discovery / GDD | **Planner** | 🧠 FULL | `handoff.sh` |
 | Create Contracts and Decompose Tasks | **Architect** | 🧠 FULL | `task-init.sh` |
 | Adjust details in existing tasks | **Architect** | ⚡ FAST | `handoff.sh` |
-| Create new tests (RED Phase) | **Tester** | 🧠 FULL | `xunit.sh / gdunit.sh` |
+| Create new tests (RED Phase) | **Tester** | 🧠 FULL | `xunit.sh` / `gdunit.sh` |
 | Validate final solution (DONE Phase) | **Tester** | ⚡ FAST | `validate.sh` |
 | Implement logic (GREEN Phase) | **Developer** | ⚡ FAST | `xunit.sh` |
 | Context Compression/Auditing | **Reviewer** | 🧠 FULL | `review-audit.sh` |
@@ -161,6 +164,8 @@ AI or you update:
 AI/states/state_[role].md
 ```
 
+With progress, decisions, and issues.
+
 ---
 
 ## 6. Repeat
@@ -217,10 +222,10 @@ Without discipline, this becomes a mess.
 
 Avoid:
 
-❌ pedir para um agente fazer o trabalho de outro (ex: Developer mudar GDD)
-❌ skipping tests 
-❌ not updating state.md 
-❌ changing tasks in the middle without recording
+❌ Asking one agent to do another's work (e.g., Developer changing GDD)
+❌ Skipping tests 
+❌ Not updating state.md 
+❌ Changing tasks in the middle without recording
 
 ---
 
@@ -243,12 +248,13 @@ Your entire system reduces to this:
 ## Real Loop:
 
 ```
-1. Define task
-2. Prompt: "Next step (FAST)"
-3. Execute code
-4. Run tests
-5. Update state
-6. Repeat
+1. Define task (Architect)
+2. Prompt: "Initialize as [Role] in [MODE]. Execute next step"
+3. Write failing test (Tester - Red)
+4. Implement minimal code (Developer - Green)
+5. Run tests (validate.sh)
+6. Update state (AI/states/state_[role].md)
+7. Repeat until DONE
 ```
 
 ---

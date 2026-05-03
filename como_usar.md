@@ -38,10 +38,13 @@ Para execução autônoma e direta no terminal:
 ```bash
 # Para iniciar uma sessão interativa com o OpenCode:
 opencode
+/model <-- escolha o modelo
 
 # Para gerar o contexto atualizado para uma LLM externa:
 context-mode .
 ```
+
+> **Nota:** O `context-mode` é instalado no container via npm a partir de `/opt/context-mode`.
 
 ---
 
@@ -90,14 +93,15 @@ Analyze the current project state and refine the contracts for the inventory sys
 
 # 🔥 Regra de ouro
 
-| Situação | Papel Recomendado | Modo |
-| :--- | :--- | :--- |
-| Planejar novas features / GDD | **Architect** | 🧠 FULL |
-| Decompor tarefas grandes | **Architect** | 🧠 FULL |
-| Criar novos testes / Corrigir suíte | **Tester** | 🧠 FULL |
-| Rodar testes e atualizar logs | **Tester** | ⚡ FAST |
-| Implementar lógica (passar teste) | **Developer** | ⚡ FAST |
-| Refatoração complexa / Otimização | **Developer** | 🧠 FULL |
+| Situação | Papel Recomendado | Modo | Script Útil |
+| :--- | :--- | :--- | :--- |
+| Planejar features / Descoberta / GDD | **Planner** | 🧠 FULL | `handoff.sh` |
+| Criar Contratos e Decompor Tarefas | **Architect** | 🧠 FULL | `task-init.sh` |
+| Ajustar detalhes em tarefas existentes | **Architect** | ⚡ FAST | `handoff.sh` |
+| Criar novos testes (Fase RED) | **Tester** | 🧠 FULL | `xunit.sh` / `gdunit.sh` |
+| Validar solução final (Fase DONE) | **Tester** | ⚡ FAST | `validate.sh` |
+| Implementar lógica (Fase GREEN) | **Developer** | ⚡ FAST | `xunit.sh` |
+| Compressão de Contexto/Auditoria | **Reviewer** | 🧠 FULL | `review-audit.sh` |
 
 ---
 
@@ -156,6 +160,8 @@ Pergunte ao Tester ou Developer qual script rodar, ou use os padrões:
 
 A IA deve atualizar seu estado em:
 `AI/states/state_[role].md`
+
+Com progresso, decisões e problemas registrados.
 
 E o estado global se necessário:
 `AI/state.md`
@@ -217,10 +223,10 @@ Sem disciplina, isso vira bagunça.
 
 Evite:
 
-❌ pedir "faz tudo"
-❌ pular teste
-❌ não atualizar state.md
-❌ mudar task no meio sem registrar
+❌ Pedir para um agente fazer o trabalho de outro (ex: Developer alterando GDD)
+❌ Pular etapa de testes 
+❌ Não atualizar state.md 
+❌ Mudar task no meio sem registrar
 
 ---
 
@@ -243,12 +249,13 @@ Seu sistema inteiro reduz para isso:
 ### Loop real:
 
 ```
-1. Definir task
-2. Prompt: "Next step (FAST)"
-3. Executar código
-4. Rodar testes
-5. Atualizar state
-6. Repetir
+1. Definir task (Architect)
+2. Prompt: "Initialize as [Role] in [MODE]. Execute next step"
+3. Escrever teste falhando (Tester - Red)
+4. Implementar código mínimo (Developer - Green)
+5. Rodar testes (validate.sh)
+6. Atualizar estado (AI/states/state_[role].md)
+7. Repetir até DONE
 ```
 
 ---
