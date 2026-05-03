@@ -8,14 +8,10 @@ Think of it this way:
 ---
 # ⚡ Real workflow (day-to-day)
 
-# ⚙️ Initial Setup (API Keys)
-
-Before opening the container, you must ensure the API keys are available. The system is configured to pull these variables from your local host machine.
-
-1. **Linux/Mac:** Add to your `~/.bashrc` or `~/.zshrc`:
-   `export GEMINI_API_KEY="your_key_here"`
-2. **Windows (PowerShell):** `$env:GEMINI_API_KEY="your_key_here"`
-3. **Alternative:** Create a `.env` file in the project root (use `.env.example` as a template). VS Code will load these variables when starting the Dev Container.
+# ⚙️ Initial Setup (Prerequisites & Setup
+1.  **Environment:** Open the project in VS Code with the **Dev Containers** extension.
+2.  **Initialization:** The `postCreate.sh` script runs automatically to configure C# dependencies and environment variables.
+3.  **Verification:** Ensure the `AI/` directory is present, as it contains the logic for the development agents.
 
 ---
 
@@ -29,6 +25,8 @@ opencode
 
 '''
 
+To generate a context to external LLM (Paste bin): context-mode
+
 ---
 
 # 🥇 Best way to start
@@ -36,17 +34,12 @@ opencode
 Always start the conversation with:
 
 ```
-You are working in a structured, specialized AI assembly line. Analyze the project, starting with README.md and AI/agent_mode.md.
+Analyze the project environment, starting with README.md and AI/agent_mode.md.
 
-Follow:
-- TDD
-- XP loop
-- task-driven execution
-
-- Role-based specialization (Architect, Tester, Developer) 
-- TDD & XP loops 
-- Task-driven execution 
-- I will initialize you in a specific ROLE and MODE.
+- Specialized roles: Planner, Architect, Tester, Developer, Reviewer. 
+- TDD (Red/Green/Refactor) & Assembly Line Flow. 
+- Specialized states in AI/states/ and handoff protocols. 
+- Use scripts in AI/script/ for task management and handoffs. 
 ```
 ---
 
@@ -84,25 +77,25 @@ AI will:
 
 # 🧠 When to use FULL MODE
 
-Only when something breaks or becomes complex:
+When planning or audit or when something breaks or becomes complex:
 
 ```
-Initialize as Architect in FULL mode. 
-Analyze the current project state and refine the contracts for the inventory system.
+Initialize as Planner in FULL mode to discover the "Inventory System".
 ```
 
 ---
 
 # 🔥 Golden Rule
 
-| Situation | Recommended Role | Mode |
-| :--- | :--- | :--- |
-| Planning new features / Updating GDD | **Architect** | 🧠 FULL |
-| Breaking down a big task into files | **Architect** | ⚡ FAST |
-| Writing new tests / Fixing test suite | **Tester** | 🧠 FULL |
-| Running tests and logging results | **Tester** | ⚡ FAST |
-| Implementing logic to pass a test | **Developer** | ⚡ FAST |
-| Complex refactoring / Optimization | **Developer** | 🧠 FULL |
+| Situation | Recommended Role | Mode | Useful Script |
+| :--- | :--- | :--- | :--- |
+| Plan features / Discovery / GDD | **Planner** | 🧠 FULL | `handoff.sh` |
+| Create Contracts and Decompose Tasks | **Architect** | 🧠 FULL | `task-init.sh` |
+| Adjust details in existing tasks | **Architect** | ⚡ FAST | `handoff.sh` |
+| Create new tests (RED Phase) | **Tester** | 🧠 FULL | `xunit.sh / gdunit.sh` |
+| Validate final solution (DONE Phase) | **Tester** | ⚡ FAST | `validate.sh` |
+| Implement logic (GREEN Phase) | **Developer** | ⚡ FAST | `xunit.sh` |
+| Context Compression/Auditing | **Reviewer** | 🧠 FULL | `review-audit.sh` |
 
 ---
 
@@ -116,7 +109,7 @@ So your workflow becomes:
 
 ## 1. Define task
 
-You edit:
+The **Architect** creates using
 
 ```
 AI/task.md
@@ -142,22 +135,22 @@ Initialize as [Role] in FAST mode. Execute next step
 
 ## 3. AI responds with something like:
 
-* create test
-* suggest code
-* explain step
+* create test (Tester)
+* suggest code (Developer)
+* handoff (`AI/script/handoff.sh`)
 
 ---
 
 ## 4. You execute in the container
 
 ```bash
-dotnet test
+bash AI/script/validate.sh
 ```
 
 or
 
 ```bash
-bash AI/gdunit.sh -a res://test/
+bash AI/script/gdunit.sh -a res://test/
 ```
 
 ## 5. Update state
@@ -165,7 +158,7 @@ bash AI/gdunit.sh -a res://test/
 AI or you update:
 
 ```
-state.md
+AI/states/state_[role].md
 ```
 
 ---
@@ -194,8 +187,8 @@ You don't need to paste all the files.
 
 👉 The secret is:
 
-* You've already structured the thinking in the repo 
-* Now you just give short commands
+* The thinking is structured in Design, Contracts, and States. 
+* Use the Scripts to maintain integrity.
 
 ---
 
@@ -224,7 +217,7 @@ Without discipline, this becomes a mess.
 
 Avoid:
 
-❌ asking to "do everything" 
+❌ pedir para um agente fazer o trabalho de outro (ex: Developer mudar GDD)
 ❌ skipping tests 
 ❌ not updating state.md 
 ❌ changing tasks in the middle without recording
@@ -259,3 +252,8 @@ Your entire system reduces to this:
 ```
 
 ---
+
+# Prompts Suggestion
+> Initialize as Reviewer in FULL mode. Audit the como_usar.md and how2use.md files to ensure they are 100% consistent with the current project scripts.
+
+>Initialize as Planner in FULL mode. Let's start the discovery for the "Save/Load System" using the roadmap log.
