@@ -39,9 +39,12 @@ dotnet test && bash AI/script/validate.sh
 
 1. **Initialize the Agent:** Choose a role and mode from `AI/agent_mode.md` (e.g., "Initialize as Architect in FULL mode").
 2. **Follow the Assembly Line:**
-   * **Architect (Planner):** Refines `design/contracts` and decomposes features into `AI/tasks/XXX.md`.
-   * **Tester (Guardian):** Writes failing tests based on tasks and logs results in `AI/logs/`.
-   * **Developer (Executor):** Implements minimal logic in `game/` to turn the tests green.
+   * **Planner:** Discovery with PO → Updates `design/gdd.md` and `roadmap.md`.
+   * **Architect:** Refines `design/contracts` (linking tasks) and decomposes features into `AI/tasks/XXX.md`.
+   * **Tester (Red):** Writes failing tests and logs results in `AI/logs/`.
+   * **Developer:** Implements minimal logic to turn the tests green locally.
+   * **Tester (Done):** Final validation against contracts → Marks Task as DONE.
+   * **Reviewer:** Final Audit → Compresses context and updates `design/review.md`.
 3. **Source of Truth:** 
    * `AI/task.md` points to the active task.
    * `AI/context.md` defines the technical rules.
@@ -76,7 +79,7 @@ No agent is authorized to write implementation code unless:
 .devcontainer/   → Reproducible environment (Docker)
 game/            → Godot project (created postCreate, IA and Dev work here)
 tests/           → .NET tests (created postCreate, IA and Dev work here)
-AI/              → AI system (agents, context, tasks, state, logs)
+AI/              → AI system (agents, context, tasks, specialized states, scripts)
 
 design/          → Game rules (source of truth, Dev work here)
 docs/            → APIs and architecture
@@ -87,10 +90,12 @@ examples/        → Reusable references for IA or Dev
 
 # 🔄 Development flow
 
-1. **Architect:** Contract → Task
-2. **Tester:** Failing Test → Log Failure
-3. **Developer:** Implementation → Green Test
-4. **Tester:** Final Validation → Task Done
+1. **Planner:** Discovery with PO → Updates `design/gdd.md` and `roadmap.md`.
+2. **Architect:** Contract formalization (linking tasks) → Decomposes into `AI/tasks/XXX.md` (via `AI/script/task-init.sh`).
+3. **Tester (Red):** Reads Task → Writes failing tests → Logs results in `AI/logs/`.
+4. **Developer:** Reads Task + Logs → Implements minimal code → Verifies Green state locally.
+5. **Tester (Done):** Final validation against contracts → Marks Task as DONE.
+6. **Reviewer:** Audits the handoff → Compresses context into `design/review.md` → Cleans agent states.
 
 ---
 
@@ -164,7 +169,7 @@ Environment:
 When starting the container:
 
 ```bash
-postCreate.sh
+bash AI/script/validate.sh
 ```
 
 Automatically creates:
@@ -191,8 +196,10 @@ Automatically creates:
 AI/
 ├── context.md      → Operational rules
 ├── rules.md        → Global constraints
-├── agent_mode.md   → Agent Router (Role definitions)
+├── agent_mode.md   → Agent Router (Role & Mode definitions)
 ├── agents/         → Specialized Agent Bootstraps
+├── states/         → Specialized agent memory & Handoffs
+├── script/         → Automation scripts (handoff, task-init, etc)
 ├── task.md         → Active task
 ├── state.md        → Memory
 └── tasks/          → Task history
@@ -360,7 +367,7 @@ Before implementing:
 * Algorithms
 
 ```bash
-dotnet test
+bash AI/script/xunit.sh
 ```
 
 ---
@@ -372,7 +379,7 @@ dotnet test
 * Engine
 
 ```bash
-godot --headless ...
+bash AI/script/gdunit.sh
 ```
 
 ---
@@ -402,7 +409,6 @@ godot --headless ...
 
 # 🚀 Future
 
-* Automatic CI/CD
 * Continuous AI execution
 * Distributed tests
 * External service integration

@@ -9,6 +9,8 @@ Objective: Write failing tests and validate system behavior against contracts.
 2. AI/context.md
 3. AI/task.md (The active source)
 4. design/contracts/** (The validation source)
+5. AI/states/state_tester.md
+6. AI/states/state_developer.md
 
 ---
 
@@ -26,12 +28,22 @@ Objective: Write failing tests and validate system behavior against contracts.
 3. **Verify Failure:** Run the test and ensure it fails (Red phase).
 4. **Log Results:** Write the output to `AI/logs/`.
 5. **Update Task:** Add a brief log entry in the task file (e.g., "Tests created and failing as expected").
+6. **State Sync:** Update `AI/states/state_tester.md` (Internal Context) and update the "Handoff" section in `AI/states/state_developer.md`.
 
 ---
 
-# 📜 Rules
+# 🛠️ Skills (Scripts)
+- `bash AI/script/xunit.sh`: Execute .NET logic tests and update logs.
+- `bash AI/script/gdunit.sh -a res://tests/`: Execute Godot integration tests and update logs.
+- `bash AI/script/handoff.sh developer "[message]"`: Transfer control to the Developer.
+
+---
+
+# � Rules
 - NEVER implement the solution logic in the `game/` folder (except for test scenes/nodes).
 - If a contract is impossible to test, flag it in the Task log for the Architect.
+- **State Ownership:** Authorized to write ONLY to `AI/states/state_tester.md` and the Handoff section of `AI/states/state_developer.md`.
+- **Handoff Protocol:** Only signal `READY` in `state_developer.md` after failing tests are confirmed and logs are updated.
 
 ---
 

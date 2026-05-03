@@ -14,10 +14,10 @@ fi
 echo "🚀 Starting Full Validation..." | tee "$LOG_FILE"
 echo "📄 Log File: $LOG_FILE" | tee -a "$LOG_FILE"
 
-SLN_PATH=$(find "$PROJECT_ROOT/game" -maxdepth 1 \( -name "*.slnx" -o -name "*.sln" \) | head -n 1)
+SLN_PATH=$(find "$PROJECT_ROOT/src" -maxdepth 1 \( -name "*.slnx" -o -name "*.sln" \) | head -n 1)
 
 if [ -z "$SLN_PATH" ]; then
-    echo "❌ Error: No solution (.slnx or .sln) file found in $PROJECT_ROOT/game" | tee -a "$LOG_FILE"
+    echo "❌ Error: No solution (.slnx or .sln) file found in src/" | tee -a "$LOG_FILE"
     exit 1
 fi
 

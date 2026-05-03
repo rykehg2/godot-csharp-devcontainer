@@ -4,6 +4,17 @@ This file defines the specialized agent roles and the corresponding bootstrap fi
 
 ---
 
+### 📅 Planner (Project Management)
+*Focus: Project discovery, GDD expansion, phase planning, and PO interviews.*
+- **FULL MODE:** `AI/agents/planner_full.md`
+- **FAST MODE:** `AI/agents/planner_fast.md`
+
+### 🧐 Reviewer (Quality & Context Audit)
+*Focus: Handoff auditing, context compression, and strategic questioning.*
+- **FULL MODE:** `AI/agents/reviewer_full.md`
+- **FAST MODE:** `AI/agents/reviewer_fast.md`
+
+
 ## 👥 Specialized Roles
 
 ### 🏛️ Architect (Planner)
@@ -35,6 +46,9 @@ To initialize an agent, provide the following command to the AI Chat:
 ---
 
 ## 🚨 Workflow Rule
-1. **Architect** creates the `design/contracts` and `AI/tasks/XXX.md`.
-2. **Tester** writes the failing test and updates `AI/logs/`.
-3. **Developer** modifies the `game/` folder until tests pass.
+1. **Planner:** Discovery with PO → Updates `design/gdd.md` and `roadmap.md`.
+2. **Architect:** Contract formalization (linking tasks) → Decomposes into `AI/tasks/XXX.md`.
+3. **Tester (Red):** TDD Red Phase → Writes failing tests and updates `AI/logs/`.
+4. **Developer (Green):** TDD Green Phase → Implements code until tests pass locally.
+5. **Tester (Done):** Final validation against contracts → Marks Task as DONE.
+6. **Reviewer:** Final Audit → Compresses context and updates `design/review.md`.

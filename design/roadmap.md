@@ -21,3 +21,17 @@
 * Enemy AI
 * Progression system
 * Persistence
+
+---
+
+# 🎙️ Discovery & Audit Log
+
+## [YYYY-MM-DD] Feature: [Name]
+**Status:** 🔍 DISCOVERY / ✅ DEFINED / ❌ REJECTED
+
+### ❓ Discovery Questions:
+1. (Question from Planner)
+2. ...
+
+### 💡 Decisions & Answers:
+- (Answers and summaries here)

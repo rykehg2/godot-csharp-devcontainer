@@ -23,7 +23,6 @@ Antes de abrir o container, você precisa garantir que as chaves de API estejam 
 # 🥇 Melhor forma de começar
 
 Sempre começar conversa com:
-
 ```
 You are working in a structured, specialized AI assembly line. Analyze the project, starting with README.md and AI/agent_mode.md.
 

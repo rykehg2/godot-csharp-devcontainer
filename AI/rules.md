@@ -19,9 +19,11 @@ Global rules that must always be followed.
 
 # 👥 Role Ownership
 
+* **Planner:** Product Owner Proxy. Owns `design/gdd.md` and `design/roadmap.md`.
 * **Architect:** Planner. Owns `design/` and task decomposition. Never writes implementation code.
 * **Tester:** Guardian. Owns `tests/`, `AI/logs/`, and final validation. Final judge of the task.
 * **Developer:** Executor. Implements minimal logic in `game/`. Requests spec review if contracts are flawed.
+* **Reviewer:** Auditor. Owns `design/review.md` and authorized to clean up `AI/states/`.
 
 ---
 
@@ -48,7 +50,9 @@ Global rules that must always be followed.
 # ⚙️ Execution
 
 * Use CLI commands whenever possible
-* **Immutable State:** Update `AI/state.md` at the end of every task with factual logs.
+* **Skill Priority:** Always prefer scripts in `AI/script/` over manual file editing or long CLI commands.
+* **Specialized State:** Update your specific `AI/states/state_[role].md` at the end of every iteration.
+* **Handoff Protocol:** Update your state's "Lessons Learned" and set the status to `READY` in the **target** agent's state file.
 * **Living Context:** Keep `AI/context.md` lean; remove obsolete info immediately.
 * Do not simulate results — execute them
 
@@ -127,9 +131,10 @@ Ensure consistency between:
 * Documentation (/docs)
 
 **Order of Correction:**
-1. If Design is wrong: The **Architect** must update `/design/contracts`.
-2. If Tests are missing: The **Tester** must update `/tests`.
-3. If Code is wrong: The **Developer** must update `/game`.
+1. If Vision is wrong: **Planner** updates `design/gdd.md`.
+2. If Contract is wrong: **Architect** updates `design/contracts/`.
+3. If Tests are missing: **Tester** updates `tests/`.
+4. If Code is wrong: **Developer** updates `game/`.
 
 ---
 

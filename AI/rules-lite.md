@@ -43,7 +43,8 @@ Contracts → Tests → Code
 1. Read context + task
 2. Execute ONE step
 3. Validate step (Tests or Logic)
-4. Update state
+4. Update `AI/states/state_[role].md`
+5. Update Handoff in next agent's state if task step is complete
 5. Stop
 
 ---
@@ -51,6 +52,7 @@ Contracts → Tests → Code
 # ⚙️ Execution Rules
 * **Role Boundary:** Only touch files your role owns (see Knowledge Map).
 * Always run commands (never assume)
+* **Prefer Scripts:** Use `AI/script/*.sh` for task creation, testing, and handoffs.
 * Always validate via CLI
 * Never claim success without execution
 

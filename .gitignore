@@ -23,12 +23,12 @@ target/
 .gradle/
 
 # Logs and temp files
-*.log
+#*.log
 *.tmp
 *.swp
 *.swo
 *.vs
-*.godot/
+#*.godot/
 addons/
 bin/
 obj/
@@ -52,8 +52,6 @@ htmlcov/
 .coverage
 
 # Game and tests
-game/
-tests/
 
 # Compressed files
 *.zip
