@@ -11,12 +11,9 @@ Pense assim:
 
 # ⚙️ Configuração Inicial (API Keys)
 
-Antes de abrir o container, você precisa garantir que as chaves de API estejam disponíveis. O sistema está configurado para ler as variáveis de ambiente da sua máquina local.
-
-1. **No Linux/Mac:** Adicione ao seu `~/.bashrc` ou `~/.zshrc`:
-   `export GEMINI_API_KEY="sua_chave_aqui"`
-2. **No Windows (PowerShell):** `$env:GEMINI_API_KEY="sua_chave_aqui"`
-3. **Alternativa:** Crie um arquivo `.env` na raiz do projeto (use o `.env.example` como base). O VS Code carregará essas variáveis ao iniciar o Dev Container.
+1. Certifique-se de ter o **Docker** e a extensão **Dev Containers** instalada no VS Code.
+2. Abra a pasta do projeto e selecione "Reopen in Container".
+3. O script `postCreate.sh` configurará automaticamente o ambiente C# e as ferramentas de teste.
 
 ---
 
@@ -96,7 +93,7 @@ Analyze the current project state and refine the contracts for the inventory sys
 | Situação | Papel Recomendado | Modo |
 | :--- | :--- | :--- |
 | Planejar novas features / GDD | **Architect** | 🧠 FULL |
-| Decompor tarefas grandes | **Architect** | ⚡ FAST |
+| Decompor tarefas grandes | **Architect** | 🧠 FULL |
 | Criar novos testes / Corrigir suíte | **Tester** | 🧠 FULL |
 | Rodar testes e atualizar logs | **Tester** | ⚡ FAST |
 | Implementar lógica (passar teste) | **Developer** | ⚡ FAST |
@@ -148,25 +145,20 @@ Initialize as [Role] in FAST mode. Execute next step
 
 ## 4. Você executa no container
 
-```bash
-dotnet test
-```
-
-ou
-
-```bash
-godot --headless ...
-```
+Pergunte ao Tester ou Developer qual script rodar, ou use os padrões:
+* `bash AI/script/xunit.sh` (Lógica C#)
+* `bash AI/script/gdunit.sh` (Integração Godot)
+* `bash AI/script/validate.sh` (Validação completa)
 
 ---
 
 ## 5. Atualiza estado
 
-IA ou você atualiza:
+A IA deve atualizar seu estado em:
+`AI/states/state_[role].md`
 
-```
-state.md
-```
+E o estado global se necessário:
+`AI/state.md`
 
 ---
 
@@ -260,3 +252,8 @@ Seu sistema inteiro reduz para isso:
 ```
 
 ---
+
+# Prompts Suggestion
+> Initialize as Reviewer in FULL mode. Audit the como_usar.md and how2use.md files to ensure they are 100% consistent with the current project scripts.
+
+>Initialize as Planner in FULL mode. Let's start the discovery for the "Save/Load System" using the roadmap log.
