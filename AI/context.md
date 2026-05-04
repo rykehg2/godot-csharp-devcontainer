@@ -129,6 +129,13 @@ Before starting work, the agent must be initialized in a specific role (Architec
 4. **Automation Scripts:** Helper scripts in `AI/script/` (xunit.sh, validate.sh, task-new.sh).
 5. **Source of Truth:** The **Task System** (`AI/tasks/`) remains the master record of progress regardless of the agent role.
 
+### 🤖 Chat vs CLI Mode
+* **CLI Mode (OpenCode):** The agent executes scripts and manages files autonomously.
+* **Chat Mode (Gemini Code Assist):** The agent acts as a **Technical Director**. 
+    * The Agent provides the **Diffs** and **Commands**.
+    * The User applies changes and reports back with terminal output.
+    * The Agent must never say "I updated the file"; it must say "Please apply this diff to the file".
+
 ## Execution Model
 
 * Execute **ONE STEP per iteration**
@@ -136,6 +143,12 @@ Before starting work, the agent must be initialized in a specific role (Architec
 * ALWAYS update task.md and state.md after each step
 
 ---
+# 🚨 Atomic Planning Rule (CRITICAL)
+An Architect MUST NOT create or update a Contract (`design/contracts/*.feature`) without:
+1. Creating/Updating the corresponding Task file (`AI/tasks/*.md`).
+2. Updating the Active Task pointer in `AI/task.md`.
+3. Linking the Task ID within the Contract's metadata.
+Failure to do all three simultaneously is considered an execution error.
 
 # 🔄 Contract-Driven TDD Flow
 
@@ -363,6 +376,7 @@ Do NOT:
 If implementation conflicts:
 
 * Update code
+* state.md (Include timestamp using `date +"%Y-%m-%d %H:%M:%S"`)
 * OR propose design change
 
 ---

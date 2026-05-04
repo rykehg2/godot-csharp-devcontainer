@@ -10,7 +10,7 @@ This file defines the specialized agent roles and the corresponding bootstrap fi
 - **FAST MODE:** `AI/agents/planner_fast.md`
 
 ### 🧐 Reviewer (Quality & Context Audit)
-*Focus: Handoff auditing, context compression, and strategic questioning.*
+*Focus: Handoff auditing, integrity check (GDD -> Contract -> Task), and context compression.*
 - **FULL MODE:** `AI/agents/reviewer_full.md`
 - **FAST MODE:** `AI/agents/reviewer_fast.md`
 
@@ -18,7 +18,7 @@ This file defines the specialized agent roles and the corresponding bootstrap fi
 ## 👥 Specialized Roles
 
 ### 🏛️ Architect (Planner)
-*Focus: System design, GDD updates, Contract formalization, and Task decomposition.*
+*Focus: System design, Contract formalization, and MANDATORY Task linking/decomposition.*
 - **FULL MODE:** `AI/agents/architect_full.md`
 - **FAST MODE:** `AI/agents/architect_fast.md`
 
