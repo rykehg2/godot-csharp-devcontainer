@@ -7,6 +7,7 @@
 ## 📍 Project Pulse
 * Last completed task: None
 * Current task: 001-setup-platformer-basics
+* Current task: 002-death-plane
 * Active Agent: None
 
 ---
