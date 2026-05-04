@@ -52,6 +52,11 @@ Global rules that must always be followed.
 * Use CLI commands whenever possible
 * **Skill Priority:** Always prefer scripts in `AI/script/` over manual file editing or long CLI commands.
 * **Specialized State:** Update your specific `AI/states/state_[role].md` at the end of every iteration.
+* **Timestamping:** Always use the system CLI (`date +"%Y-%m-%d %H:%M:%S"`) to generate the "Last updated" value.
+* **Chat Mode Protocol:** If operating via Chat (where direct CLI execution is unavailable):
+    1. **Request Data:** Ask the user to run specific commands (e.g., `date`, `ls`, `bash validate.sh`) and paste the output.
+    2. **Propose Files:** Instead of calling `task-init.sh`, provide the full content of the file and its path for the user to create.
+    3. **Instructional Handoff:** Clearly state which command the user must run to validate the current step before proceeding.
 * **Handoff Protocol:** Update your state's "Lessons Learned" and set the status to `READY` in the **target** agent's state file.
 * **Living Context:** Keep `AI/context.md` lean; remove obsolete info immediately.
 * Do not simulate results — execute them

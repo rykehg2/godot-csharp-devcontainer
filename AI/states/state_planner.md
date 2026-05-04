@@ -1,17 +1,20 @@
 # 📅 Planner State
 
-## 🎯 Current Goal
-(What needs to be clarified or planned now)
+**Current Phase:** Phase 1 (MVP - Platformer Basics)
+**Status:** ✅ DONE
 
-## ✅ Done
-(Recent planning/discovery achievements)
+## 🎯 Current Objectives
+- Expand `design/gdd.md` with core movement constants. (DONE)
+- Clarify input and camera requirements for the Architect. (DONE)
+- Align Phase 1 scope with PO. (DONE)
 
-## 💡 Lessons Learned
-(Product or scope insights)
+## 🧠 Strategic Context
+The project is in the bootstrap phase. We are focusing on "Task 001", ensuring the physics foundation is testable in a headless environment. The Architect needs clear target values (Speed/Jump) to create the contracts.
 
-## 🤝 Handoff to Architect
-**Status:** 🟥 WAITING / 🟩 READY
-**Message:** (Summary for the Architect to start task decomposition)
+## 📝 Decisions & Rationales
+- **Movement Values:** Set specific acceleration/friction to avoid "floaty" controls in the first iteration.
+- **Strict Physics:** Avoided Coyote Time to ensure the baseline TDD for physics is robust and deterministic.
+- **Resolution:** Fixed 640x360 to guide future UI and camera tasks.
 
----
-*Last updated: YYYY-MM-DD*
+## ⏭️ Next Steps
+1. Hand over to Architect to update `basic_movement.feature` and decompose the Death Plane task.
