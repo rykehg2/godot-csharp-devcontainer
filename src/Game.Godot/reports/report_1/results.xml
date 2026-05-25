@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<testsuites id="2026-05-03" name="report_1" tests="1" failures="0" skipped="0" flaky="0" time="0.000">
-	<testsuite id="0" name="GodotSampleTest" package="tests" timestamp="2026-05-03T13:49:00" hostname="localhost" tests="1" failures="0" errors="0" skipped="0" flaky="0" time="0.050">
-		<testcase name="Should_Pass_Godot_Interaction" classname="GodotSampleTest" time="0.011">
-		</testcase>
-	</testsuite>
-</testsuites>

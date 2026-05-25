@@ -53,7 +53,7 @@ htmlcov/
 .coverage
 
 # Game and tests
-src/
+#src/
 *.log
 
 # Compressed files
