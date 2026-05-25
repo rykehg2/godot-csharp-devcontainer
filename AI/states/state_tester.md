@@ -1,17 +1,18 @@
 # 🧪 Tester State
 
 ## 🎯 Current Goal
-(What tests need to be written or validated now)
+Write failing integration tests for Task 001 (Gravity, Movement, Jump).
 
 ## ✅ Done
-(Tests created, validation reports, or logs generated)
+- Created `src/Game.Godot/tests/PlayerMovementTest.cs`.
+- Defined initial test cases for Node Hierarchy and Gravity.
 
 ## 💡 Lessons Learned
-(Testing bottlenecks, flaky tests, or Godot/C# integration quirks)
+The project is using .NET 10, so strict typing and explicit namespaces are prioritized.
 
 ## 🤝 Handoff to Developer
-**Status:** 🟥 WAITING / 🟩 READY
-**Message:** (Summary for the Developer on which failing tests to focus on)
+**Status:** 🟥 WAITING
+**Message:** Tests created. Waiting for confirmation of test failure (RED phase) before handoff.
 
 ---
-*Last updated: YYYY-MM-DD*
+*Last updated: 2026-05-04 02:45:00*

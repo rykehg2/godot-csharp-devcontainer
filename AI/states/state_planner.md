@@ -1,7 +1,7 @@
 # 📅 Planner State
 
 **Current Phase:** Phase 1 (MVP - Platformer Basics)
-**Status:** ✅ DONE
+**Status:** DONE_AUDIT
 
 ## 🎯 Current Objectives
 - Expand `design/gdd.md` with core movement constants. (DONE)
@@ -15,6 +15,8 @@ The project is in the bootstrap phase. We are focusing on "Task 001", ensuring t
 - **Movement Values:** Set specific acceleration/friction to avoid "floaty" controls in the first iteration.
 - **Strict Physics:** Avoided Coyote Time to ensure the baseline TDD for physics is robust and deterministic.
 - **Resolution:** Fixed 640x360 to guide future UI and camera tasks.
+- **Audit Note:** Verified consistency between GDD, Mechanics, and Roadmap.
 
 ## ⏭️ Next Steps
-1. Hand over to Architect to update `basic_movement.feature` and decompose the Death Plane task.
+1. Hand over to Architect to finalize `basic_movement.feature`.
+2. Prepare discovery for Task 002 (Death Plane Y-threshold definition).

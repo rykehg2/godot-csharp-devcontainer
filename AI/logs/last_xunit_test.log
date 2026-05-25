@@ -1,0 +1,24 @@
+🧪 Running xUnit tests...
+📄 Log File: /workspaces/godot-csharp-devcontainer/AI/logs/last_xunit_test.log
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  Game.Core -> /workspaces/godot-csharp-devcontainer/src/Game.Core/bin/Debug/net10.0/Game.Core.dll
+  Game.Core.Tests -> /workspaces/godot-csharp-devcontainer/src/xunitTests/Game.Core.Tests/bin/Debug/net10.0/Game.Core.Tests.dll
+Test run for /workspaces/godot-csharp-devcontainer/src/xunitTests/Game.Core.Tests/bin/Debug/net10.0/Game.Core.Tests.dll (.NETCoreApp,Version=v10.0)
+VSTest version 18.0.1 (x64)
+
+Starting test execution, please wait...
+A total of 1 test files matched the specified pattern.
+[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v3.1.4+50e68bbb8b (64-bit .NET 10.0.0)
+[xUnit.net 00:00:00.14]   Discovering: Game.Core.Tests
+[xUnit.net 00:00:00.21]   Discovered:  Game.Core.Tests
+[xUnit.net 00:00:00.25]   Starting:    Game.Core.Tests
+[xUnit.net 00:00:00.34]   Finished:    Game.Core.Tests
+  Passed Game.Core.Tests.UnitTest1.Test1 [3 ms]
+  Passed SampleTest.Should_Pass [7 ms]
+
+Test Run Successful.
+Total tests: 2
+     Passed: 2
+ Total time: 1.2235 Seconds
+✅ xUnit tests passed.

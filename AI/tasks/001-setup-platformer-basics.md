@@ -1,10 +1,10 @@
 # 📌 Task ID: 001-setup-platformer-basics
 
-**status**: TODO  
+**status**: IN_PROGRESS
 **priority**: MEDIUM  
 **type**: FEATURE  
 **created_at**: 2026-04-09T00:55:05  
-**updated_at**: 2026-04-09T00:55:05  
+**updated_at**: 2026-05-04 02:36:14  
 
 ---
 
@@ -85,8 +85,8 @@ Success is defined by passing physics integration tests in a headless environmen
 
 # 📊 Progress (Updated)
 
-**current_step**: 2
-**last_action**: Design aligned with SDD. Contracts created.
+**current_step**: 3
+**last_action**: Initial failing tests (RED) created in src/Game.Godot/tests/.
 **next_action**: Initialize Tester to write failing integration tests in `tests/`.
 
 ---
@@ -112,7 +112,7 @@ Success is defined by passing physics integration tests in a headless environmen
 
 Linked to:
 - **GDD:** `design/gdd.md`
-- **Contract:** `design/contracts/basic_movement.feature`
+- **Contract:** `design/contracts/basic_movement.feature` (DEFINED)
 
 ---
 

@@ -24,7 +24,7 @@ Sempre começar conversa com:
 You are working in a structured, specialized AI assembly line. Analyze the project, starting with README.md and AI/agent_mode.md.
 
 Follow:
-- Role-based specialization (Architect, Tester, Developer)
+- Role-based specialization (Planner, Architect, Tester, Developer, Reviewer)
 - TDD & XP loops
 - Task-driven execution 
 - I will initialize you in a specific ROLE and MODE.

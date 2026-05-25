@@ -1,0 +1,784 @@
++ set -e
++ echo '🚀 Configuring environment...'
+🚀 Configuring environment...
+++ which godot
++ export GODOT_BIN=/usr/local/bin/godot
++ GODOT_BIN=/usr/local/bin/godot
++ mkdir -p /workspaces/godot-csharp-devcontainer/AI/logs
++ echo '🧹 Cleaning up old build artifacts...'
+🧹 Cleaning up old build artifacts...
++ find . -type d -name obj -exec rm -rf '{}' +
++ find . -type d -name bin -exec rm -rf '{}' +
+++ /usr/local/bin/godot --version
+++ grep -oE '^[0-9]+\.[0-9]+\.[0-9]+'
++ GODOT_VERSION_RAW=4.6.2
++ GODOT_SDK_VERSION=4.6.2
++ echo '🎯 Detected Godot Version: 4.6.2 (Using SDK: 4.6.2)'
+🎯 Detected Godot Version: 4.6.2 (Using SDK: 4.6.2)
++ mkdir -p src/Game.Godot/Scenes src/Game.Godot/Scripts/Nodes src/Game.Godot/Scripts/UI src/Game.Godot/Scripts/Managers
++ mkdir -p src/Game.Core/Domain src/Game.Core/Services src/Game.Core/ValueObjects
++ [[ ! -f src/Game.Godot/project.godot ]]
++ echo '🎮 Creating Godot project...'
+🎮 Creating Godot project...
++ cat
++ cat
++ [[ ! -f src/GameSolution.slnx ]]
++ [[ ! -f src/GameSolution.sln ]]
++ echo '🧠 Creating C# Solution...'
+🧠 Creating C# Solution...
++ dotnet new sln -n GameSolution -o src
+The template "Solution File" was created successfully.
+
+++ find src -maxdepth 1 '(' -name '*.sln' -o -name '*.slnx' ')'
+++ head -n 1
++ SLN_PATH=src/GameSolution.slnx
++ echo '🔍 Using solution file: src/GameSolution.slnx'
+🔍 Using solution file: src/GameSolution.slnx
++ [[ ! -f src/Game.Core/Game.Core.csproj ]]
++ echo '📦 Creating Base C# Project...'
+📦 Creating Base C# Project...
++ dotnet new classlib -n Game.Core -o src/Game.Core
+The template "Class Library" was created successfully.
+
+Processing post-creation actions...
+Restoring /workspaces/godot-csharp-devcontainer/src/Game.Core/Game.Core.csproj:
+  Determining projects to restore...
+  Restored /workspaces/godot-csharp-devcontainer/src/Game.Core/Game.Core.csproj (in 221 ms).
+Restore succeeded.
+
+
++ echo '🔗 Configuring Solution...'
+🔗 Configuring Solution...
++ dotnet sln src/GameSolution.slnx add src/Game.Core/Game.Core.csproj
+Project `Game.Core/Game.Core.csproj` added to the solution.
++ dotnet sln src/GameSolution.slnx add src/Game.Godot/GameGodot.csproj
+Project `Game.Godot/GameGodot.csproj` added to the solution.
++ [[ ! -d src/xunitTests/Game.Core.Tests ]]
++ echo '🧪 Creating Test Project (.NET)...'
+🧪 Creating Test Project (.NET)...
++ dotnet new xunit -n Game.Core.Tests -o src/xunitTests/Game.Core.Tests
+The template "xUnit Test Project" was created successfully.
+
+Processing post-creation actions...
+Restoring /workspaces/godot-csharp-devcontainer/src/xunitTests/Game.Core.Tests/Game.Core.Tests.csproj:
+  Determining projects to restore...
+  Restored /workspaces/godot-csharp-devcontainer/src/xunitTests/Game.Core.Tests/Game.Core.Tests.csproj (in 2.72 sec).
+Restore succeeded.
+
+
++ echo '🔗 Linking tests to core project...'
+🔗 Linking tests to core project...
++ dotnet list src/xunitTests/Game.Core.Tests/Game.Core.Tests.csproj reference
++ grep Game.Core.csproj
++ dotnet add src/xunitTests/Game.Core.Tests/Game.Core.Tests.csproj reference src/Game.Core/Game.Core.csproj
+Reference `..\..\Game.Core\Game.Core.csproj` added to the project.
++ dotnet sln src/GameSolution.slnx add src/xunitTests/Game.Core.Tests/Game.Core.Tests.csproj
+Project `xunitTests/Game.Core.Tests/Game.Core.Tests.csproj` added to the solution.
++ [[ ! -d src/Game.Godot/tests ]]
++ echo '🎮 Configuring Godot Tests...'
+🎮 Configuring Godot Tests...
++ mkdir -p src/Game.Godot/tests
++ cat
++ [[ ! -f src/Game.Godot/addons/gdUnit4/bin/GdUnitCmdTool.gd ]]
++ echo '🎮 Installing GDUnit4...'
+🎮 Installing GDUnit4...
++ GDUNIT_VERSION=v6.1.3
+++ mktemp -d -t gdunit4-XXXXXXXX
++ TMP_GDUNIT_DIR=/tmp/gdunit4-WESXMgey
++ git clone --branch v6.1.3 --depth 1 https://github.com/MikeSchulze/gdUnit4.git /tmp/gdunit4-WESXMgey
+Cloning into '/tmp/gdunit4-WESXMgey'...
+Note: switching to '1579130d73f15f628fd0cfdbf7d60bdc39144a26'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+
+  git switch -c <new-branch-name>
+
+Or undo this operation with:
+
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+
++ rm -rf src/Game.Godot/addons/gdUnit4
++ mkdir -p src/Game.Godot/addons/gdUnit4
++ [[ -d /tmp/gdunit4-WESXMgey/addons/gdUnit4 ]]
++ cp -r /tmp/gdunit4-WESXMgey/addons/gdUnit4/. src/Game.Godot/addons/gdUnit4/
++ cp /tmp/gdunit4-WESXMgey/gdUnit4.csproj src/Game.Godot/addons/gdUnit4/
++ sed -i 's|Sdk="Godot.NET.Sdk/[^"]*"|Sdk="Godot.NET.Sdk/4.6.2"|' src/Game.Godot/addons/gdUnit4/gdUnit4.csproj
++ grep -q '<ImplicitUsings>' src/Game.Godot/addons/gdUnit4/gdUnit4.csproj
++ sed -i '/<LangVersion>13.0<\/LangVersion>/a \    <ImplicitUsings>enable</ImplicitUsings>' src/Game.Godot/addons/gdUnit4/gdUnit4.csproj
++ sed -i '/<\/PropertyGroup>/i \    <NoWarn>$(NoWarn);CS9057;CS0436;CS0579;NU1605</NoWarn>' src/Game.Godot/addons/gdUnit4/gdUnit4.csproj
++ head -n 1
++ '[' -f src/Game.Godot/addons/gdUnit4/test/dotnet/GdUnit4CSharpApiTest.cs ']'
++ grep -q 'using System.Linq;' src/Game.Godot/addons/gdUnit4/test/dotnet/GdUnit4CSharpApiTest.cs
++ sed -i '/using Godot.Collections;/a using System.Linq;' src/Game.Godot/addons/gdUnit4/test/dotnet/GdUnit4CSharpApiTest.cs
++ echo 'Installed GDUnit4 addon files to src/Game.Godot/addons/gdUnit4'
+Installed GDUnit4 addon files to src/Game.Godot/addons/gdUnit4
++ '[' -d /tmp/gdunit4-WESXMgey ']'
++ rm -rf /tmp/gdunit4-WESXMgey
++ echo 'Cleaned up temporary directory.'
+Cleaned up temporary directory.
++ echo '📦 Importing project resources...'
+📦 Importing project resources...
++ godot --headless --path src/Game.Godot --import --quit
+Godot Engine v4.6.2.stable.mono.official.71f334935 - https://godotengine.org
+WARNING: Started the engine as `root`/superuser. This is a security risk, and subsystems like audio may not work correctly.
+Set the environment variable `GODOT_SILENCE_ROOT_WARNING` to 1 to silence this warning.
+     at: setup2 (main/main.cpp:3450)
+
+[   0% ] [90m[1mfirst_scan_filesystem[22m | Started Project initialization (5 steps)[39m[0m
+[   0% ] [90m[1mfirst_scan_filesystem[22m | Scanning file structure...[39m[0m
+[  16% ] [90m[1mfirst_scan_filesystem[22m | Loading global class names...[39m[0m
+[  33% ] [90m[1mfirst_scan_filesystem[22m | Verifying GDExtensions...[39m[0m
+[  50% ] [90m[1mfirst_scan_filesystem[22m | Creating autoload scripts...[39m[0m
+[  66% ] [90m[1mfirst_scan_filesystem[22m | Initializing plugins...[39m[0m
+[38;2;218;165;32mIt was recognized that GdUnit4 is running in a test environment, therefore the GdUnit4 plugin will not be executed![0m
+[  83% ] [90m[1mfirst_scan_filesystem[22m | Starting file scan...[39m[0m
+[92m[ DONE ][39m [1mfirst_scan_filesystem[22m
+[0m
+[   0% ] [90m[1mupdate_scripts_classes[22m | Started Registering global classes... (442 steps)[39m[0m
+[   0% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[   0% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[   0% ] [90m[1mupdate_scripts_classes[22m | CallBackValueProvider[39m[0m
+[   0% ] [90m[1mupdate_scripts_classes[22m | DefaultValueProvider[39m[0m
+[   0% ] [90m[1mupdate_scripts_classes[22m | GdAssertMessages[39m[0m
+[   1% ] [90m[1mupdate_scripts_classes[22m | GdAssertReports[39m[0m
+[   1% ] [90m[1mupdate_scripts_classes[22m | GdUnitArrayAssertImpl[39m[0m
+[   1% ] [90m[1mupdate_scripts_classes[22m | GdUnitAssertImpl[39m[0m
+[   1% ] [90m[1mupdate_scripts_classes[22m | GdUnitAssertions[39m[0m
+[   2% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[   2% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[   2% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[   2% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[   2% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[   3% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[   3% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[   3% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[   3% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[   4% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[   4% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[   4% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[   4% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[   4% ] [90m[1mupdate_scripts_classes[22m | ValueProvider[39m[0m
+[   5% ] [90m[1mupdate_scripts_classes[22m | CmdArgumentParser[39m[0m
+[   5% ] [90m[1mupdate_scripts_classes[22m | CmdCommand[39m[0m
+[   5% ] [90m[1mupdate_scripts_classes[22m | CmdCommandHandler[39m[0m
+[   5% ] [90m[1mupdate_scripts_classes[22m | CmdOption[39m[0m
+[   6% ] [90m[1mupdate_scripts_classes[22m | CmdOptions[39m[0m
+[   6% ] [90m[1mupdate_scripts_classes[22m | TestCaseAttribute[39m[0m
+[   6% ] [90m[1mupdate_scripts_classes[22m | GdUnitBaseCommand[39m[0m
+[   6% ] [90m[1mupdate_scripts_classes[22m | GdUnitCommandFileSystem[39m[0m
+[   6% ] [90m[1mupdate_scripts_classes[22m | GdUnitCommandFileSystemDebugTests[39m[0m
+[   7% ] [90m[1mupdate_scripts_classes[22m | GdUnitCommandFileSystemRunTests[39m[0m
+[   7% ] [90m[1mupdate_scripts_classes[22m | GdUnitCommandHandler[39m[0m
+[   7% ] [90m[1mupdate_scripts_classes[22m | GdUnitCommandInspectorDebugTests[39m[0m
+[   7% ] [90m[1mupdate_scripts_classes[22m | GdUnitCommandInspectorRerunTestsUntilFailure[39m[0m
+[   8% ] [90m[1mupdate_scripts_classes[22m | GdUnitCommandInspectorRunTests[39m[0m
+[   8% ] [90m[1mupdate_scripts_classes[22m | GdUnitCommandInspectorTreeCollapse[39m[0m
+[   8% ] [90m[1mupdate_scripts_classes[22m | GdUnitCommandInspectorTreeExpand[39m[0m
+[   8% ] [90m[1mupdate_scripts_classes[22m | GdUnitCommandRunTestsOverall[39m[0m
+[   9% ] [90m[1mupdate_scripts_classes[22m | GdUnitCommandScriptEditor[39m[0m
+[   9% ] [90m[1mupdate_scripts_classes[22m | GdUnitCommandScriptEditorCreateTest[39m[0m
+[   9% ] [90m[1mupdate_scripts_classes[22m | GdUnitCommandScriptEditorDebugTests[39m[0m
+[   9% ] [90m[1mupdate_scripts_classes[22m | GdUnitCommandScriptEditorRunTests[39m[0m
+[   9% ] [90m[1mupdate_scripts_classes[22m | GdUnitCommandStopTestSession[39m[0m
+[  10% ] [90m[1mupdate_scripts_classes[22m | GdUnitCommandTestSession[39m[0m
+[  10% ] [90m[1mupdate_scripts_classes[22m | GdUnitShortcut[39m[0m
+[  10% ] [90m[1mupdate_scripts_classes[22m | GdUnitGUID[39m[0m
+[  10% ] [90m[1mupdate_scripts_classes[22m | GdUnitTestCase[39m[0m
+[  11% ] [90m[1mupdate_scripts_classes[22m | GdUnitTestDiscoverer[39m[0m
+[  11% ] [90m[1mupdate_scripts_classes[22m | GdUnitTestDiscoverGuard[39m[0m
+[  11% ] [90m[1mupdate_scripts_classes[22m | GdUnitTestDiscoverSink[39m[0m
+[  11% ] [90m[1mupdate_scripts_classes[22m | GdUnitEvent[39m[0m
+[  11% ] [90m[1mupdate_scripts_classes[22m | GdUnitInit[39m[0m
+[  12% ] [90m[1mupdate_scripts_classes[22m | GdUnitStop[39m[0m
+[  12% ] [90m[1mupdate_scripts_classes[22m | GdUnitEventTestDiscoverEnd[39m[0m
+[  12% ] [90m[1mupdate_scripts_classes[22m | GdUnitEventTestDiscoverStart[39m[0m
+[  12% ] [90m[1mupdate_scripts_classes[22m | GdUnitSessionClose[39m[0m
+[  13% ] [90m[1mupdate_scripts_classes[22m | GdUnitSessionStart[39m[0m
+[  13% ] [90m[1mupdate_scripts_classes[22m | GdUnitTestCaseFuzzedExecutionStage[39m[0m
+[  13% ] [90m[1mupdate_scripts_classes[22m | GdUnitTestCaseFuzzedTestStage[39m[0m
+[  13% ] [90m[1mupdate_scripts_classes[22m | GdUnitTestCaseSingleExecutionStage[39m[0m
+[  13% ] [90m[1mupdate_scripts_classes[22m | GdUnitTestCaseSingleTestStage[39m[0m
+[  14% ] [90m[1mupdate_scripts_classes[22m | GdUnitTestCaseAfterStage[39m[0m
+[  14% ] [90m[1mupdate_scripts_classes[22m | GdUnitTestCaseBeforeStage[39m[0m
+[  14% ] [90m[1mupdate_scripts_classes[22m | GdUnitTestCaseExecutionStage[39m[0m
+[  14% ] [90m[1mupdate_scripts_classes[22m | GdUnitTestSuiteAfterStage[39m[0m
+[  15% ] [90m[1mupdate_scripts_classes[22m | GdUnitTestSuiteBeforeStage[39m[0m
+[  15% ] [90m[1mupdate_scripts_classes[22m | GdUnitTestSuiteExecutionStage[39m[0m
+[  15% ] [90m[1mupdate_scripts_classes[22m | IGdUnitExecutionStage[39m[0m
+[  15% ] [90m[1mupdate_scripts_classes[22m | GdUnitExecutionContext[39m[0m
+[  16% ] [90m[1mupdate_scripts_classes[22m | GdUnitMemoryObserver[39m[0m
+[  16% ] [90m[1mupdate_scripts_classes[22m | GdUnitProjectSettingsSnapshot[39m[0m
+[  16% ] [90m[1mupdate_scripts_classes[22m | GdUnitTestReportCollector[39m[0m
+[  16% ] [90m[1mupdate_scripts_classes[22m | GdUnitTestSuiteExecutor[39m[0m
+[  16% ] [90m[1mupdate_scripts_classes[22m | GdUnitBaseReporterTestSessionHook[39m[0m
+[  17% ] [90m[1mupdate_scripts_classes[22m | GdUnitHtmlReporterTestSessionHook[39m[0m
+[  17% ] [90m[1mupdate_scripts_classes[22m | GdUnitTestSessionHook[39m[0m
+[  17% ] [90m[1mupdate_scripts_classes[22m | GdUnitTestSessionHookService[39m[0m
+[  17% ] [90m[1mupdate_scripts_classes[22m | GdUnitXMLReporterTestSessionHook[39m[0m
+[  18% ] [90m[1mupdate_scripts_classes[22m | GdClassDescriptor[39m[0m
+[  18% ] [90m[1mupdate_scripts_classes[22m | GdDefaultValueDecoder[39m[0m
+[  18% ] [90m[1mupdate_scripts_classes[22m | GdFunctionArgument[39m[0m
+[  18% ] [90m[1mupdate_scripts_classes[22m | GdFunctionDescriptor[39m[0m
+[  18% ] [90m[1mupdate_scripts_classes[22m | GdFunctionParameterSetResolver[39m[0m
+[  19% ] [90m[1mupdate_scripts_classes[22m | GdScriptParser[39m[0m
+[  19% ] [90m[1mupdate_scripts_classes[22m | GdUnitExpressionRunner[39m[0m
+[  19% ] [90m[1mupdate_scripts_classes[22m | GdUnitTestParameterSetResolver[39m[0m
+[  19% ] [90m[1mupdate_scripts_classes[22m | GdUnitReport[39m[0m
+[  20% ] [90m[1mupdate_scripts_classes[22m | GdUnitScriptErrorCollector[39m[0m
+[  20% ] [90m[1mupdate_scripts_classes[22m | GdUnitTestCIRunner[39m[0m
+[  20% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  20% ] [90m[1mupdate_scripts_classes[22m | GdUnitTestSession[39m[0m
+[  20% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  21% ] [90m[1mupdate_scripts_classes[22m | GdUnitTestSuiteDefaultTemplate[39m[0m
+[  21% ] [90m[1mupdate_scripts_classes[22m | GdUnitTestSuiteTemplate[39m[0m
+[  21% ] [90m[1mupdate_scripts_classes[22m | GdUnitThreadContext[39m[0m
+[  21% ] [90m[1mupdate_scripts_classes[22m | GdUnitThreadManager[39m[0m
+[  22% ] [90m[1mupdate_scripts_classes[22m | GdUnitCSIMessageWriter[39m[0m
+[  22% ] [90m[1mupdate_scripts_classes[22m | GdUnitMessageWriter[39m[0m
+[  22% ] [90m[1mupdate_scripts_classes[22m | GdUnitRichTextMessageWriter[39m[0m
+[  22% ] [90m[1mupdate_scripts_classes[22m | _TestCase[39m[0m
+[  23% ] [90m[1mupdate_scripts_classes[22m | GdArrayTools[39m[0m
+[  23% ] [90m[1mupdate_scripts_classes[22m | GdDiffTool[39m[0m
+[  23% ] [90m[1mupdate_scripts_classes[22m | GdObjects[39m[0m
+[  23% ] [90m[1mupdate_scripts_classes[22m | GdUnit4Version[39m[0m
+[  23% ] [90m[1mupdate_scripts_classes[22m | GdUnitFileAccess[39m[0m
+[  24% ] [90m[1mupdate_scripts_classes[22m | GdUnitProperty[39m[0m
+[  24% ] [90m[1mupdate_scripts_classes[22m | GdUnitResult[39m[0m
+[  24% ] [90m[1mupdate_scripts_classes[22m | GdUnitRunnerConfig[39m[0m
+[  24% ] [90m[1mupdate_scripts_classes[22m | GdUnitSceneRunnerImpl[39m[0m
+[  25% ] [90m[1mupdate_scripts_classes[22m | GdUnitSettings[39m[0m
+[  25% ] [90m[1mupdate_scripts_classes[22m | GdUnitSignalAwaiter[39m[0m
+[  25% ] [90m[1mupdate_scripts_classes[22m | GdUnitSignalCollector[39m[0m
+[  25% ] [90m[1mupdate_scripts_classes[22m | GdUnitSignals[39m[0m
+[  25% ] [90m[1mupdate_scripts_classes[22m | GdUnitSingleton[39m[0m
+[  26% ] [90m[1mupdate_scripts_classes[22m | GdUnitTestResourceLoader[39m[0m
+[  26% ] [90m[1mupdate_scripts_classes[22m | GdUnitTestSuiteBuilder[39m[0m
+[  26% ] [90m[1mupdate_scripts_classes[22m | GdUnitTestSuiteScanner[39m[0m
+[  26% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  27% ] [90m[1mupdate_scripts_classes[22m | GodotVersionFixures[39m[0m
+[  27% ] [90m[1mupdate_scripts_classes[22m | LocalTime[39m[0m
+[  27% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  27% ] [90m[1mupdate_scripts_classes[22m | GdUnit4CSharpApiLoader[39m[0m
+[  27% ] [90m[1mupdate_scripts_classes[22m | CallableDoubler[39m[0m
+[  28% ] [90m[1mupdate_scripts_classes[22m | GdFunctionDoubler[39m[0m
+[  28% ] [90m[1mupdate_scripts_classes[22m | GdUnitClassDoubler[39m[0m
+[  28% ] [90m[1mupdate_scripts_classes[22m | GdUnitFunctionDoublerBuilder[39m[0m
+[  28% ] [90m[1mupdate_scripts_classes[22m | GdUnitMockFunctionDoubler[39m[0m
+[  29% ] [90m[1mupdate_scripts_classes[22m | GdUnitObjectInteractions[39m[0m
+[  29% ] [90m[1mupdate_scripts_classes[22m | GdUnitObjectInteractionsVerifier[39m[0m
+[  29% ] [90m[1mupdate_scripts_classes[22m | GdUnitSpyFunctionDoubler[39m[0m
+[  29% ] [90m[1mupdate_scripts_classes[22m | GdUnitFuncValueExtractor[39m[0m
+[  30% ] [90m[1mupdate_scripts_classes[22m | BoolFuzzer[39m[0m
+[  30% ] [90m[1mupdate_scripts_classes[22m | FloatFuzzer[39m[0m
+[  30% ] [90m[1mupdate_scripts_classes[22m | Fuzzer[39m[0m
+[  30% ] [90m[1mupdate_scripts_classes[22m | IntFuzzer[39m[0m
+[  30% ] [90m[1mupdate_scripts_classes[22m | StringFuzzer[39m[0m
+[  31% ] [90m[1mupdate_scripts_classes[22m | Vector2Fuzzer[39m[0m
+[  31% ] [90m[1mupdate_scripts_classes[22m | Vector3Fuzzer[39m[0m
+[  31% ] [90m[1mupdate_scripts_classes[22m | AnyArgumentMatcher[39m[0m
+[  31% ] [90m[1mupdate_scripts_classes[22m | AnyBuildInTypeArgumentMatcher[39m[0m
+[  32% ] [90m[1mupdate_scripts_classes[22m | AnyClazzArgumentMatcher[39m[0m
+[  32% ] [90m[1mupdate_scripts_classes[22m | ChainedArgumentMatcher[39m[0m
+[  32% ] [90m[1mupdate_scripts_classes[22m | EqualsArgumentMatcher[39m[0m
+[  32% ] [90m[1mupdate_scripts_classes[22m | GdUnitArgumentMatcher[39m[0m
+[  32% ] [90m[1mupdate_scripts_classes[22m | GdUnitArgumentMatchers[39m[0m
+[  33% ] [90m[1mupdate_scripts_classes[22m | GdUnitMock[39m[0m
+[  33% ] [90m[1mupdate_scripts_classes[22m | GdUnitMockBuilder[39m[0m
+[  33% ] [90m[1mupdate_scripts_classes[22m | DoubledMockClassSourceClassName[39m[0m
+[  33% ] [90m[1mupdate_scripts_classes[22m | ErrorLogEntry[39m[0m
+[  34% ] [90m[1mupdate_scripts_classes[22m | GdUnitMonitor[39m[0m
+[  34% ] [90m[1mupdate_scripts_classes[22m | GdUnitOrphanNodeInfo[39m[0m
+[  34% ] [90m[1mupdate_scripts_classes[22m | GdUnitOrphanNodesMonitor[39m[0m
+[  34% ] [90m[1mupdate_scripts_classes[22m | GodotGdErrorMonitor[39m[0m
+[  34% ] [90m[1mupdate_scripts_classes[22m | RPC[39m[0m
+[  35% ] [90m[1mupdate_scripts_classes[22m | RPCClientConnect[39m[0m
+[  35% ] [90m[1mupdate_scripts_classes[22m | RPCClientDisconnect[39m[0m
+[  35% ] [90m[1mupdate_scripts_classes[22m | RPCGdUnitEvent[39m[0m
+[  35% ] [90m[1mupdate_scripts_classes[22m | RPCMessage[39m[0m
+[  36% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  36% ] [90m[1mupdate_scripts_classes[22m | GdUnitServerConstants[39m[0m
+[  36% ] [90m[1mupdate_scripts_classes[22m | GdUnitTask[39m[0m
+[  36% ] [90m[1mupdate_scripts_classes[22m | GdUnitTcpClient[39m[0m
+[  37% ] [90m[1mupdate_scripts_classes[22m | GdUnitTcpNode[39m[0m
+[  37% ] [90m[1mupdate_scripts_classes[22m | GdUnitTcpServer[39m[0m
+[  37% ] [90m[1mupdate_scripts_classes[22m | GdUnitConsoleTestReporter[39m[0m
+[  37% ] [90m[1mupdate_scripts_classes[22m | GdUnitByPathReport[39m[0m
+[  37% ] [90m[1mupdate_scripts_classes[22m | GdUnitHtmlPatterns[39m[0m
+[  38% ] [90m[1mupdate_scripts_classes[22m | GdUnitHtmlReportWriter[39m[0m
+[  38% ] [90m[1mupdate_scripts_classes[22m | JUnitXmlReportWriter[39m[0m
+[  38% ] [90m[1mupdate_scripts_classes[22m | XmlElement[39m[0m
+[  38% ] [90m[1mupdate_scripts_classes[22m | GdUnitReportSummary[39m[0m
+[  39% ] [90m[1mupdate_scripts_classes[22m | GdUnitReportWriter[39m[0m
+[  39% ] [90m[1mupdate_scripts_classes[22m | GdUnitTestCaseReport[39m[0m
+[  39% ] [90m[1mupdate_scripts_classes[22m | GdUnitTestReporter[39m[0m
+[  39% ] [90m[1mupdate_scripts_classes[22m | GdUnitTestSuiteReport[39m[0m
+[  39% ] [90m[1mupdate_scripts_classes[22m | GdUnitSpyBuilder[39m[0m
+[  40% ] [90m[1mupdate_scripts_classes[22m | DoubledSpyClassSourceClassName[39m[0m
+[  40% ] [90m[1mupdate_scripts_classes[22m | GdUnitContextMenuItem[39m[0m
+[  40% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  40% ] [90m[1mupdate_scripts_classes[22m | GdUnitInspectorContextMenu[39m[0m
+[  41% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  41% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  41% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  41% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  41% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  42% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  42% ] [90m[1mupdate_scripts_classes[22m | GdUnitInputCapture[39m[0m
+[  42% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  42% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  43% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  43% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  43% ] [90m[1mupdate_scripts_classes[22m | GdUnitFonts[39m[0m
+[  43% ] [90m[1mupdate_scripts_classes[22m | GdUnitInspecor[39m[0m
+[  44% ] [90m[1mupdate_scripts_classes[22m | GdUnitInspectorTreeConstants[39m[0m
+[  44% ] [90m[1mupdate_scripts_classes[22m | GdUnitUiTools[39m[0m
+[  44% ] [90m[1mupdate_scripts_classes[22m | ScriptEditorControls[39m[0m
+[  44% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  44% ] [90m[1mupdate_scripts_classes[22m | GdUnitPatch[39m[0m
+[  45% ] [90m[1mupdate_scripts_classes[22m | GdUnitPatcher[39m[0m
+[  45% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  45% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  45% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  46% ] [90m[1mupdate_scripts_classes[22m | Comparator[39m[0m
+[  46% ] [90m[1mupdate_scripts_classes[22m | Fuzzers[39m[0m
+[  46% ] [90m[1mupdate_scripts_classes[22m | GdUnitArrayAssert[39m[0m
+[  46% ] [90m[1mupdate_scripts_classes[22m | GdUnitAssert[39m[0m
+[  46% ] [90m[1mupdate_scripts_classes[22m | GdUnitAwaiter[39m[0m
+[  47% ] [90m[1mupdate_scripts_classes[22m | GdUnitBoolAssert[39m[0m
+[  47% ] [90m[1mupdate_scripts_classes[22m | GdUnitConstants[39m[0m
+[  47% ] [90m[1mupdate_scripts_classes[22m | GdUnitDictionaryAssert[39m[0m
+[  47% ] [90m[1mupdate_scripts_classes[22m | GdUnitFailureAssert[39m[0m
+[  48% ] [90m[1mupdate_scripts_classes[22m | GdUnitFileAssert[39m[0m
+[  48% ] [90m[1mupdate_scripts_classes[22m | GdUnitFloatAssert[39m[0m
+[  48% ] [90m[1mupdate_scripts_classes[22m | GdUnitFuncAssert[39m[0m
+[  48% ] [90m[1mupdate_scripts_classes[22m | GdUnitGodotErrorAssert[39m[0m
+[  48% ] [90m[1mupdate_scripts_classes[22m | GdUnitIntAssert[39m[0m
+[  49% ] [90m[1mupdate_scripts_classes[22m | GdUnitObjectAssert[39m[0m
+[  49% ] [90m[1mupdate_scripts_classes[22m | GdUnitResultAssert[39m[0m
+[  49% ] [90m[1mupdate_scripts_classes[22m | GdUnitSceneRunner[39m[0m
+[  49% ] [90m[1mupdate_scripts_classes[22m | GdUnitSignalAssert[39m[0m
+[  50% ] [90m[1mupdate_scripts_classes[22m | GdUnitStringAssert[39m[0m
+[  50% ] [90m[1mupdate_scripts_classes[22m | GdUnitTestSuite[39m[0m
+[  50% ] [90m[1mupdate_scripts_classes[22m | GdUnitTuple[39m[0m
+[  50% ] [90m[1mupdate_scripts_classes[22m | GdUnitValueExtractor[39m[0m
+[  51% ] [90m[1mupdate_scripts_classes[22m | GdUnitVectorAssert[39m[0m
+[  51% ] [90m[1mupdate_scripts_classes[22m | CallBackValueProviderTest[39m[0m
+[  51% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  51% ] [90m[1mupdate_scripts_classes[22m | GdUnitAssertImplTest[39m[0m
+[  51% ] [90m[1mupdate_scripts_classes[22m | GdUnitBoolAssertImplTest[39m[0m
+[  52% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  52% ] [90m[1mupdate_scripts_classes[22m | GdUnitFailureAssertImplTest[39m[0m
+[  52% ] [90m[1mupdate_scripts_classes[22m | GdUnitFloatAssertImplTest[39m[0m
+[  52% ] [90m[1mupdate_scripts_classes[22m | GdUnitFuncAssertImplTest[39m[0m
+[  53% ] [90m[1mupdate_scripts_classes[22m | GdUnitGodotErrorAssertImplTest[39m[0m
+[  53% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  53% ] [90m[1mupdate_scripts_classes[22m | GdUnitIntAssertImplTest[39m[0m
+[  53% ] [90m[1mupdate_scripts_classes[22m | GdUnitObjectAssertImplTest[39m[0m
+[  53% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  54% ] [90m[1mupdate_scripts_classes[22m | GdUnitResultAssertImplTest[39m[0m
+[  54% ] [90m[1mupdate_scripts_classes[22m | GdUnitSignalAssertImplTest[39m[0m
+[  54% ] [90m[1mupdate_scripts_classes[22m | GdUnitStringAssertImplTest[39m[0m
+[  54% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  55% ] [90m[1mupdate_scripts_classes[22m | GdUnitVectorAssertImplTest[39m[0m
+[  55% ] [90m[1mupdate_scripts_classes[22m | CmdArgumentParserTest[39m[0m
+[  55% ] [90m[1mupdate_scripts_classes[22m | CmdCommandHandlerTest[39m[0m
+[  55% ] [90m[1mupdate_scripts_classes[22m | CmdCommandTest[39m[0m
+[  55% ] [90m[1mupdate_scripts_classes[22m | CmdOptionsTest[39m[0m
+[  56% ] [90m[1mupdate_scripts_classes[22m | CmdOptionTest[39m[0m
+[  56% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  56% ] [90m[1mupdate_scripts_classes[22m | GdUnitShortcutTest[39m[0m
+[  56% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  57% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  57% ] [90m[1mupdate_scripts_classes[22m | GdUnitGuidTest[39m[0m
+[  57% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  57% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  58% ] [90m[1mupdate_scripts_classes[22m | GdUnitTestDiscoverGuardTest[39m[0m
+[  58% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  58% ] [90m[1mupdate_scripts_classes[22m | GdUnitEventTest[39m[0m
+[  58% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  58% ] [90m[1mupdate_scripts_classes[22m | GdUnitExecutionContextTest[39m[0m
+[  59% ] [90m[1mupdate_scripts_classes[22m | GdUnitProjectSettingsSnapshotTest[39m[0m
+[  59% ] [90m[1mupdate_scripts_classes[22m | GdUnitTestSuiteExecutorTest[39m[0m
+[  59% ] [90m[1mupdate_scripts_classes[22m | ExampleTestSessionHookA[39m[0m
+[  59% ] [90m[1mupdate_scripts_classes[22m | ExampleTestSessionHookB[39m[0m
+[  60% ] [90m[1mupdate_scripts_classes[22m | ExampleTestSessionHookC[39m[0m
+[  60% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  60% ] [90m[1mupdate_scripts_classes[22m | GdDefaultValueDecoderTest[39m[0m
+[  60% ] [90m[1mupdate_scripts_classes[22m | GdFunctionArgumentTest[39m[0m
+[  60% ] [90m[1mupdate_scripts_classes[22m | GdFunctionDescriptorTest[39m[0m
+[  61% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  61% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  61% ] [90m[1mupdate_scripts_classes[22m | GdUnitExpressionsTest[39m[0m
+[  61% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  62% ] [90m[1mupdate_scripts_classes[22m | ClassNameExtendsInSameLine[39m[0m
+[  62% ] [90m[1mupdate_scripts_classes[22m | PascalCaseWithClassName[39m[0m
+[  62% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  62% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  62% ] [90m[1mupdate_scripts_classes[22m | SnakeCaseWithClassName[39m[0m
+[  63% ] [90m[1mupdate_scripts_classes[22m | ClassWithBasicTypeBoolDefaultArguments[39m[0m
+[  63% ] [90m[1mupdate_scripts_classes[22m | ClassWithBasicTypeFloatDefaultArguments[39m[0m
+[  63% ] [90m[1mupdate_scripts_classes[22m | ClassWithBasicTypeIntDefaultArguments[39m[0m
+[  63% ] [90m[1mupdate_scripts_classes[22m | ClassWithBasicTypeNodePathDefaultArguments[39m[0m
+[  64% ] [90m[1mupdate_scripts_classes[22m | ClassWithBasicTypeRect2DefaultArguments[39m[0m
+[  64% ] [90m[1mupdate_scripts_classes[22m | ClassWithBasicTypeStringDefaultArguments[39m[0m
+[  64% ] [90m[1mupdate_scripts_classes[22m | ClassWithBasicTypeStringNameDefaultArguments[39m[0m
+[  64% ] [90m[1mupdate_scripts_classes[22m | ClassWithBasicTypeTransform2DDefaultArguments[39m[0m
+[  65% ] [90m[1mupdate_scripts_classes[22m | ClassWithBasicTypeVector2DefaultArguments[39m[0m
+[  65% ] [90m[1mupdate_scripts_classes[22m | ClassWithBasicTypeVector2iDefaultArguments[39m[0m
+[  65% ] [90m[1mupdate_scripts_classes[22m | ClassWithBasicTypeVector3DefaultArguments[39m[0m
+[  65% ] [90m[1mupdate_scripts_classes[22m | ClassWithBasicTypeVector3iDefaultArguments[39m[0m
+[  65% ] [90m[1mupdate_scripts_classes[22m | ClassWithBasicTypeVector4DefaultArguments[39m[0m
+[  66% ] [90m[1mupdate_scripts_classes[22m | ClassWithBasicTypeVector4iDefaultArguments[39m[0m
+[  66% ] [90m[1mupdate_scripts_classes[22m | ClassWithArrayDefaultArguments[39m[0m
+[  66% ] [90m[1mupdate_scripts_classes[22m | ClassWithCallableDefaultArguments[39m[0m
+[  66% ] [90m[1mupdate_scripts_classes[22m | ClassWithDictionaryDefaultArguments[39m[0m
+[  67% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  67% ] [90m[1mupdate_scripts_classes[22m | BaseTest[39m[0m
+[  67% ] [90m[1mupdate_scripts_classes[22m | ExtendedTest[39m[0m
+[  67% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  67% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  68% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  68% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  68% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  68% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  69% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  69% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  69% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  69% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  69% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  70% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  70% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  70% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  70% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  71% ] [90m[1mupdate_scripts_classes[22m | ScriptWithClassName[39m[0m
+[  71% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  71% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  71% ] [90m[1mupdate_scripts_classes[22m | GdUnitTestSuiteTemplateTest[39m[0m
+[  72% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  72% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  72% ] [90m[1mupdate_scripts_classes[22m | GdArrayToolsTest[39m[0m
+[  72% ] [90m[1mupdate_scripts_classes[22m | GdDiffToolTest[39m[0m
+[  72% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  73% ] [90m[1mupdate_scripts_classes[22m | GdUnit4VersionTest[39m[0m
+[  73% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  73% ] [90m[1mupdate_scripts_classes[22m | GdUnitResultTest[39m[0m
+[  73% ] [90m[1mupdate_scripts_classes[22m | GdUnitRunnerConfigTest[39m[0m
+[  74% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  74% ] [90m[1mupdate_scripts_classes[22m | GdUnitSceneRunnerTest[39m[0m
+[  74% ] [90m[1mupdate_scripts_classes[22m | GdUnitSettingsTest[39m[0m
+[  74% ] [90m[1mupdate_scripts_classes[22m | GdUnitSignalAwaiterTest[39m[0m
+[  74% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  75% ] [90m[1mupdate_scripts_classes[22m | GdUnitSingletonTest[39m[0m
+[  75% ] [90m[1mupdate_scripts_classes[22m | GdUnitTestSuiteBuilderTest[39m[0m
+[  75% ] [90m[1mupdate_scripts_classes[22m | TestSuiteScannerTest[39m[0m
+[  75% ] [90m[1mupdate_scripts_classes[22m | GdUnitToolsTest[39m[0m
+[  76% ] [90m[1mupdate_scripts_classes[22m | LocalTimeTest[39m[0m
+[  76% ] [90m[1mupdate_scripts_classes[22m | ParameterizedTestCaseTest[39m[0m
+[  76% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  76% ] [90m[1mupdate_scripts_classes[22m | GdUnit4CSharpApiLoaderTest[39m[0m
+[  76% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  77% ] [90m[1mupdate_scripts_classes[22m | TestClassWithConstructorArgs[39m[0m
+[  77% ] [90m[1mupdate_scripts_classes[22m | TestClassWithConstructorArgsAndVarargs[39m[0m
+[  77% ] [90m[1mupdate_scripts_classes[22m | TestClassWithConstructorVarargs[39m[0m
+[  77% ] [90m[1mupdate_scripts_classes[22m | TestClassWithFunctions[39m[0m
+[  78% ] [90m[1mupdate_scripts_classes[22m | GdFunctionDoublerTest[39m[0m
+[  78% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  78% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  78% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  79% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  79% ] [90m[1mupdate_scripts_classes[22m | GdUnitFuncValueExtractorTest[39m[0m
+[  79% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  79% ] [90m[1mupdate_scripts_classes[22m | StringFuzzerTest[39m[0m
+[  79% ] [90m[1mupdate_scripts_classes[22m | TestExternalFuzzer[39m[0m
+[  80% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  80% ] [90m[1mupdate_scripts_classes[22m | CustomArgumentMatcherTestClass[39m[0m
+[  80% ] [90m[1mupdate_scripts_classes[22m | AnyArgumentMatcherTest[39m[0m
+[  80% ] [90m[1mupdate_scripts_classes[22m | AnyBuildInTypeArgumentMatcherTest[39m[0m
+[  81% ] [90m[1mupdate_scripts_classes[22m | AnyClazzArgumentMatcherTest[39m[0m
+[  81% ] [90m[1mupdate_scripts_classes[22m | ChainedArgumentMatcherTest[39m[0m
+[  81% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  81% ] [90m[1mupdate_scripts_classes[22m | GdUnitArgumentMatchersTest[39m[0m
+[  81% ] [90m[1mupdate_scripts_classes[22m | Munderwood_Pathing_World[39m[0m
+[  82% ] [90m[1mupdate_scripts_classes[22m | Spell[39m[0m
+[  82% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  82% ] [90m[1mupdate_scripts_classes[22m | AdvancedTestClass[39m[0m
+[  82% ] [90m[1mupdate_scripts_classes[22m | ClassWithAwaitFunc[39m[0m
+[  83% ] [90m[1mupdate_scripts_classes[22m | GdUnit_Test_CustomClassName[39m[0m
+[  83% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  83% ] [90m[1mupdate_scripts_classes[22m | ClassWithDefaultBuildIntTypes[39m[0m
+[  83% ] [90m[1mupdate_scripts_classes[22m | ClassWithEnumReturnTypes[39m[0m
+[  83% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  84% ] [90m[1mupdate_scripts_classes[22m | ClassWithNameA[39m[0m
+[  84% ] [90m[1mupdate_scripts_classes[22m | ClassWithNameB[39m[0m
+[  84% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  84% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  85% ] [90m[1mupdate_scripts_classes[22m | ClassWithOverridenVirtuals[39m[0m
+[  85% ] [90m[1mupdate_scripts_classes[22m | ClassWithParameterGetterSetter[39m[0m
+[  85% ] [90m[1mupdate_scripts_classes[22m | ClassWithPoolStringArrayFunc[39m[0m
+[  85% ] [90m[1mupdate_scripts_classes[22m | ClassWithVariables[39m[0m
+[  86% ] [90m[1mupdate_scripts_classes[22m | ClassWithVariantDefaultArguments[39m[0m
+[  86% ] [90m[1mupdate_scripts_classes[22m | CustomClassExtendsCustomClass[39m[0m
+[  86% ] [90m[1mupdate_scripts_classes[22m | CustomNodeTestClass[39m[0m
+[  86% ] [90m[1mupdate_scripts_classes[22m | CustomResourceTestClass[39m[0m
+[  86% ] [90m[1mupdate_scripts_classes[22m | DeepStubTestClass[39m[0m
+[  87% ] [90m[1mupdate_scripts_classes[22m | OverridenGetClassTestClass[39m[0m
+[  87% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  87% ] [90m[1mupdate_scripts_classes[22m | snake_case_class_name[39m[0m
+[  87% ] [90m[1mupdate_scripts_classes[22m | TestPerson[39m[0m
+[  88% ] [90m[1mupdate_scripts_classes[22m | CustomEnums[39m[0m
+[  88% ] [90m[1mupdate_scripts_classes[22m | GdUnitMockBuilderTest[39m[0m
+[  88% ] [90m[1mupdate_scripts_classes[22m | GdUnitMockerTest[39m[0m
+[  88% ] [90m[1mupdate_scripts_classes[22m | GodotClassNameFuzzer[39m[0m
+[  88% ] [90m[1mupdate_scripts_classes[22m | GodotGdErrorMonitorTest[39m[0m
+[  89% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  89% ] [90m[1mupdate_scripts_classes[22m | GdUnitHtmlPatternsTest[39m[0m
+[  89% ] [90m[1mupdate_scripts_classes[22m | GdUnitHtmlReportWriterIntegrationTest[39m[0m
+[  89% ] [90m[1mupdate_scripts_classes[22m | GdUnitHtmlReportWriterTest[39m[0m
+[  90% ] [90m[1mupdate_scripts_classes[22m | GdUnitConsoleTestReporterTest[39m[0m
+[  90% ] [90m[1mupdate_scripts_classes[22m | JUnitXmlReportWriterTest[39m[0m
+[  90% ] [90m[1mupdate_scripts_classes[22m | XmlElementTest[39m[0m
+[  90% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  90% ] [90m[1mupdate_scripts_classes[22m | City[39m[0m
+[  91% ] [90m[1mupdate_scripts_classes[22m | CustomClass[39m[0m
+[  91% ] [90m[1mupdate_scripts_classes[22m | GeneratedPersonTest[39m[0m
+[  91% ] [90m[1mupdate_scripts_classes[22m | Person[39m[0m
+[  91% ] [90m[1mupdate_scripts_classes[22m | Udo[39m[0m
+[  92% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  92% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  92% ] [90m[1mupdate_scripts_classes[22m | TestSceneWithProperties[39m[0m
+[  92% ] [90m[1mupdate_scripts_classes[22m | ClassWithEnumConstructor[39m[0m
+[  93% ] [90m[1mupdate_scripts_classes[22m | GdUnitSpyBuilderTest[39m[0m
+[  93% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  93% ] [90m[1mupdate_scripts_classes[22m | GdUnitSpyTest[39m[0m
+[  93% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  93% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  94% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  94% ] [90m[1mupdate_scripts_classes[22m | InspectorTreeMainPanelPerformanceTest[39m[0m
+[  94% ] [90m[1mupdate_scripts_classes[22m | InspectorTreeMainPanelTest[39m[0m
+[  94% ] [90m[1mupdate_scripts_classes[22m | TestSuiteTemplateTest[39m[0m
+[  95% ] [90m[1mupdate_scripts_classes[22m | GdUnitUiToolsTest[39m[0m
+[  95% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  95% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  95% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  95% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  96% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  96% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  96% ] [90m[1mupdate_scripts_classes[22m | GdMarkDownReaderTest[39m[0m
+[  96% ] [90m[1mupdate_scripts_classes[22m | GdUnitPatcherTest[39m[0m
+[  97% ] [90m[1mupdate_scripts_classes[22m | GdUnitUpdateTest[39m[0m
+[  97% ] [90m[1mupdate_scripts_classes[22m | GdUnitAwaiterTest[39m[0m
+[  97% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  97% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  97% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  98% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  98% ] [90m[1mupdate_scripts_classes[22m | GdUnitTestResourceLoaderTest[39m[0m
+[  98% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  98% ] [90m[1mupdate_scripts_classes[22m | GdUnitTestSuiteTest[39m[0m
+[  99% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  99% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  99% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[92m[ DONE ][39m [1mupdate_scripts_classes[22m
+[0m
+[   0% ] [90m[1m_update_scan_actions[22m | Started Scanning actions... (10 steps)[39m[0m
+[   0% ] [90m[1m_update_scan_actions[22m | touch-button.png[39m[0m
+[   9% ] [90m[1m_update_scan_actions[22m | logo.png[39m[0m
+[  18% ] [90m[1m_update_scan_actions[22m | border_bottom.png[39m[0m
+[  27% ] [90m[1m_update_scan_actions[22m | border_top.png[39m[0m
+[  36% ] [90m[1m_update_scan_actions[22m | dot1.png[39m[0m
+[  45% ] [90m[1m_update_scan_actions[22m | dot2.png[39m[0m
+[  54% ] [90m[1m_update_scan_actions[22m | embedded.png[39m[0m
+[  63% ] [90m[1m_update_scan_actions[22m | horizontal-line2.png[39m[0m
+[  72% ] [90m[1m_update_scan_actions[22m | icon.png[39m[0m
+[  81% ] [90m[1m_update_scan_actions[22m | icon48.png[39m[0m
+[92m[ DONE ][39m [1m_update_scan_actions[22m
+[0m
+[   0% ] [90m[1mreimport[22m | Started (Re)Importing Assets (10 steps)[39m[0m
+[   0% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+[   9% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+[  18% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+[  27% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+[  36% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+[  45% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+[  54% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+[  63% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+[  72% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+[  81% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+[   0% ] [90m[1mreimport[22m | Executing pre-reimport operations...[39m[0m
+[   0% ] [90m[1mreimport[22m | touch-button.png[39m[0m
+[   9% ] [90m[1mreimport[22m | logo.png[39m[0m
+[  18% ] [90m[1mreimport[22m | border_bottom.png[39m[0m
+[  27% ] [90m[1mreimport[22m | border_top.png[39m[0m
+[  36% ] [90m[1mreimport[22m | dot1.png[39m[0m
+[  45% ] [90m[1mreimport[22m | dot2.png[39m[0m
+[  54% ] [90m[1mreimport[22m | embedded.png[39m[0m
+[  63% ] [90m[1mreimport[22m | horizontal-line2.png[39m[0m
+[  72% ] [90m[1mreimport[22m | icon.png[39m[0m
+[  81% ] [90m[1mreimport[22m | icon48.png[39m[0m
+[  90% ] [90m[1mreimport[22m | Finalizing Asset Import...[39m[0m
+[92m[ DONE ][39m [1mreimport[22m
+[0m
+[   0% ] [90m[1mreimport[22m | Started (Re)Importing Assets (10 steps)[39m[0m
+[   0% ] [90m[1mreimport[22m | Executing post-reimport operations...[39m[0m
+[92m[ DONE ][39m [1mreimport[22m
+[0m
+[   0% ] [90m[1mloading_editor_layout[22m | Started Loading editor (5 steps)[39m[0m
+[   0% ] [90m[1mloading_editor_layout[22m | Loading editor layout...[39m[0m
+[  16% ] [90m[1mloading_editor_layout[22m | Loading docks...[39m[0m
+[92m[ DONE ][39m [1mloading_editor_layout[22m
+[0m
++ '[' -f src/Game.Godot/addons/gdUnit4/gdUnit4.csproj ']'
++ dotnet sln src/GameSolution.slnx add src/Game.Godot/addons/gdUnit4/gdUnit4.csproj
+Project `Game.Godot/addons/gdUnit4/gdUnit4.csproj` added to the solution.
++ cat
++ echo '📦 Restoring dependencies...'
+📦 Restoring dependencies...
++ dotnet restore src/GameSolution.slnx
+  Determining projects to restore...
+  Restored /workspaces/godot-csharp-devcontainer/src/xunitTests/Game.Core.Tests/Game.Core.Tests.csproj (in 394 ms).
+  Restored /workspaces/godot-csharp-devcontainer/src/Game.Godot/GameGodot.csproj (in 8.72 sec).
+  Restored /workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/gdUnit4.csproj (in 8.9 sec).
+  1 of 4 projects are up-to-date for restore.
++ echo '🧪 Running .NET tests...'
+🧪 Running .NET tests...
++ bash AI/script/xunit.sh
+🧪 Running xUnit tests...
+📄 Log File: /workspaces/godot-csharp-devcontainer/AI/logs/last_xunit_test.log
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  Game.Core -> /workspaces/godot-csharp-devcontainer/src/Game.Core/bin/Debug/net10.0/Game.Core.dll
+  Game.Core.Tests -> /workspaces/godot-csharp-devcontainer/src/xunitTests/Game.Core.Tests/bin/Debug/net10.0/Game.Core.Tests.dll
+Test run for /workspaces/godot-csharp-devcontainer/src/xunitTests/Game.Core.Tests/bin/Debug/net10.0/Game.Core.Tests.dll (.NETCoreApp,Version=v10.0)
+VSTest version 18.0.1 (x64)
+
+Starting test execution, please wait...
+A total of 1 test files matched the specified pattern.
+[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v3.1.4+50e68bbb8b (64-bit .NET 10.0.0)
+[xUnit.net 00:00:00.14]   Discovering: Game.Core.Tests
+[xUnit.net 00:00:00.21]   Discovered:  Game.Core.Tests
+[xUnit.net 00:00:00.25]   Starting:    Game.Core.Tests
+[xUnit.net 00:00:00.34]   Finished:    Game.Core.Tests
+  Passed Game.Core.Tests.UnitTest1.Test1 [3 ms]
+  Passed SampleTest.Should_Pass [7 ms]
+
+Test Run Successful.
+Total tests: 2
+     Passed: 2
+ Total time: 1.2235 Seconds
+✅ xUnit tests passed.
++ echo '🎮 Running Godot tests...'
+🎮 Running Godot tests...
++ bash AI/script/gdunit.sh -a res://tests/
+🚀 Starting Godot Tests (Headless)...
+📝 Log File: /workspaces/godot-csharp-devcontainer/AI/logs/last_gdunit_test.log
+🔍 [DEBUG] Checking project.godot for GdUnit4 activation...
+📂 [DEBUG] Listing test files in src/Game.Godot/tests/:
+🔍 Initializing Godot project metadata...
+📦 Cleaning and Compiling .NET Solution...
+✅ GameGodot.dll found at: /workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/GameGodot.dll
+🔍 Syncing C# classes to Godot...
+WorkerThreadPool: 12 threads, 3 max low-priority.
+Godot Engine v4.6.2.stable.mono.official.71f334935 - https://godotengine.org
+TextServer: Added interface "Dummy"
+TextServer: Added interface "ICU / HarfBuzz / Graphite (Built-in)"
+Unrecognized output string "misc2" in mapping:
+030000008a2e0000dd10000011010000,Hand Held Legend GC Ultimate,a:b0,b:b2,back:b17,dpdown:b5,dpleft:b6,dpright:b7,dpup:b4,guide:b18,leftshoulder:b10,leftstick:b8,lefttrigger:a3,leftx:a0,lefty:a1,misc1:b19,misc2:b24,paddle1:b13,paddle2:b12,rightshoulder:b11,rightstick:b9,righttrigger:a4,rightx:a2,righty:a5,start:b16,x:b1,y:b3,platform:Linux,
+Unrecognized output string "misc2" in mapping:
+030000000d0f0000ab01000011010000,Horipad Steam,a:b0,b:b1,back:b10,dpdown:h0.4,dpleft:h0.8,dpright:h0.2,dpup:h0.1,guide:b12,leftshoulder:b6,leftstick:b13,lefttrigger:a5,leftx:a0,lefty:a1,misc2:b2,paddle1:b19,paddle2:b18,paddle3:b15,paddle4:b5,rightshoulder:b7,rightstick:b14,righttrigger:a4,rightx:a2,righty:a3,start:b11,x:b3,y:b4,platform:Linux,
+Unrecognized output string "misc2" in mapping:
+050000000d0f00009601000091000000,Horipad Steam,a:b0,b:b1,back:b10,dpdown:h0.4,dpleft:h0.8,dpright:h0.2,dpup:h0.1,guide:b12,leftshoulder:b6,leftstick:b13,lefttrigger:a5,leftx:a0,lefty:a1,misc2:b2,paddle1:b19,paddle2:b18,paddle3:b15,paddle4:b5,rightshoulder:b7,rightstick:b14,righttrigger:a4,rightx:a2,righty:a3,start:b11,x:b3,y:b4,platform:Linux,
+Unrecognized output string "misc2" in mapping:
+030000007e0500006920000011010000,Nintendo Switch 2 Pro Controller,a:b0,b:b1,back:b14,dpdown:b8,dpleft:b10,dpright:b9,dpup:b11,guide:b16,leftshoulder:b12,leftstick:b15,lefttrigger:b13,leftx:a0,lefty:a1~,misc1:b17,misc2:b20,paddle1:b18,paddle2:b19,rightshoulder:b4,rightstick:b7,righttrigger:b5,rightx:a2,righty:a3~,start:b6,x:b2,y:b3,platform:Linux,
+SDL: Init OK!
+Using "default" pen tablet driver...
+
+TextServer: Primary interface set to: "ICU / HarfBuzz / Graphite (Built-in)".
+.NET: Initializing module...
+Found hostfxr: /usr/lib64/dotnet/host/fxr/10.0.0/libhostfxr.so
+.NET: hostfxr initialized
+.NET: GodotPlugins initialized
+CORE API HASH: 1976921970
+EDITOR API HASH: 555353998
+Loading resource: res://addons/gdUnit4/bin/GdUnitCmdTool.gd
+SceneTreeFTI: traversal method DEFAULT
+Loaded system CA certificates
+Loading resource: res://addons/gdUnit4/src/asserts/GdUnitBoolAssertImpl.gd
+Loading resource: res://addons/gdUnit4/src/asserts/GdUnitStringAssertImpl.gd
+Loading resource: res://addons/gdUnit4/src/asserts/GdUnitIntAssertImpl.gd
+Loading resource: res://addons/gdUnit4/src/asserts/GdUnitFloatAssertImpl.gd
+Loading resource: res://addons/gdUnit4/src/asserts/GdUnitVectorAssertImpl.gd
+Loading resource: res://addons/gdUnit4/src/asserts/GdUnitArrayAssertImpl.gd
+Loading resource: res://addons/gdUnit4/src/asserts/GdUnitDictionaryAssertImpl.gd
+Loading resource: res://addons/gdUnit4/src/asserts/GdUnitFileAssertImpl.gd
+Loading resource: res://addons/gdUnit4/src/asserts/GdUnitObjectAssertImpl.gd
+Loading resource: res://addons/gdUnit4/src/asserts/GdUnitResultAssertImpl.gd
+Loading resource: res://addons/gdUnit4/src/asserts/GdUnitFuncAssertImpl.gd
+Loading resource: res://addons/gdUnit4/src/asserts/GdUnitSignalAssertImpl.gd
+Loading resource: res://addons/gdUnit4/src/asserts/GdUnitFailureAssertImpl.gd
+Loading resource: res://addons/gdUnit4/src/asserts/GdUnitGodotErrorAssertImpl.gd
+[2J[H[38;2;233;150;122m
+--------------------------------------------------------------------------------------------------
+GdUnit4 Comandline Tool
+--------------------------------------------------------------------------------------------------[0m
+[38;2;218;165;32m
+Headless mode is ignored by option '--ignoreHeadlessMode'"
+
+Please note that tests that use UI interaction do not work correctly in headless mode.
+Godot 'InputEvents' are not transported by the Godot engine in headless mode and therefore
+have no effect in the test!
+[0m
+Scanning for test suites in: res://tests/
+Loading resource: res://tests/GodotSampleTest.cs
+Loading resource: res://addons/gdUnit4/src/dotnet/GdUnit4CSharpApi.cs
+Discover tests for script: res://tests/GodotSampleTest.cs
+Found named assembly: /workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/GameGodot.dll
+Initialized 1 test assembly locations /workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/GameGodot.dll
+[38;2;100;149;237mInstalling GdUnit4 session system hooks.[0m
+[38;2;100;149;237mSession hook 'GdUnitHtmlTestReporter' installed.[0m
+[38;2;100;149;237mSession hook 'GdUnitXMLTestReporter' installed.[0m
+Register singleton 'GdUnitTestSessionHookService:<Object#104673052299>'
+[38;2;100;149;237mSession hook 'GdUnitHtmlTestReporter' > startup()[0m
+[38;2;100;149;237mSession hook 'GdUnitXMLTestReporter' > startup()[0m
+[38;2;0;206;209mRun Test Suite: [0m[38;2;250;235;215mres://tests/GodotSampleTest.cs[0m
+  [38;2;250;235;215mres://tests/GodotSampleTest.cs[0m[38;2;250;235;215m > [0m[38;2;250;235;215mShould_Pass_Godot_Interaction[0m[38;2;34;139;34m STARTED[0m[38;2;250;235;215m[0m
+  [38;2;250;235;215mres://tests/GodotSampleTest.cs[0m[38;2;250;235;215m > [0m[38;2;250;235;215mShould_Pass_Godot_Interaction[0m[38;2;34;139;34m PASSED[0m[38;2;100;149;237m 11ms[0m
+[38;2;250;235;215m[0m
+[38;2;30;144;255mStatistics:[0m[38;2;250;235;215m 1 test cases | 0 errors | 0 failures | 0 flaky | 0 skipped | 0 orphans |[0m[38;2;34;139;34m PASSED[0m[38;2;100;149;237m 50ms[0m
+[38;2;250;235;215m[0m
+[38;2;250;235;215m[0m
+[38;2;30;144;255mOverall Summary:[0m[38;2;255;255;255m 1 test cases | 0 errors | 0 failures | 0 flaky | 0 skipped | 0 orphans |[0m
+[38;2;233;150;122mExecuted test suites: (1/1)[0m
+[38;2;233;150;122mExecuted test cases : (1/1)[0m
+[38;2;233;150;122mTotal execution time: 50ms[0m
+[38;2;255;255;255m [0m[38;2;100;149;237mSession hook 'GdUnitXMLTestReporter' > shutdown()[0m
+[38;2;100;149;237mOpen XML Report at: file:///workspaces/godot-csharp-devcontainer/src/Game.Godot/reports/report_1/results.xml[0m
+[38;2;100;149;237mSession hook 'GdUnitHtmlTestReporter' > shutdown()[0m
+[38;2;100;149;237mOpen HTML Report at: file:///workspaces/godot-csharp-devcontainer/src/Game.Godot/reports/report_1/index.html[0m
+[38;2;233;150;122mExit code: 0[0m
+----------------------------------------------------------------
+Cleanup singletons ["GdUnitTestSessionHookService"]
+
+	Unregister singleton 'GdUnitTestSessionHookService'
+	Free singleton instance 'GdUnitTestSessionHookService:<Object#104673052299>'
+	Successfully freed 'GdUnitTestSessionHookService'
+----------------------------------------------------------------
+Finallize .. done
+Finallize ..
+-Orphan nodes report-----------------------
+Finallize .. done
+Unloading: Disposing tracked instances...
+Unloading: Finished disposing tracked instances.
+XR: Clearing primary interface
+XR: Removed interface "Native mobile"
+XR: Removed interface "OpenXR"
+🔍 .NET Trace saved to: /workspaces/godot-csharp-devcontainer/AI/logs/dotnet_host_trace.log
+🏁 Test execution finished with code: 0
+-rw-r--r-- 1 root root 37197 May  3 13:49 /workspaces/godot-csharp-devcontainer/AI/logs/last_gdunit_test.log
++ echo '✅ Environment ready'
+✅ Environment ready

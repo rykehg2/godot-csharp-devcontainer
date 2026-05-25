@@ -26,7 +26,7 @@
 
 # 🎙️ Discovery & Audit Log
 
-## [2024-05-22] Feature: Movement & World Constraints
+## [2026-05-04] Feature: Movement & World Constraints
 **Status:** ✅ DEFINED
 
 ### ❓ Discovery Questions:

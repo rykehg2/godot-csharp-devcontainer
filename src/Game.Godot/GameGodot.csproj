@@ -1,0 +1,18 @@
+<Project Sdk="Godot.NET.Sdk/4.6.2">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <LangVersion>14.0</LangVersion>
+    <!-- Avoid conflicts with Godot SDK internal attribute generation and duplicate sources -->
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <RollForward>Major</RollForward>
+    <EnableDynamicLoading>true</EnableDynamicLoading>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <RootNamespace>Game.Godot</RootNamespace>
+    <!-- Suppress common warnings related to GdUnit4 analyzers and duplicate attributes -->
+    <NoWarn>$(NoWarn);CS9057;CS0436;CS0579;NU1605</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../Game.Core/Game.Core.csproj" />
+    <ProjectReference Include="addons/gdUnit4/gdUnit4.csproj" Condition="Exists('addons/gdUnit4/gdUnit4.csproj')" />
+  </ItemGroup>
+</Project>
