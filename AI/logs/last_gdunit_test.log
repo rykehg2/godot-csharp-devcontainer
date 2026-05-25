@@ -4,11 +4,12 @@
 /workspaces/godot-csharp-devcontainer/src/Game.Godot/project.godot:enabled=PackedStringArray("res://addons/gdUnit4/plugin.cfg")
 📂 [DEBUG] Listing test files in src/Game.Godot/tests/:
 total 4
-drwxr-xr-x 1 root root 4096 May  4 17:08 .
-drwxr-xr-x 1 root root 4096 May  3 13:49 ..
+drwxr-xr-x 1 root root 4096 May  4 22:25 .
+drwxr-xr-x 1 root root 4096 May  5 00:10 ..
 -rw-r--r-- 1 root root  186 May  3 13:42 GodotSampleTest.cs
 -rw-r--r-- 1 root root   20 May  3 13:45 GodotSampleTest.cs.uid
--rw-r--r-- 1 root root 1514 May  4 17:20 PlayerMovementTest.cs
+-rw-r--r-- 1 root root 1459 May  5 00:32 PlayerMovementTest.cs
+-rw-r--r-- 1 root root   20 May  4 22:25 PlayerMovementTest.cs.uid
 🔍 Initializing Godot project metadata...
 Godot Engine v4.6.2.stable.mono.official.71f334935 - https://godotengine.org
 
@@ -21,6 +22,11 @@ Godot Engine v4.6.2.stable.mono.official.71f334935 - https://godotengine.org
 [38;2;218;165;32mIt was recognized that GdUnit4 is running in a test environment, therefore the GdUnit4 plugin will not be executed![0m
 [  83% ] [90m[1mfirst_scan_filesystem[22m | Starting file scan...[39m[0m
 [92m[ DONE ][39m [1mfirst_scan_filesystem[22m
+[0m
+[   0% ] [90m[1mupdate_scripts_classes[22m | Started Registering global classes... (2 steps)[39m[0m
+[   0% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  33% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[92m[ DONE ][39m [1mupdate_scripts_classes[22m
 [0m
 [   0% ] [90m[1mreimport[22m | Started (Re)Importing Assets (1 steps)[39m[0m
 [   0% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
@@ -36,15 +42,34 @@ Godot Engine v4.6.2.stable.mono.official.71f334935 - https://godotengine.org
 [   0% ] [90m[1mloading_editor_layout[22m | Started Loading editor (5 steps)[39m[0m
 [   0% ] [90m[1mloading_editor_layout[22m | Loading editor layout...[39m[0m
 [  16% ] [90m[1mloading_editor_layout[22m | Loading docks...[39m[0m
+[  33% ] [90m[1mloading_editor_layout[22m | Reopening scenes...[39m[0m
+[  50% ] [90m[1mloading_editor_layout[22m | Loading central editor layout...[39m[0m
+[  66% ] [90m[1mloading_editor_layout[22m | Loading plugin window layout...[39m[0m
+[  83% ] [90m[1mloading_editor_layout[22m | Editor layout ready.[39m[0m
 [92m[ DONE ][39m [1mloading_editor_layout[22m
 [0m
 📦 Cleaning and Compiling .NET Solution...
-Build started 05/04/2026 22:25:39.
+Build started 05/05/2026 00:34:11.
      1>Project "/workspaces/godot-csharp-devcontainer/src/GameSolution.slnx" on node 1 (Clean target(s)).
      1>ValidateSolutionConfiguration:
          Building solution configuration "Debug|Any CPU".
-     1>Project "/workspaces/godot-csharp-devcontainer/src/GameSolution.slnx" (1) is building "/workspaces/godot-csharp-devcontainer/src/xunitTests/Game.Core.Tests/Game.Core.Tests.csproj" (2) on node 1 (Clean target(s)).
+     1>Project "/workspaces/godot-csharp-devcontainer/src/GameSolution.slnx" (1) is building "/workspaces/godot-csharp-devcontainer/src/Game.Core/Game.Core.csproj" (2) on node 2 (Clean target(s)).
      2>CoreClean:
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Core/bin/Debug/net10.0/Game.Core.deps.json".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Core/bin/Debug/net10.0/Game.Core.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Core/bin/Debug/net10.0/Game.Core.pdb".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Core/obj/Debug/net10.0/Game.Core.GeneratedMSBuildEditorConfig.editorconfig".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Core/obj/Debug/net10.0/Game.Core.AssemblyInfoInputs.cache".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Core/obj/Debug/net10.0/Game.Core.AssemblyInfo.cs".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Core/obj/Debug/net10.0/Game.Core.csproj.CoreCompileInputs.cache".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Core/obj/Debug/net10.0/Game.Core.sourcelink.json".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Core/obj/Debug/net10.0/Game.Core.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Core/obj/Debug/net10.0/refint/Game.Core.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Core/obj/Debug/net10.0/Game.Core.pdb".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Core/obj/Debug/net10.0/ref/Game.Core.dll".
+     2>Done Building Project "/workspaces/godot-csharp-devcontainer/src/Game.Core/Game.Core.csproj" (Clean target(s)).
+     1>Project "/workspaces/godot-csharp-devcontainer/src/GameSolution.slnx" (1) is building "/workspaces/godot-csharp-devcontainer/src/xunitTests/Game.Core.Tests/Game.Core.Tests.csproj" (3) on node 1 (Clean target(s)).
+     3>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/xunitTests/Game.Core.Tests/bin/Debug/net10.0/.msCoverageSourceRootsMapping_Game.Core.Tests".
          Deleting file "/workspaces/godot-csharp-devcontainer/src/xunitTests/Game.Core.Tests/bin/Debug/net10.0/CoverletSourceRootsMapping_Game.Core.Tests".
          Deleting file "/workspaces/godot-csharp-devcontainer/src/xunitTests/Game.Core.Tests/bin/Debug/net10.0/xunit.abstractions.dll".
@@ -144,26 +169,12 @@ Build started 05/04/2026 22:25:39.
          Deleting file "/workspaces/godot-csharp-devcontainer/src/xunitTests/Game.Core.Tests/obj/Debug/net10.0/refint/Game.Core.Tests.dll".
          Deleting file "/workspaces/godot-csharp-devcontainer/src/xunitTests/Game.Core.Tests/obj/Debug/net10.0/Game.Core.Tests.pdb".
          Deleting file "/workspaces/godot-csharp-devcontainer/src/xunitTests/Game.Core.Tests/obj/Debug/net10.0/Game.Core.Tests.genruntimeconfig.cache".
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/xunitTests/Game.Core.Tests/obj/Debug/net10.0/ref/Game.Core.Tests.dll".
-     1>Project "/workspaces/godot-csharp-devcontainer/src/GameSolution.slnx" (1) is building "/workspaces/godot-csharp-devcontainer/src/Game.Core/Game.Core.csproj" (3) on node 2 (Clean target(s)).
-     3>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Core/bin/Debug/net10.0/Game.Core.deps.json".
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Core/bin/Debug/net10.0/Game.Core.dll".
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Core/bin/Debug/net10.0/Game.Core.pdb".
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Core/obj/Debug/net10.0/Game.Core.GeneratedMSBuildEditorConfig.editorconfig".
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Core/obj/Debug/net10.0/Game.Core.AssemblyInfoInputs.cache".
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Core/obj/Debug/net10.0/Game.Core.AssemblyInfo.cs".
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Core/obj/Debug/net10.0/Game.Core.csproj.CoreCompileInputs.cache".
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Core/obj/Debug/net10.0/Game.Core.sourcelink.json".
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Core/obj/Debug/net10.0/Game.Core.dll".
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Core/obj/Debug/net10.0/refint/Game.Core.dll".
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Core/obj/Debug/net10.0/Game.Core.pdb".
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Core/obj/Debug/net10.0/ref/Game.Core.dll".
-     3>Done Building Project "/workspaces/godot-csharp-devcontainer/src/Game.Core/Game.Core.csproj" (Clean target(s)).
-     2>Done Building Project "/workspaces/godot-csharp-devcontainer/src/xunitTests/Game.Core.Tests/Game.Core.Tests.csproj" (Clean target(s)).
-     1>Project "/workspaces/godot-csharp-devcontainer/src/GameSolution.slnx" (1) is building "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/gdUnit4.csproj" (4) on node 3 (Clean target(s)).
+     1>Project "/workspaces/godot-csharp-devcontainer/src/GameSolution.slnx" (1) is building "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/gdUnit4.csproj" (4) on node 4 (Clean target(s)).
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/gdUnit4.deps.json".
+     3>CoreClean:
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/xunitTests/Game.Core.Tests/obj/Debug/net10.0/ref/Game.Core.Tests.dll".
+     4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/gdUnit4.runtimeconfig.json".
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/gdUnit4.dll".
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/gdUnit4.pdb".
@@ -196,184 +207,182 @@ Build started 05/04/2026 22:25:39.
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/Mono.Cecil.Pdb.dll".
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/Mono.Cecil.Rocks.dll".
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/Mono.Cecil.dll".
+     3>Done Building Project "/workspaces/godot-csharp-devcontainer/src/xunitTests/Game.Core.Tests/Game.Core.Tests.csproj" (Clean target(s)).
+     4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/Moq.dll".
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/Newtonsoft.Json.dll".
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/System.Composition.AttributedModel.dll".
-     1>Project "/workspaces/godot-csharp-devcontainer/src/GameSolution.slnx" (1) is building "/workspaces/godot-csharp-devcontainer/src/Game.Godot/GameGodot.csproj" (5) on node 4 (Clean target(s)).
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/System.Composition.Convention.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/System.Composition.Hosting.dll".
+     1>Project "/workspaces/godot-csharp-devcontainer/src/GameSolution.slnx" (1) is building "/workspaces/godot-csharp-devcontainer/src/Game.Godot/GameGodot.csproj" (5) on node 3 (Clean target(s)).
      5>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/gdUnit4.deps.json".
      4>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/System.Composition.Convention.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/System.Composition.Runtime.dll".
      5>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/gdUnit4.runtimeconfig.json".
      4>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/System.Composition.Hosting.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/System.Composition.TypedParts.dll".
      5>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/GameGodot.deps.json".
      4>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/System.Composition.Runtime.dll".
-     5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/GameGodot.runtimeconfig.json".
-     4>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/System.Composition.TypedParts.dll".
-     5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/GameGodot.dll".
-     4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/System.Diagnostics.EventLog.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/GameGodot.pdb".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/GameGodot.runtimeconfig.json".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/GameGodot.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/cs/Microsoft.CodeAnalysis.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Castle.Core.dll".
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/CommandLine.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/GameGodot.pdb".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/de/Microsoft.CodeAnalysis.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/GdUnit4Analyzers.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Castle.Core.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/es/Microsoft.CodeAnalysis.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/GdUnit4Api.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/CommandLine.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/fr/Microsoft.CodeAnalysis.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/GdUnit4.TestAdapter.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/GdUnit4Analyzers.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/it/Microsoft.CodeAnalysis.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/GodotSharp.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/GdUnit4Api.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/GdUnit4.TestAdapter.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/ja/Microsoft.CodeAnalysis.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/GodotSharpEditor.dll".
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Humanizer.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/GodotSharp.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/ko/Microsoft.CodeAnalysis.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Microsoft.Bcl.AsyncInterfaces.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/GodotSharpEditor.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/pl/Microsoft.CodeAnalysis.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Microsoft.CodeAnalysis.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Humanizer.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/pt-BR/Microsoft.CodeAnalysis.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Microsoft.CodeAnalysis.CSharp.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Microsoft.Bcl.AsyncInterfaces.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/ru/Microsoft.CodeAnalysis.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Microsoft.CodeAnalysis.CSharp.Workspaces.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Microsoft.CodeAnalysis.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/tr/Microsoft.CodeAnalysis.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Microsoft.CodeAnalysis.VisualBasic.dll".
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Microsoft.CodeAnalysis.VisualBasic.Workspaces.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Microsoft.CodeAnalysis.CSharp.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Microsoft.CodeAnalysis.CSharp.Workspaces.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/zh-Hans/Microsoft.CodeAnalysis.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Microsoft.CodeAnalysis.Workspaces.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Microsoft.CodeAnalysis.VisualBasic.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/zh-Hant/Microsoft.CodeAnalysis.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Microsoft.VisualStudio.CodeCoverage.Shim.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Microsoft.CodeAnalysis.VisualBasic.Workspaces.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/cs/Microsoft.CodeAnalysis.CSharp.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Microsoft.TestPlatform.AdapterUtilities.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Microsoft.CodeAnalysis.Workspaces.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/de/Microsoft.CodeAnalysis.CSharp.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Microsoft.TestPlatform.CoreUtilities.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Microsoft.VisualStudio.CodeCoverage.Shim.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/es/Microsoft.CodeAnalysis.CSharp.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Microsoft.TestPlatform.PlatformAbstractions.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Microsoft.TestPlatform.AdapterUtilities.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/fr/Microsoft.CodeAnalysis.CSharp.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Microsoft.VisualStudio.TestPlatform.ObjectModel.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Microsoft.TestPlatform.CoreUtilities.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Microsoft.TestPlatform.PlatformAbstractions.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/it/Microsoft.CodeAnalysis.CSharp.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Microsoft.TestPlatform.CommunicationUtilities.dll".
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Microsoft.TestPlatform.CrossPlatEngine.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Microsoft.VisualStudio.TestPlatform.ObjectModel.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/ja/Microsoft.CodeAnalysis.CSharp.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Microsoft.TestPlatform.Utilities.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Microsoft.TestPlatform.CommunicationUtilities.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/ko/Microsoft.CodeAnalysis.CSharp.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Microsoft.VisualStudio.TestPlatform.Common.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Microsoft.TestPlatform.CrossPlatEngine.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/pl/Microsoft.CodeAnalysis.CSharp.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/testhost.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Microsoft.TestPlatform.Utilities.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/pt-BR/Microsoft.CodeAnalysis.CSharp.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Mono.Cecil.Mdb.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Microsoft.VisualStudio.TestPlatform.Common.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/testhost.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/ru/Microsoft.CodeAnalysis.CSharp.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Mono.Cecil.Pdb.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Mono.Cecil.Mdb.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/tr/Microsoft.CodeAnalysis.CSharp.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Mono.Cecil.Rocks.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Mono.Cecil.Pdb.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/zh-Hans/Microsoft.CodeAnalysis.CSharp.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Mono.Cecil.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Mono.Cecil.Rocks.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/zh-Hant/Microsoft.CodeAnalysis.CSharp.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Moq.dll".
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Newtonsoft.Json.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Mono.Cecil.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/cs/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/System.Composition.AttributedModel.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Moq.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/de/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/System.Composition.Convention.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Newtonsoft.Json.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/System.Composition.AttributedModel.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/es/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/System.Composition.Hosting.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/System.Composition.Convention.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/fr/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/System.Composition.Runtime.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/System.Composition.Hosting.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/it/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/System.Composition.TypedParts.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/System.Composition.Runtime.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/ja/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/System.Diagnostics.EventLog.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/System.Composition.TypedParts.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/ko/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/cs/Microsoft.CodeAnalysis.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/System.Diagnostics.EventLog.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/pl/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/de/Microsoft.CodeAnalysis.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/cs/Microsoft.CodeAnalysis.resources.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/pt-BR/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/es/Microsoft.CodeAnalysis.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/de/Microsoft.CodeAnalysis.resources.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/ru/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/fr/Microsoft.CodeAnalysis.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/es/Microsoft.CodeAnalysis.resources.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/tr/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll".
      5>CoreClean:
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/fr/Microsoft.CodeAnalysis.resources.dll".
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/it/Microsoft.CodeAnalysis.resources.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/zh-Hans/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll".
@@ -381,19 +390,17 @@ Build started 05/04/2026 22:25:39.
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/ja/Microsoft.CodeAnalysis.resources.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/zh-Hant/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/cs/Microsoft.CodeAnalysis.VisualBasic.resources.dll".
      5>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/ko/Microsoft.CodeAnalysis.resources.dll".
      4>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/cs/Microsoft.CodeAnalysis.VisualBasic.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/de/Microsoft.CodeAnalysis.VisualBasic.resources.dll".
      5>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/pl/Microsoft.CodeAnalysis.resources.dll".
      4>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/de/Microsoft.CodeAnalysis.VisualBasic.resources.dll".
-     5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/pt-BR/Microsoft.CodeAnalysis.resources.dll".
-     4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/es/Microsoft.CodeAnalysis.VisualBasic.resources.dll".
      5>CoreClean:
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/pt-BR/Microsoft.CodeAnalysis.resources.dll".
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/ru/Microsoft.CodeAnalysis.resources.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/fr/Microsoft.CodeAnalysis.VisualBasic.resources.dll".
@@ -465,61 +472,53 @@ Build started 05/04/2026 22:25:39.
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/cs/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/pl/Microsoft.CodeAnalysis.VisualBasic.Workspaces.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/pt-BR/Microsoft.CodeAnalysis.VisualBasic.Workspaces.resources.dll".
      5>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/de/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll".
      4>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/pt-BR/Microsoft.CodeAnalysis.VisualBasic.Workspaces.resources.dll".
-     5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/es/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll".
-     4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/ru/Microsoft.CodeAnalysis.VisualBasic.Workspaces.resources.dll".
      5>CoreClean:
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/es/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll".
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/fr/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/tr/Microsoft.CodeAnalysis.VisualBasic.Workspaces.resources.dll".
-     5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/it/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll".
-     4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/zh-Hans/Microsoft.CodeAnalysis.VisualBasic.Workspaces.resources.dll".
      5>CoreClean:
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/it/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll".
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/ja/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/zh-Hant/Microsoft.CodeAnalysis.VisualBasic.Workspaces.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/cs/Microsoft.CodeAnalysis.Workspaces.resources.dll".
      5>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/ko/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll".
      4>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/cs/Microsoft.CodeAnalysis.Workspaces.resources.dll".
-     5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/pl/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll".
-     4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/de/Microsoft.CodeAnalysis.Workspaces.resources.dll".
      5>CoreClean:
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/pl/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll".
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/pt-BR/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/es/Microsoft.CodeAnalysis.Workspaces.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/fr/Microsoft.CodeAnalysis.Workspaces.resources.dll".
      5>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/ru/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll".
      4>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/fr/Microsoft.CodeAnalysis.Workspaces.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/it/Microsoft.CodeAnalysis.Workspaces.resources.dll".
      5>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/tr/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll".
      4>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/it/Microsoft.CodeAnalysis.Workspaces.resources.dll".
-     5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/zh-Hans/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll".
-     4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/ja/Microsoft.CodeAnalysis.Workspaces.resources.dll".
      5>CoreClean:
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/zh-Hans/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll".
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/zh-Hant/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll".
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/cs/Microsoft.CodeAnalysis.VisualBasic.resources.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/ko/Microsoft.CodeAnalysis.Workspaces.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/de/Microsoft.CodeAnalysis.VisualBasic.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/cs/Microsoft.CodeAnalysis.VisualBasic.resources.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/pl/Microsoft.CodeAnalysis.Workspaces.resources.dll".
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/pt-BR/Microsoft.CodeAnalysis.Workspaces.resources.dll".
      5>CoreClean:
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/de/Microsoft.CodeAnalysis.VisualBasic.resources.dll".
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/es/Microsoft.CodeAnalysis.VisualBasic.resources.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/ru/Microsoft.CodeAnalysis.Workspaces.resources.dll".
@@ -529,350 +528,350 @@ Build started 05/04/2026 22:25:39.
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/tr/Microsoft.CodeAnalysis.Workspaces.resources.dll".
      5>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/it/Microsoft.CodeAnalysis.VisualBasic.resources.dll".
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/ja/Microsoft.CodeAnalysis.VisualBasic.resources.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/zh-Hans/Microsoft.CodeAnalysis.Workspaces.resources.dll".
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/zh-Hant/Microsoft.CodeAnalysis.Workspaces.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/ko/Microsoft.CodeAnalysis.VisualBasic.resources.dll".
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/pl/Microsoft.CodeAnalysis.VisualBasic.resources.dll".
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/pt-BR/Microsoft.CodeAnalysis.VisualBasic.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/ja/Microsoft.CodeAnalysis.VisualBasic.resources.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/cs/Microsoft.TestPlatform.AdapterUtilities.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/ru/Microsoft.CodeAnalysis.VisualBasic.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/ko/Microsoft.CodeAnalysis.VisualBasic.resources.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/de/Microsoft.TestPlatform.AdapterUtilities.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/tr/Microsoft.CodeAnalysis.VisualBasic.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/pl/Microsoft.CodeAnalysis.VisualBasic.resources.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/es/Microsoft.TestPlatform.AdapterUtilities.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/zh-Hans/Microsoft.CodeAnalysis.VisualBasic.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/pt-BR/Microsoft.CodeAnalysis.VisualBasic.resources.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/fr/Microsoft.TestPlatform.AdapterUtilities.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/zh-Hant/Microsoft.CodeAnalysis.VisualBasic.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/ru/Microsoft.CodeAnalysis.VisualBasic.resources.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/it/Microsoft.TestPlatform.AdapterUtilities.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/cs/Microsoft.CodeAnalysis.VisualBasic.Workspaces.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/tr/Microsoft.CodeAnalysis.VisualBasic.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/zh-Hans/Microsoft.CodeAnalysis.VisualBasic.resources.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/ja/Microsoft.TestPlatform.AdapterUtilities.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/de/Microsoft.CodeAnalysis.VisualBasic.Workspaces.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/zh-Hant/Microsoft.CodeAnalysis.VisualBasic.resources.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/ko/Microsoft.TestPlatform.AdapterUtilities.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/es/Microsoft.CodeAnalysis.VisualBasic.Workspaces.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/cs/Microsoft.CodeAnalysis.VisualBasic.Workspaces.resources.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/pl/Microsoft.TestPlatform.AdapterUtilities.resources.dll".
+     5>CoreClean:
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/de/Microsoft.CodeAnalysis.VisualBasic.Workspaces.resources.dll".
+     4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/pt-BR/Microsoft.TestPlatform.AdapterUtilities.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/fr/Microsoft.CodeAnalysis.VisualBasic.Workspaces.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/es/Microsoft.CodeAnalysis.VisualBasic.Workspaces.resources.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/ru/Microsoft.TestPlatform.AdapterUtilities.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/it/Microsoft.CodeAnalysis.VisualBasic.Workspaces.resources.dll".
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/ja/Microsoft.CodeAnalysis.VisualBasic.Workspaces.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/fr/Microsoft.CodeAnalysis.VisualBasic.Workspaces.resources.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/tr/Microsoft.TestPlatform.AdapterUtilities.resources.dll".
-     5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/ko/Microsoft.CodeAnalysis.VisualBasic.Workspaces.resources.dll".
-     4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/zh-Hans/Microsoft.TestPlatform.AdapterUtilities.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/pl/Microsoft.CodeAnalysis.VisualBasic.Workspaces.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/it/Microsoft.CodeAnalysis.VisualBasic.Workspaces.resources.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/zh-Hant/Microsoft.TestPlatform.AdapterUtilities.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/pt-BR/Microsoft.CodeAnalysis.VisualBasic.Workspaces.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/ja/Microsoft.CodeAnalysis.VisualBasic.Workspaces.resources.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/cs/Microsoft.TestPlatform.CoreUtilities.resources.dll".
+     5>CoreClean:
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/ko/Microsoft.CodeAnalysis.VisualBasic.Workspaces.resources.dll".
+     4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/cs/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/ru/Microsoft.CodeAnalysis.VisualBasic.Workspaces.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/pl/Microsoft.CodeAnalysis.VisualBasic.Workspaces.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/pt-BR/Microsoft.CodeAnalysis.VisualBasic.Workspaces.resources.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/de/Microsoft.TestPlatform.CoreUtilities.resources.dll".
-     5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/tr/Microsoft.CodeAnalysis.VisualBasic.Workspaces.resources.dll".
-     4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/de/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/zh-Hans/Microsoft.CodeAnalysis.VisualBasic.Workspaces.resources.dll".
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/zh-Hant/Microsoft.CodeAnalysis.VisualBasic.Workspaces.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/ru/Microsoft.CodeAnalysis.VisualBasic.Workspaces.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/tr/Microsoft.CodeAnalysis.VisualBasic.Workspaces.resources.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/es/Microsoft.TestPlatform.CoreUtilities.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/cs/Microsoft.CodeAnalysis.Workspaces.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/zh-Hans/Microsoft.CodeAnalysis.VisualBasic.Workspaces.resources.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/es/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/de/Microsoft.CodeAnalysis.Workspaces.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/zh-Hant/Microsoft.CodeAnalysis.VisualBasic.Workspaces.resources.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/fr/Microsoft.TestPlatform.CoreUtilities.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/es/Microsoft.CodeAnalysis.Workspaces.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/cs/Microsoft.CodeAnalysis.Workspaces.resources.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/fr/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll".
+     5>CoreClean:
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/de/Microsoft.CodeAnalysis.Workspaces.resources.dll".
+     4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/it/Microsoft.TestPlatform.CoreUtilities.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/fr/Microsoft.CodeAnalysis.Workspaces.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/es/Microsoft.CodeAnalysis.Workspaces.resources.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/it/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/it/Microsoft.CodeAnalysis.Workspaces.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/fr/Microsoft.CodeAnalysis.Workspaces.resources.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/ja/Microsoft.TestPlatform.CoreUtilities.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/ja/Microsoft.CodeAnalysis.Workspaces.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/it/Microsoft.CodeAnalysis.Workspaces.resources.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/ja/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/ko/Microsoft.CodeAnalysis.Workspaces.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/ja/Microsoft.CodeAnalysis.Workspaces.resources.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/ko/Microsoft.TestPlatform.CoreUtilities.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/pl/Microsoft.CodeAnalysis.Workspaces.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/ko/Microsoft.CodeAnalysis.Workspaces.resources.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/ko/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll".
-     5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/pt-BR/Microsoft.CodeAnalysis.Workspaces.resources.dll".
-     4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/pl/Microsoft.TestPlatform.CoreUtilities.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/ru/Microsoft.CodeAnalysis.Workspaces.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/pl/Microsoft.CodeAnalysis.Workspaces.resources.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/pl/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/tr/Microsoft.CodeAnalysis.Workspaces.resources.dll".
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/zh-Hans/Microsoft.CodeAnalysis.Workspaces.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/pt-BR/Microsoft.CodeAnalysis.Workspaces.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/ru/Microsoft.CodeAnalysis.Workspaces.resources.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/pt-BR/Microsoft.TestPlatform.CoreUtilities.resources.dll".
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/pt-BR/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/zh-Hant/Microsoft.CodeAnalysis.Workspaces.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/tr/Microsoft.CodeAnalysis.Workspaces.resources.dll".
      4>CoreClean:
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/pt-BR/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll".
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/ru/Microsoft.TestPlatform.CoreUtilities.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/cs/Microsoft.TestPlatform.AdapterUtilities.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/zh-Hans/Microsoft.CodeAnalysis.Workspaces.resources.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/ru/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/de/Microsoft.TestPlatform.AdapterUtilities.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/zh-Hant/Microsoft.CodeAnalysis.Workspaces.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/cs/Microsoft.TestPlatform.AdapterUtilities.resources.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/tr/Microsoft.TestPlatform.CoreUtilities.resources.dll".
-     5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/es/Microsoft.TestPlatform.AdapterUtilities.resources.dll".
-     4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/tr/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/fr/Microsoft.TestPlatform.AdapterUtilities.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/de/Microsoft.TestPlatform.AdapterUtilities.resources.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/zh-Hans/Microsoft.TestPlatform.CoreUtilities.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/it/Microsoft.TestPlatform.AdapterUtilities.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/es/Microsoft.TestPlatform.AdapterUtilities.resources.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/zh-Hans/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/ja/Microsoft.TestPlatform.AdapterUtilities.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/fr/Microsoft.TestPlatform.AdapterUtilities.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/it/Microsoft.TestPlatform.AdapterUtilities.resources.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/zh-Hant/Microsoft.TestPlatform.CoreUtilities.resources.dll".
+     5>CoreClean:
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/ja/Microsoft.TestPlatform.AdapterUtilities.resources.dll".
+     4>CoreClean:
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/zh-Hant/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/cs/Microsoft.TestPlatform.CommunicationUtilities.resources.dll".
      5>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/ko/Microsoft.TestPlatform.AdapterUtilities.resources.dll".
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/pl/Microsoft.TestPlatform.AdapterUtilities.resources.dll".
      4>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/zh-Hant/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/cs/Microsoft.TestPlatform.CrossPlatEngine.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/cs/Microsoft.VisualStudio.TestPlatform.Common.resources.dll".
      5>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/pt-BR/Microsoft.TestPlatform.AdapterUtilities.resources.dll".
-     4>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/cs/Microsoft.TestPlatform.CommunicationUtilities.resources.dll".
-     5>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/ru/Microsoft.TestPlatform.AdapterUtilities.resources.dll".
      4>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/cs/Microsoft.TestPlatform.CrossPlatEngine.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/de/Microsoft.TestPlatform.CommunicationUtilities.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/de/Microsoft.TestPlatform.CrossPlatEngine.resources.dll".
      5>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/tr/Microsoft.TestPlatform.AdapterUtilities.resources.dll".
      4>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/cs/Microsoft.VisualStudio.TestPlatform.Common.resources.dll".
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/de/Microsoft.TestPlatform.CommunicationUtilities.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/de/Microsoft.VisualStudio.TestPlatform.Common.resources.dll".
      5>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/zh-Hans/Microsoft.TestPlatform.AdapterUtilities.resources.dll".
-     4>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/de/Microsoft.TestPlatform.CrossPlatEngine.resources.dll".
-     5>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/zh-Hant/Microsoft.TestPlatform.AdapterUtilities.resources.dll".
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/cs/Microsoft.TestPlatform.CoreUtilities.resources.dll".
      4>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/de/Microsoft.VisualStudio.TestPlatform.Common.resources.dll".
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/es/Microsoft.TestPlatform.CommunicationUtilities.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/cs/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll".
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/de/Microsoft.TestPlatform.CoreUtilities.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/cs/Microsoft.TestPlatform.CoreUtilities.resources.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/es/Microsoft.TestPlatform.CrossPlatEngine.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/de/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/cs/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/es/Microsoft.VisualStudio.TestPlatform.Common.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/es/Microsoft.TestPlatform.CoreUtilities.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/de/Microsoft.TestPlatform.CoreUtilities.resources.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/fr/Microsoft.TestPlatform.CommunicationUtilities.resources.dll".
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/fr/Microsoft.TestPlatform.CrossPlatEngine.resources.dll".
      5>CoreClean:
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/de/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll".
+     4>CoreClean:
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/fr/Microsoft.TestPlatform.CrossPlatEngine.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/fr/Microsoft.VisualStudio.TestPlatform.Common.resources.dll".
+     5>CoreClean:
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/es/Microsoft.TestPlatform.CoreUtilities.resources.dll".
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/es/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll".
      4>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/fr/Microsoft.VisualStudio.TestPlatform.Common.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/it/Microsoft.TestPlatform.CommunicationUtilities.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/it/Microsoft.TestPlatform.CrossPlatEngine.resources.dll".
      5>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/fr/Microsoft.TestPlatform.CoreUtilities.resources.dll".
      4>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/it/Microsoft.TestPlatform.CommunicationUtilities.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/it/Microsoft.VisualStudio.TestPlatform.Common.resources.dll".
      5>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/fr/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll".
      4>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/it/Microsoft.TestPlatform.CrossPlatEngine.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/ja/Microsoft.TestPlatform.CommunicationUtilities.resources.dll".
      5>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/it/Microsoft.TestPlatform.CoreUtilities.resources.dll".
-     4>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/it/Microsoft.VisualStudio.TestPlatform.Common.resources.dll".
-     5>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/it/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll".
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/ja/Microsoft.TestPlatform.CoreUtilities.resources.dll".
      4>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/ja/Microsoft.TestPlatform.CommunicationUtilities.resources.dll".
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/ja/Microsoft.TestPlatform.CrossPlatEngine.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/ja/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll".
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/ko/Microsoft.TestPlatform.CoreUtilities.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/ja/Microsoft.TestPlatform.CoreUtilities.resources.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/ja/Microsoft.VisualStudio.TestPlatform.Common.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/ko/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/ja/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/ko/Microsoft.TestPlatform.CommunicationUtilities.resources.dll".
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/ko/Microsoft.TestPlatform.CrossPlatEngine.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/pl/Microsoft.TestPlatform.CoreUtilities.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/ko/Microsoft.TestPlatform.CoreUtilities.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/ko/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/ko/Microsoft.VisualStudio.TestPlatform.Common.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/pl/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/pl/Microsoft.TestPlatform.CoreUtilities.resources.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/pl/Microsoft.TestPlatform.CommunicationUtilities.resources.dll".
-     5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/pt-BR/Microsoft.TestPlatform.CoreUtilities.resources.dll".
-     4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/pl/Microsoft.TestPlatform.CrossPlatEngine.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/pt-BR/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll".
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/ru/Microsoft.TestPlatform.CoreUtilities.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/pl/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/pt-BR/Microsoft.TestPlatform.CoreUtilities.resources.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/pl/Microsoft.VisualStudio.TestPlatform.Common.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/pt-BR/Microsoft.TestPlatform.CommunicationUtilities.resources.dll".
+     5>CoreClean:
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/pt-BR/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll".
+     4>CoreClean:
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/pt-BR/Microsoft.TestPlatform.CrossPlatEngine.resources.dll".
+     5>CoreClean:
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/ru/Microsoft.TestPlatform.CoreUtilities.resources.dll".
+     4>CoreClean:
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/pt-BR/Microsoft.VisualStudio.TestPlatform.Common.resources.dll".
      5>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/ru/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll".
      4>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/pt-BR/Microsoft.TestPlatform.CommunicationUtilities.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/ru/Microsoft.TestPlatform.CommunicationUtilities.resources.dll".
      5>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/tr/Microsoft.TestPlatform.CoreUtilities.resources.dll".
-     4>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/pt-BR/Microsoft.TestPlatform.CrossPlatEngine.resources.dll".
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/pt-BR/Microsoft.VisualStudio.TestPlatform.Common.resources.dll".
-     5>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/tr/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll".
+     4>CoreClean:
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/ru/Microsoft.TestPlatform.CrossPlatEngine.resources.dll".
+     5>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/zh-Hans/Microsoft.TestPlatform.CoreUtilities.resources.dll".
      4>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/ru/Microsoft.TestPlatform.CommunicationUtilities.resources.dll".
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/ru/Microsoft.TestPlatform.CrossPlatEngine.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/ru/Microsoft.VisualStudio.TestPlatform.Common.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/tr/Microsoft.TestPlatform.CommunicationUtilities.resources.dll".
      5>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/zh-Hans/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll".
      4>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/ru/Microsoft.VisualStudio.TestPlatform.Common.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/tr/Microsoft.TestPlatform.CrossPlatEngine.resources.dll".
      5>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/zh-Hant/Microsoft.TestPlatform.CoreUtilities.resources.dll".
-     4>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/tr/Microsoft.TestPlatform.CommunicationUtilities.resources.dll".
-     5>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/zh-Hant/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll".
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/cs/Microsoft.TestPlatform.CommunicationUtilities.resources.dll".
      4>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/tr/Microsoft.TestPlatform.CrossPlatEngine.resources.dll".
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/tr/Microsoft.VisualStudio.TestPlatform.Common.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/cs/Microsoft.TestPlatform.CrossPlatEngine.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/cs/Microsoft.TestPlatform.CommunicationUtilities.resources.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/zh-Hans/Microsoft.TestPlatform.CommunicationUtilities.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/cs/Microsoft.VisualStudio.TestPlatform.Common.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/cs/Microsoft.TestPlatform.CrossPlatEngine.resources.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/zh-Hans/Microsoft.TestPlatform.CrossPlatEngine.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/de/Microsoft.TestPlatform.CommunicationUtilities.resources.dll".
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/de/Microsoft.TestPlatform.CrossPlatEngine.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/cs/Microsoft.VisualStudio.TestPlatform.Common.resources.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/zh-Hans/Microsoft.VisualStudio.TestPlatform.Common.resources.dll".
+     5>CoreClean:
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/de/Microsoft.TestPlatform.CommunicationUtilities.resources.dll".
+     4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/zh-Hant/Microsoft.TestPlatform.CommunicationUtilities.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/de/Microsoft.VisualStudio.TestPlatform.Common.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/de/Microsoft.TestPlatform.CrossPlatEngine.resources.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/zh-Hant/Microsoft.TestPlatform.CrossPlatEngine.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/es/Microsoft.TestPlatform.CommunicationUtilities.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/de/Microsoft.VisualStudio.TestPlatform.Common.resources.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/zh-Hant/Microsoft.VisualStudio.TestPlatform.Common.resources.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/es/Microsoft.TestPlatform.CrossPlatEngine.resources.dll".
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/es/Microsoft.VisualStudio.TestPlatform.Common.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/es/Microsoft.TestPlatform.CommunicationUtilities.resources.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/runtimes/win/lib/net6.0/System.Diagnostics.EventLog.Messages.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/fr/Microsoft.TestPlatform.CommunicationUtilities.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/es/Microsoft.TestPlatform.CrossPlatEngine.resources.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/runtimes/win/lib/net6.0/System.Diagnostics.EventLog.dll".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/fr/Microsoft.TestPlatform.CrossPlatEngine.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/es/Microsoft.VisualStudio.TestPlatform.Common.resources.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/obj/Debug/gdUnit4.csproj.AssemblyReference.cache".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/fr/Microsoft.VisualStudio.TestPlatform.Common.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/fr/Microsoft.TestPlatform.CommunicationUtilities.resources.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/obj/Debug/gdUnit4.GeneratedMSBuildEditorConfig.editorconfig".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/it/Microsoft.TestPlatform.CommunicationUtilities.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/fr/Microsoft.TestPlatform.CrossPlatEngine.resources.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/obj/Debug/gdUnit4.AssemblyInfoInputs.cache".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/it/Microsoft.TestPlatform.CrossPlatEngine.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/fr/Microsoft.VisualStudio.TestPlatform.Common.resources.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/obj/Debug/gdUnit4.AssemblyInfo.cs".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/it/Microsoft.VisualStudio.TestPlatform.Common.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/it/Microsoft.TestPlatform.CommunicationUtilities.resources.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/obj/Debug/gdUnit4.csproj.CoreCompileInputs.cache".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/obj/Debug/gdUnit4.sourcelink.json".
+     5>CoreClean:
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/it/Microsoft.TestPlatform.CrossPlatEngine.resources.dll".
+     4>CoreClean:
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/obj/Debug/gdUnit4.csproj.Up2Date".
+     5>CoreClean:
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/it/Microsoft.VisualStudio.TestPlatform.Common.resources.dll".
+     4>CoreClean:
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/obj/Debug/gdUnit4.dll".
      5>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/ja/Microsoft.TestPlatform.CommunicationUtilities.resources.dll".
      4>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/obj/Debug/gdUnit4.sourcelink.json".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/obj/Debug/refint/gdUnit4.dll".
      5>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/ja/Microsoft.TestPlatform.CrossPlatEngine.resources.dll".
      4>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/obj/Debug/gdUnit4.csproj.Up2Date".
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/obj/Debug/gdUnit4.dll".
-     5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/ja/Microsoft.VisualStudio.TestPlatform.Common.resources.dll".
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/ko/Microsoft.TestPlatform.CommunicationUtilities.resources.dll".
-     4>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/obj/Debug/refint/gdUnit4.dll".
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/obj/Debug/gdUnit4.pdb".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/ko/Microsoft.TestPlatform.CrossPlatEngine.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/ja/Microsoft.VisualStudio.TestPlatform.Common.resources.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/obj/Debug/gdUnit4.genruntimeconfig.cache".
      5>CoreClean:
-         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/ko/Microsoft.VisualStudio.TestPlatform.Common.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/ko/Microsoft.TestPlatform.CommunicationUtilities.resources.dll".
      4>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/obj/Debug/ref/gdUnit4.dll".
      5>CoreClean:
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/ko/Microsoft.TestPlatform.CrossPlatEngine.resources.dll".
+         Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/ko/Microsoft.VisualStudio.TestPlatform.Common.resources.dll".
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/pl/Microsoft.TestPlatform.CommunicationUtilities.resources.dll".
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/pl/Microsoft.TestPlatform.CrossPlatEngine.resources.dll".
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/pl/Microsoft.VisualStudio.TestPlatform.Common.resources.dll".
@@ -887,6 +886,8 @@ Build started 05/04/2026 22:25:39.
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/tr/Microsoft.VisualStudio.TestPlatform.Common.resources.dll".
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/zh-Hans/Microsoft.TestPlatform.CommunicationUtilities.resources.dll".
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/zh-Hans/Microsoft.TestPlatform.CrossPlatEngine.resources.dll".
+     4>Done Building Project "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/gdUnit4.csproj" (Clean target(s)).
+     5>CoreClean:
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/zh-Hans/Microsoft.VisualStudio.TestPlatform.Common.resources.dll".
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/zh-Hant/Microsoft.TestPlatform.CommunicationUtilities.resources.dll".
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/zh-Hant/Microsoft.TestPlatform.CrossPlatEngine.resources.dll".
@@ -907,7 +908,6 @@ Build started 05/04/2026 22:25:39.
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/obj/Debug/GameGodot.pdb".
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/obj/Debug/GameGodot.genruntimeconfig.cache".
          Deleting file "/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/obj/Debug/ref/GameGodot.dll".
-     4>Done Building Project "/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/gdUnit4.csproj" (Clean target(s)).
      5>Done Building Project "/workspaces/godot-csharp-devcontainer/src/Game.Godot/GameGodot.csproj" (Clean target(s)).
      1>Done Building Project "/workspaces/godot-csharp-devcontainer/src/GameSolution.slnx" (Clean target(s)).
 
@@ -915,35 +915,242 @@ Build succeeded.
     0 Warning(s)
     0 Error(s)
 
-Time Elapsed 00:00:11.01
+Time Elapsed 00:00:04.30
   Determining projects to restore...
   All projects are up-to-date for restore.
   Game.Core -> /workspaces/godot-csharp-devcontainer/src/Game.Core/bin/Debug/net10.0/Game.Core.dll
   gdUnit4 -> /workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/.godot/mono/temp/bin/Debug/gdUnit4.dll
-/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/test/dotnet/GdUnit4CSharpApiTest.cs(179,40): warning CS8632: The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. [/workspaces/godot-csharp-devcontainer/src/Game.Godot/GameGodot.csproj]
-/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/test/dotnet/ExampleTestSuite.cs(31,42): warning CS8632: The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. [/workspaces/godot-csharp-devcontainer/src/Game.Godot/GameGodot.csproj]
-/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/src/dotnet/GdUnit4CSharpApi.cs(35,36): warning CS8632: The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. [/workspaces/godot-csharp-devcontainer/src/Game.Godot/GameGodot.csproj]
-/workspaces/godot-csharp-devcontainer/src/Game.Godot/tests/PlayerMovementTest.cs(31,13): error CS0103: The name 'IAssertThat' does not exist in the current context [/workspaces/godot-csharp-devcontainer/src/Game.Godot/GameGodot.csproj]
-/workspaces/godot-csharp-devcontainer/src/Game.Godot/tests/PlayerMovementTest.cs(33,43): error CS1061: 'INumberAssert<float>' does not contain a definition for 'IsGreaterThan' and no accessible extension method 'IsGreaterThan' accepting a first argument of type 'INumberAssert<float>' could be found (are you missing a using directive or an assembly reference?) [/workspaces/godot-csharp-devcontainer/src/Game.Godot/GameGodot.csproj]
-/workspaces/godot-csharp-devcontainer/src/Game.Godot/tests/PlayerMovementTest.cs(48,37): error CS1061: 'INumberAssert<float>' does not contain a definition for 'IsExactly' and no accessible extension method 'IsExactly' accepting a first argument of type 'INumberAssert<float>' could be found (are you missing a using directive or an assembly reference?) [/workspaces/godot-csharp-devcontainer/src/Game.Godot/GameGodot.csproj]
-/workspaces/godot-csharp-devcontainer/src/Game.Godot/tests/PlayerMovementTest.cs(11,17): error GdUnit0501: Test method 'TestPlayerNodeHierarchy' uses Godot functionality but is not annotated with `[RequireGodotRuntime]` (https://github.com/MikeSchulze/gdUnit4Net/tree/master/Analyzers/documentation/GdUnit0501.md) [/workspaces/godot-csharp-devcontainer/src/Game.Godot/GameGodot.csproj]
-/workspaces/godot-csharp-devcontainer/src/Game.Godot/tests/PlayerMovementTest.cs(23,23): error GdUnit0501: Test method 'TestGravityApplication' uses Godot functionality but is not annotated with `[RequireGodotRuntime]` (https://github.com/MikeSchulze/gdUnit4Net/tree/master/Analyzers/documentation/GdUnit0501.md) [/workspaces/godot-csharp-devcontainer/src/Game.Godot/GameGodot.csproj]
-/workspaces/godot-csharp-devcontainer/src/Game.Godot/tests/PlayerMovementTest.cs(38,17): error GdUnit0501: Test method 'TestJumpVelocityImpulse' uses Godot functionality but is not annotated with `[RequireGodotRuntime]` (https://github.com/MikeSchulze/gdUnit4Net/tree/master/Analyzers/documentation/GdUnit0501.md) [/workspaces/godot-csharp-devcontainer/src/Game.Godot/GameGodot.csproj]
   Game.Core.Tests -> /workspaces/godot-csharp-devcontainer/src/xunitTests/Game.Core.Tests/bin/Debug/net10.0/Game.Core.Tests.dll
-
-Build FAILED.
-
-/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/test/dotnet/GdUnit4CSharpApiTest.cs(179,40): warning CS8632: The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. [/workspaces/godot-csharp-devcontainer/src/Game.Godot/GameGodot.csproj]
 /workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/test/dotnet/ExampleTestSuite.cs(31,42): warning CS8632: The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. [/workspaces/godot-csharp-devcontainer/src/Game.Godot/GameGodot.csproj]
+/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/test/dotnet/GdUnit4CSharpApiTest.cs(179,40): warning CS8632: The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. [/workspaces/godot-csharp-devcontainer/src/Game.Godot/GameGodot.csproj]
 /workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/src/dotnet/GdUnit4CSharpApi.cs(35,36): warning CS8632: The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. [/workspaces/godot-csharp-devcontainer/src/Game.Godot/GameGodot.csproj]
-/workspaces/godot-csharp-devcontainer/src/Game.Godot/tests/PlayerMovementTest.cs(31,13): error CS0103: The name 'IAssertThat' does not exist in the current context [/workspaces/godot-csharp-devcontainer/src/Game.Godot/GameGodot.csproj]
-/workspaces/godot-csharp-devcontainer/src/Game.Godot/tests/PlayerMovementTest.cs(33,43): error CS1061: 'INumberAssert<float>' does not contain a definition for 'IsGreaterThan' and no accessible extension method 'IsGreaterThan' accepting a first argument of type 'INumberAssert<float>' could be found (are you missing a using directive or an assembly reference?) [/workspaces/godot-csharp-devcontainer/src/Game.Godot/GameGodot.csproj]
-/workspaces/godot-csharp-devcontainer/src/Game.Godot/tests/PlayerMovementTest.cs(48,37): error CS1061: 'INumberAssert<float>' does not contain a definition for 'IsExactly' and no accessible extension method 'IsExactly' accepting a first argument of type 'INumberAssert<float>' could be found (are you missing a using directive or an assembly reference?) [/workspaces/godot-csharp-devcontainer/src/Game.Godot/GameGodot.csproj]
-/workspaces/godot-csharp-devcontainer/src/Game.Godot/tests/PlayerMovementTest.cs(11,17): error GdUnit0501: Test method 'TestPlayerNodeHierarchy' uses Godot functionality but is not annotated with `[RequireGodotRuntime]` (https://github.com/MikeSchulze/gdUnit4Net/tree/master/Analyzers/documentation/GdUnit0501.md) [/workspaces/godot-csharp-devcontainer/src/Game.Godot/GameGodot.csproj]
-/workspaces/godot-csharp-devcontainer/src/Game.Godot/tests/PlayerMovementTest.cs(23,23): error GdUnit0501: Test method 'TestGravityApplication' uses Godot functionality but is not annotated with `[RequireGodotRuntime]` (https://github.com/MikeSchulze/gdUnit4Net/tree/master/Analyzers/documentation/GdUnit0501.md) [/workspaces/godot-csharp-devcontainer/src/Game.Godot/GameGodot.csproj]
-/workspaces/godot-csharp-devcontainer/src/Game.Godot/tests/PlayerMovementTest.cs(38,17): error GdUnit0501: Test method 'TestJumpVelocityImpulse' uses Godot functionality but is not annotated with `[RequireGodotRuntime]` (https://github.com/MikeSchulze/gdUnit4Net/tree/master/Analyzers/documentation/GdUnit0501.md) [/workspaces/godot-csharp-devcontainer/src/Game.Godot/GameGodot.csproj]
-    3 Warning(s)
-    6 Error(s)
+  GameGodot -> /workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/GameGodot.dll
 
-Time Elapsed 00:00:13.02
-❌ C# Compilation failed. Check /workspaces/godot-csharp-devcontainer/AI/logs/last_gdunit_test.log
+Build succeeded.
+
+/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/test/dotnet/ExampleTestSuite.cs(31,42): warning CS8632: The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. [/workspaces/godot-csharp-devcontainer/src/Game.Godot/GameGodot.csproj]
+/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/test/dotnet/GdUnit4CSharpApiTest.cs(179,40): warning CS8632: The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. [/workspaces/godot-csharp-devcontainer/src/Game.Godot/GameGodot.csproj]
+/workspaces/godot-csharp-devcontainer/src/Game.Godot/addons/gdUnit4/src/dotnet/GdUnit4CSharpApi.cs(35,36): warning CS8632: The annotation for nullable reference types should only be used in code within a '#nullable' annotations context. [/workspaces/godot-csharp-devcontainer/src/Game.Godot/GameGodot.csproj]
+    3 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:11.59
+✅ GameGodot.dll found at: /workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/GameGodot.dll
+🔄 Syncing all dependency assemblies...
+✅ Dependencies in output folder:
+/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Castle.Core.dll
+/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/CommandLine.dll
+/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Game.Core.dll
+/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/GameGodot.dll
+/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/GdUnit4.TestAdapter.dll
+/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/GdUnit4Analyzers.dll
+/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/GdUnit4Api.dll
+/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/GodotSharp.dll
+/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/GodotSharpEditor.dll
+/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Humanizer.dll
+/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Microsoft.Bcl.AsyncInterfaces.dll
+/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Microsoft.CodeAnalysis.CSharp.Workspaces.dll
+/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Microsoft.CodeAnalysis.CSharp.dll
+/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Microsoft.CodeAnalysis.VisualBasic.Workspaces.dll
+/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Microsoft.CodeAnalysis.VisualBasic.dll
+/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Microsoft.CodeAnalysis.Workspaces.dll
+/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Microsoft.CodeAnalysis.dll
+/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Microsoft.TestPlatform.AdapterUtilities.dll
+/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Microsoft.TestPlatform.CommunicationUtilities.dll
+/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Microsoft.TestPlatform.CoreUtilities.dll
+/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Microsoft.TestPlatform.CrossPlatEngine.dll
+/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Microsoft.TestPlatform.PlatformAbstractions.dll
+/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Microsoft.TestPlatform.Utilities.dll
+/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Microsoft.VisualStudio.CodeCoverage.Shim.dll
+/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Microsoft.VisualStudio.TestPlatform.Common.dll
+/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Microsoft.VisualStudio.TestPlatform.ObjectModel.dll
+/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Mono.Cecil.Mdb.dll
+/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Mono.Cecil.Pdb.dll
+/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Mono.Cecil.Rocks.dll
+/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Mono.Cecil.dll
+/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Moq.dll
+/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/Newtonsoft.Json.dll
+/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/System.Composition.AttributedModel.dll
+/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/System.Composition.Convention.dll
+/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/System.Composition.Hosting.dll
+/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/System.Composition.Runtime.dll
+/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/System.Composition.TypedParts.dll
+/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/System.Diagnostics.EventLog.dll
+/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/gdUnit4.dll
+/workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/testhost.dll
+🔍 Syncing C# classes to Godot...
+Godot Engine v4.6.2.stable.mono.official.71f334935 - https://godotengine.org
+
+[   0% ] [90m[1mfirst_scan_filesystem[22m | Started Project initialization (5 steps)[39m[0m
+[   0% ] [90m[1mfirst_scan_filesystem[22m | Scanning file structure...[39m[0m
+[  16% ] [90m[1mfirst_scan_filesystem[22m | Loading global class names...[39m[0m
+[  33% ] [90m[1mfirst_scan_filesystem[22m | Verifying GDExtensions...[39m[0m
+[  50% ] [90m[1mfirst_scan_filesystem[22m | Creating autoload scripts...[39m[0m
+[  66% ] [90m[1mfirst_scan_filesystem[22m | Initializing plugins...[39m[0m
+[38;2;218;165;32mIt was recognized that GdUnit4 is running in a test environment, therefore the GdUnit4 plugin will not be executed![0m
+[  83% ] [90m[1mfirst_scan_filesystem[22m | Starting file scan...[39m[0m
+[92m[ DONE ][39m [1mfirst_scan_filesystem[22m
+[0m
+[   0% ] [90m[1mloading_editor_layout[22m | Started Loading editor (5 steps)[39m[0m
+[   0% ] [90m[1mloading_editor_layout[22m | Loading editor layout...[39m[0m
+[  16% ] [90m[1mloading_editor_layout[22m | Loading docks...[39m[0m
+[  33% ] [90m[1mloading_editor_layout[22m | Reopening scenes...[39m[0m
+[  50% ] [90m[1mloading_editor_layout[22m | Loading central editor layout...[39m[0m
+[  66% ] [90m[1mloading_editor_layout[22m | Loading plugin window layout...[39m[0m
+[  83% ] [90m[1mloading_editor_layout[22m | Editor layout ready.[39m[0m
+[92m[ DONE ][39m [1mloading_editor_layout[22m
+[0m
+WorkerThreadPool: 12 threads, 3 max low-priority.
+Godot Engine v4.6.2.stable.mono.official.71f334935 - https://godotengine.org
+TextServer: Added interface "Dummy"
+TextServer: Added interface "ICU / HarfBuzz / Graphite (Built-in)"
+Unrecognized output string "misc2" in mapping:
+030000008a2e0000dd10000011010000,Hand Held Legend GC Ultimate,a:b0,b:b2,back:b17,dpdown:b5,dpleft:b6,dpright:b7,dpup:b4,guide:b18,leftshoulder:b10,leftstick:b8,lefttrigger:a3,leftx:a0,lefty:a1,misc1:b19,misc2:b24,paddle1:b13,paddle2:b12,rightshoulder:b11,rightstick:b9,righttrigger:a4,rightx:a2,righty:a5,start:b16,x:b1,y:b3,platform:Linux,
+Unrecognized output string "misc2" in mapping:
+030000000d0f0000ab01000011010000,Horipad Steam,a:b0,b:b1,back:b10,dpdown:h0.4,dpleft:h0.8,dpright:h0.2,dpup:h0.1,guide:b12,leftshoulder:b6,leftstick:b13,lefttrigger:a5,leftx:a0,lefty:a1,misc2:b2,paddle1:b19,paddle2:b18,paddle3:b15,paddle4:b5,rightshoulder:b7,rightstick:b14,righttrigger:a4,rightx:a2,righty:a3,start:b11,x:b3,y:b4,platform:Linux,
+Unrecognized output string "misc2" in mapping:
+050000000d0f00009601000091000000,Horipad Steam,a:b0,b:b1,back:b10,dpdown:h0.4,dpleft:h0.8,dpright:h0.2,dpup:h0.1,guide:b12,leftshoulder:b6,leftstick:b13,lefttrigger:a5,leftx:a0,lefty:a1,misc2:b2,paddle1:b19,paddle2:b18,paddle3:b15,paddle4:b5,rightshoulder:b7,rightstick:b14,righttrigger:a4,rightx:a2,righty:a3,start:b11,x:b3,y:b4,platform:Linux,
+Unrecognized output string "misc2" in mapping:
+030000007e0500006920000011010000,Nintendo Switch 2 Pro Controller,a:b0,b:b1,back:b14,dpdown:b8,dpleft:b10,dpright:b9,dpup:b11,guide:b16,leftshoulder:b12,leftstick:b15,lefttrigger:b13,leftx:a0,lefty:a1~,misc1:b17,misc2:b20,paddle1:b18,paddle2:b19,rightshoulder:b4,rightstick:b7,righttrigger:b5,rightx:a2,righty:a3~,start:b6,x:b2,y:b3,platform:Linux,
+SDL: Init OK!
+Using "default" pen tablet driver...
+
+TextServer: Primary interface set to: "ICU / HarfBuzz / Graphite (Built-in)".
+.NET: Initializing module...
+Found hostfxr: /usr/lib64/dotnet/host/fxr/10.0.0/libhostfxr.so
+.NET: hostfxr initialized
+.NET: GodotPlugins initialized
+CORE API HASH: 1976921970
+EDITOR API HASH: 555353998
+Loading resource: res://addons/gdUnit4/bin/GdUnitCmdTool.gd
+SceneTreeFTI: traversal method DEFAULT
+Loaded system CA certificates
+Loading resource: res://addons/gdUnit4/src/asserts/GdUnitBoolAssertImpl.gd
+Loading resource: res://addons/gdUnit4/src/asserts/GdUnitStringAssertImpl.gd
+Loading resource: res://addons/gdUnit4/src/asserts/GdUnitIntAssertImpl.gd
+Loading resource: res://addons/gdUnit4/src/asserts/GdUnitFloatAssertImpl.gd
+Loading resource: res://addons/gdUnit4/src/asserts/GdUnitVectorAssertImpl.gd
+Loading resource: res://addons/gdUnit4/src/asserts/GdUnitArrayAssertImpl.gd
+Loading resource: res://addons/gdUnit4/src/asserts/GdUnitDictionaryAssertImpl.gd
+Loading resource: res://addons/gdUnit4/src/asserts/GdUnitFileAssertImpl.gd
+Loading resource: res://addons/gdUnit4/src/asserts/GdUnitObjectAssertImpl.gd
+Loading resource: res://addons/gdUnit4/src/asserts/GdUnitResultAssertImpl.gd
+Loading resource: res://addons/gdUnit4/src/asserts/GdUnitFuncAssertImpl.gd
+Loading resource: res://addons/gdUnit4/src/asserts/GdUnitSignalAssertImpl.gd
+Loading resource: res://addons/gdUnit4/src/asserts/GdUnitFailureAssertImpl.gd
+Loading resource: res://addons/gdUnit4/src/asserts/GdUnitGodotErrorAssertImpl.gd
+[2J[H[38;2;233;150;122m
+--------------------------------------------------------------------------------------------------
+GdUnit4 Comandline Tool
+--------------------------------------------------------------------------------------------------[0m
+[38;2;218;165;32m
+Headless mode is ignored by option '--ignoreHeadlessMode'"
+
+Please note that tests that use UI interaction do not work correctly in headless mode.
+Godot 'InputEvents' are not transported by the Godot engine in headless mode and therefore
+have no effect in the test!
+[0m
+Scanning for test suites in: res://tests/
+Loading resource: res://tests/GodotSampleTest.cs
+Loading resource: res://tests/PlayerMovementTest.cs
+Loading resource: res://addons/gdUnit4/src/dotnet/GdUnit4CSharpApi.cs
+Discover tests for script: res://tests/GodotSampleTest.cs
+Found named assembly: /workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/GameGodot.dll
+Initialized 1 test assembly locations /workspaces/godot-csharp-devcontainer/src/Game.Godot/.godot/mono/temp/bin/Debug/GameGodot.dll
+Discover tests for script: res://tests/PlayerMovementTest.cs
+[38;2;100;149;237mInstalling GdUnit4 session system hooks.[0m
+[38;2;100;149;237mSession hook 'GdUnitHtmlTestReporter' installed.[0m
+[38;2;100;149;237mSession hook 'GdUnitXMLTestReporter' installed.[0m
+Register singleton 'GdUnitTestSessionHookService:<Object#105025373835>'
+[38;2;100;149;237mSession hook 'GdUnitHtmlTestReporter' > startup()[0m
+[38;2;100;149;237mSession hook 'GdUnitXMLTestReporter' > startup()[0m
+[38;2;0;206;209mRun Test Suite: [0m[38;2;250;235;215mres://tests/GodotSampleTest.cs[0m
+  [38;2;250;235;215mres://tests/GodotSampleTest.cs[0m[38;2;250;235;215m > [0m[38;2;250;235;215mShould_Pass_Godot_Interaction[0m[38;2;34;139;34m STARTED[0m[38;2;250;235;215m[0m
+  [38;2;250;235;215mres://tests/GodotSampleTest.cs[0m[38;2;250;235;215m > [0m[38;2;250;235;215mShould_Pass_Godot_Interaction[0m[38;2;34;139;34m PASSED[0m[38;2;100;149;237m 15ms[0m
+[38;2;250;235;215m[0m
+[38;2;30;144;255mStatistics:[0m[38;2;250;235;215m 1 test cases | 0 errors | 0 failures | 0 flaky | 0 skipped | 0 orphans |[0m[38;2;34;139;34m PASSED[0m[38;2;100;149;237m 57ms[0m
+[38;2;250;235;215m[0m
+[38;2;250;235;215m[0m
+[38;2;0;206;209mRun Test Suite: [0m[38;2;250;235;215mres://tests/PlayerMovementTest.cs[0m
+  [38;2;250;235;215mres://tests/PlayerMovementTest.cs[0m[38;2;250;235;215m > [0m[38;2;250;235;215mTestPlayerNodeHierarchy[0m[38;2;34;139;34m STARTED[0m[38;2;250;235;215m[0m
+Loading resource: res://Scripts/Nodes/Player.cs
+  [38;2;250;235;215mres://tests/PlayerMovementTest.cs[0m[38;2;250;235;215m > [0m[38;2;250;235;215mTestPlayerNodeHierarchy[0m[38;2;34;139;34m PASSED[0m[38;2;100;149;237m 110ms[0m
+[38;2;250;235;215m[0m
+  [38;2;250;235;215mres://tests/PlayerMovementTest.cs[0m[38;2;250;235;215m > [0m[38;2;250;235;215mTestGravityApplication[0m[38;2;34;139;34m STARTED[0m[38;2;250;235;215m[0m
+Loading resource: res://Scripts/Nodes/Player.cs
+ERROR: Parameter "body->get_space()" is null.
+   at: body_test_motion (modules/godot_physics_2d/godot_physics_server_2d.cpp:997)
+   C# backtrace (most recent call first):
+       [0] Godot.NativeInterop.godot_bool Godot.NativeCalls.godot_icall_0_15(nint, nint) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Generated/NativeCalls.cs:147)
+       [1] bool Godot.CharacterBody2D.MoveAndSlide() (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Generated/GodotObjects/CharacterBody2D.cs:314)
+       [2] void Game.Godot.Nodes.Player._PhysicsProcess(double) (/workspaces/godot-csharp-devcontainer/src/Game.Godot/Scripts/Nodes/Player.cs:27)
+       [3] void Game.Godot.Tests.PlayerMovementTest.TestGravityApplication() (/workspaces/godot-csharp-devcontainer/src/Game.Godot/tests/PlayerMovementTest.cs:39)
+       [4] object System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(object, System.IntPtr*)
+       [5] object System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(object, System.Reflection.BindingFlags)
+       [6] object System.Reflection.RuntimeMethodInfo.Invoke(object, System.Reflection.BindingFlags, System.Reflection.Binder, System.Object[], System.Globalization.CultureInfo)
+       [7] void GdUnit4.Core.Execution.ExecutionStage`1+<ExecuteStage>d__37.MoveNext()
+       [8] void System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start<TStateMachine>(TStateMachine&)
+       [9] System.Threading.Tasks.Task GdUnit4.Core.Execution.ExecutionStage`1.ExecuteStage(GdUnit4.Core.Execution.ExecutionContext)
+       [10] void GdUnit4.Core.Execution.ExecutionStage`1+<Execute>d__30.MoveNext()
+       [11] void System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start<TStateMachine>(TStateMachine&)
+       [12] System.Threading.Tasks.Task GdUnit4.Core.Execution.ExecutionStage`1.Execute(GdUnit4.Core.Execution.ExecutionContext)
+       [13] System.Threading.Tasks.Task GdUnit4.Core.Execution.TestCaseExecutionStage.<>n__0(GdUnit4.Core.Execution.ExecutionContext)
+       [14] void GdUnit4.Core.Execution.TestCaseExecutionStage+<Execute>d__1.MoveNext()
+       [15] void System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start<TStateMachine>(TStateMachine&)
+       [16] System.Threading.Tasks.Task GdUnit4.Core.Execution.TestCaseExecutionStage.Execute(GdUnit4.Core.Execution.ExecutionContext)
+       [17] void GdUnit4.Core.Execution.TestSuiteExecutionStage+<RunTestCase>d__15.MoveNext()
+       [18] void System.Threading.ExecutionContext.RunInternal(System.Threading.ExecutionContext, System.Threading.ContextCallback, object)
+       [19] void System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1+AsyncStateMachineBox`1.MoveNext(System.Threading.Thread)
+       [20] void System.Threading.Tasks.AwaitTaskContinuation.RunCallback(System.Threading.ContextCallback, object, System.Threading.Tasks.Task&)
+       [21] void System.Threading.Tasks.Task.RunContinuations(object)
+       [22] bool System.Threading.Tasks.Task`1.TrySetResult(TResult)
+       [23] void System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1.SetExistingTaskResult(System.Threading.Tasks.Task`1[TResult], TResult)
+       [24] void GdUnit4.Core.Execution.BeforeTestExecutionStage+<Execute>d__1.MoveNext()
+       [25] void System.Threading.ExecutionContext.RunInternal(System.Threading.ExecutionContext, System.Threading.ContextCallback, object)
+       [26] void System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1+AsyncStateMachineBox`1.MoveNext(System.Threading.Thread)
+       [27] void System.Threading.Tasks.AwaitTaskContinuation.RunCallback(System.Threading.ContextCallback, object, System.Threading.Tasks.Task&)
+       [28] void System.Threading.Tasks.Task.RunContinuations(object)
+       [29] bool System.Threading.Tasks.Task`1.TrySetResult(TResult)
+       [30] void System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1.SetExistingTaskResult(System.Threading.Tasks.Task`1[TResult], TResult)
+       [31] void GdUnit4.Core.Execution.ExecutionStage`1+<Execute>d__30.MoveNext()
+       [32] void System.Threading.ExecutionContext.RunInternal(System.Threading.ExecutionContext, System.Threading.ContextCallback, object)
+       [33] void System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1+AsyncStateMachineBox`1.MoveNext(System.Threading.Thread)
+       [34] void Godot.GodotSynchronizationContext.ExecutePendingContinuations() (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Core/GodotSynchronizationContext.cs:51)
+       [35] void Godot.GodotTaskScheduler.Activate() (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Core/GodotTaskScheduler.cs:76)
+       [36] void Godot.Bridge.ScriptManagerBridge.FrameCallback() (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Core/Bridge/ScriptManagerBridge.cs:84)
+  [38;2;250;235;215mres://tests/PlayerMovementTest.cs[0m[38;2;250;235;215m > [0m[38;2;250;235;215mTestGravityApplication[0m[38;2;34;139;34m PASSED[0m[38;2;100;149;237m 55ms[0m
+[38;2;250;235;215m[0m
+  [38;2;250;235;215mres://tests/PlayerMovementTest.cs[0m[38;2;250;235;215m > [0m[38;2;250;235;215mTestJumpVelocityImpulse[0m[38;2;34;139;34m STARTED[0m[38;2;250;235;215m[0m
+Loading resource: res://Scripts/Nodes/Player.cs
+  [38;2;250;235;215mres://tests/PlayerMovementTest.cs[0m[38;2;250;235;215m > [0m[38;2;250;235;215mTestJumpVelocityImpulse[0m[38;2;34;139;34m PASSED[0m[38;2;100;149;237m 35ms[0m
+[38;2;250;235;215m[0m
+[38;2;30;144;255mStatistics:[0m[38;2;250;235;215m 3 test cases | 0 errors | 0 failures | 0 flaky | 0 skipped | 0 orphans |[0m[38;2;34;139;34m PASSED[0m[38;2;100;149;237m 216ms[0m
+[38;2;250;235;215m[0m
+[38;2;250;235;215m[0m
+[38;2;30;144;255mOverall Summary:[0m[38;2;255;255;255m 4 test cases | 0 errors | 0 failures | 0 flaky | 0 skipped | 0 orphans |[0m
+[38;2;233;150;122mExecuted test suites: (2/2)[0m
+[38;2;233;150;122mExecuted test cases : (4/4)[0m
+[38;2;233;150;122mTotal execution time: 273ms[0m
+[38;2;255;255;255m [0m[38;2;100;149;237mSession hook 'GdUnitXMLTestReporter' > shutdown()[0m
+[38;2;100;149;237mOpen XML Report at: file:///workspaces/godot-csharp-devcontainer/src/Game.Godot/reports/report_5/results.xml[0m
+[38;2;100;149;237mSession hook 'GdUnitHtmlTestReporter' > shutdown()[0m
+[38;2;100;149;237mOpen HTML Report at: file:///workspaces/godot-csharp-devcontainer/src/Game.Godot/reports/report_5/index.html[0m
+[38;2;233;150;122mExit code: 0[0m
+----------------------------------------------------------------
+Cleanup singletons ["GdUnitTestSessionHookService"]
+
+	Unregister singleton 'GdUnitTestSessionHookService'
+	Free singleton instance 'GdUnitTestSessionHookService:<Object#105025373835>'
+	Successfully freed 'GdUnitTestSessionHookService'
+----------------------------------------------------------------
+Finallize .. done
+Finallize ..
+-Orphan nodes report-----------------------
+Finallize .. done
+Unloading: Disposing tracked instances...
+Unloading: Finished disposing tracked instances.
+XR: Clearing primary interface
+XR: Removed interface "Native mobile"
+XR: Removed interface "OpenXR"
+🔍 .NET Trace saved to: /workspaces/godot-csharp-devcontainer/AI/logs/dotnet_host_trace.log
+🏁 Test execution finished with code: 0
