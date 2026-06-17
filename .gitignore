@@ -1,47 +1,40 @@
-# Compiled and build artifacts
-*.pyc
-__pycache__/
-*.o
-*.obj
-dist/
-build/
-*.class
-*.exe
-*.dll
-*.so
-*.a
-*.out
-
-# Dependencies
-.venv/
-venv/
-node_modules/
-.mypy_cache/
-.pytest_cache/
-target/
-.gradle/
-
-# Logs and temp files
-*.log
-*.tmp
-*.swp
-*.swo
-*.vs
-*.godot/
-addons/
-bin/
-obj/
-
+```
 # Environment
 .env
 .env.local
 .env.*
 
+# Logs and temp files
+*.log
+*.tmp
+*.swp
+
 # Editors
 .vscode/
 .idea/
-.godot/
-reports/
+
+# Dependencies
+node_modules/
+venv/
+.venv/
+__pycache__/
+.mypy_cache/
+.pytest_cache/
+dist/
+build/
+target/
+.gradle/
+
+# Compiled files
+*.pyc
+*.class
+*.o
+*.exe
+*.dll
+*.so
+*.a
+*.obj
+*.out
 
 # System files
 .DS_Store
@@ -51,10 +44,6 @@ Thumbs.db
 coverage/
 htmlcov/
 .coverage
-
-# Game and tests
-#src/
-*.log
 
 # Compressed files
 *.zip
@@ -79,3 +68,4 @@ htmlcov/
 *.tar.bz2
 *.tar.xz
 *.tar.zst
+```
