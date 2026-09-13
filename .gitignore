@@ -36,12 +36,14 @@ obj/
 .env
 .env.local
 .env.*
+opencode.json
 
 # Editors
 .vs/
 .vscode/
 .idea/
 .godot/
+.git/
 reports/
 
 # System files
@@ -54,7 +56,7 @@ htmlcov/
 .coverage
 
 # Game and tests
-#src/
+src/
 *.log
 
 # Compressed files

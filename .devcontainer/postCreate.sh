@@ -21,145 +21,62 @@ GODOT_SDK_VERSION=${GODOT_VERSION_RAW}
 
 echo "🎯 Detected Godot Version: $GODOT_VERSION_RAW (Using SDK: $GODOT_SDK_VERSION)"
 
-# Criar estrutura de diretórios src
-mkdir -p src/Game.Godot/Scenes src/Game.Godot/Scripts/Nodes src/Game.Godot/Scripts/UI src/Game.Godot/Scripts/Managers
-mkdir -p src/Game.Core/Domain src/Game.Core/Services src/Game.Core/ValueObjects
-
-if [[ ! -f "src/Game.Godot/project.godot" ]]; then
-    echo "🎮 Creating Godot project..."
-    cat <<EOF > src/Game.Godot/project.godot
-; Engine configuration file.
-; It's best edited using the editor UI and not directly,
-; but it can also be edited via text (it will not be overwritten by the editor).
-
-config_version=5
-
-[application]
-config/name="Project Placeholder"
-
-[dotnet]
-project/assembly_name="GameGodot"
-
-[editor_plugins]
-enabled=PackedStringArray("res://addons/gdUnit4/plugin.cfg")
-EOF
-fi
-
-# Criar GameGodot.csproj dentro de src/Game.Godot apontando para Core
-cat <<EOF > src/Game.Godot/GameGodot.csproj
-<Project Sdk="Godot.NET.Sdk/$GODOT_SDK_VERSION">
-  <PropertyGroup>
-    <TargetFramework>net10.0</TargetFramework>
-    <LangVersion>14.0</LangVersion>
-    <!-- Avoid conflicts with Godot SDK internal attribute generation and duplicate sources -->
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <RollForward>Major</RollForward>
-    <EnableDynamicLoading>true</EnableDynamicLoading>
-    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
-    <RootNamespace>Game.Godot</RootNamespace>
-    <!-- Suppress common warnings related to GdUnit4 analyzers and duplicate attributes -->
-    <NoWarn>\$(NoWarn);CS9057;CS0436;CS0579;NU1605</NoWarn>
-  </PropertyGroup>
-  <ItemGroup>
-    <ProjectReference Include="../Game.Core/Game.Core.csproj" />
-    <ProjectReference Include="addons/gdUnit4/gdUnit4.csproj" Condition="Exists('addons/gdUnit4/gdUnit4.csproj')" />
-  </ItemGroup>
-</Project>
-EOF
-
-# =========================
-# 🧠 .NET SOLUTION
-# =========================
-
-if [[ ! -f "src/GameSolution.slnx" && ! -f "src/GameSolution.sln" ]]; then
-    echo "🧠 Creating C# Solution..."
-    dotnet new sln -n GameSolution -o src
+# Seed project from examples/godot/godot-csharp-decoupled if src/GameGodot is missing
+if [[ ! -f "src/GameGodot/project.godot" ]]; then
+    echo "🎮 Seeding project from examples/godot/godot-csharp-decoupled..."
+    mkdir -p src
+    if [[ -d "examples/godot/godot-csharp-decoupled" ]]; then
+        cp -r examples/godot/godot-csharp-decoupled/. src/
+        find src -type d -name "obj" -exec rm -rf {} + 2>/dev/null || true
+        find src -type d -name "bin" -exec rm -rf {} + 2>/dev/null || true
+    else
+        echo "⚠️ Warning: examples/godot/godot-csharp-decoupled not found!"
+    fi
 fi
 
 # Detectar caminho da solução em src/
 SLN_PATH=$(find src -maxdepth 1 \( -name "*.sln" -o -name "*.slnx" \) | head -n 1)
 echo "🔍 Using solution file: $SLN_PATH"
 
-# =========================
-# 🧠 BASE C# PROJECT
-# =========================
-
-if [[ ! -f "src/Game.Core/Game.Core.csproj" ]]; then
-    echo "📦 Creating Base C# Project..."
-    dotnet new classlib -n Game.Core -o src/Game.Core
+# Ensure all projects are registered in the solution
+if [[ -n "$SLN_PATH" ]]; then
+    echo "🔗 Configuring Solution..."
+    [[ -f "src/GameLogic/GameLogic.csproj" ]] && dotnet sln "$SLN_PATH" add src/GameLogic/GameLogic.csproj 2>/dev/null || true
+    [[ -f "src/GameGodot/GameGodot.csproj" ]] && dotnet sln "$SLN_PATH" add src/GameGodot/GameGodot.csproj 2>/dev/null || true
+    [[ -f "src/GameLogic.Tests/GameLogic.Tests.csproj" ]] && dotnet sln "$SLN_PATH" add src/GameLogic.Tests/GameLogic.Tests.csproj 2>/dev/null || true
 fi
-
-# =========================
-# 🔗 SOLUTION
-# =========================
-echo "🔗 Configuring Solution..."
-dotnet sln "$SLN_PATH" add src/Game.Core/Game.Core.csproj 2>/dev/null || true
-dotnet sln "$SLN_PATH" add src/Game.Godot/GameGodot.csproj 2>/dev/null || true
-
-# =========================
-# 🧪 TEST PROJECT
-# =========================
-
-if [[ ! -d "src/xunitTests/Game.Core.Tests" ]]; then
-    echo "🧪 Creating Test Project (.NET)..."
-    dotnet new xunit -n Game.Core.Tests -o src/xunitTests/Game.Core.Tests
-fi
-
-# =========================
-# 🔗 LINK TEST → CORE
-# =========================
-
-echo "🔗 Linking tests to core project..."
-dotnet list src/xunitTests/Game.Core.Tests/Game.Core.Tests.csproj reference \
-  | grep "Game.Core.csproj" \
-  || dotnet add src/xunitTests/Game.Core.Tests/Game.Core.Tests.csproj reference src/Game.Core/Game.Core.csproj
-
-dotnet sln "$SLN_PATH" add src/xunitTests/Game.Core.Tests/Game.Core.Tests.csproj 2>/dev/null || true
 
 # =========================
 # 🎮 GDUNIT4
 # =========================
 
-# Criar estrutura de testes do Godot e vincular dependências
-if [[ ! -d "src/Game.Godot/tests" ]]; then
-    echo "🎮 Configuring Godot Tests..."
-    mkdir -p src/Game.Godot/tests
-    cat <<EOF > src/Game.Godot/tests/GodotSampleTest.cs
-using Godot;
-using GdUnit4;
-
-[TestSuite]
-public partial class GodotSampleTest
-{
-    [TestCase]
-    public void Should_Pass_Godot_Interaction() => Assertions.AssertBool(true).IsTrue();
-}
-EOF
-fi
-
 # Instalação do GDUnit4 resiliente
-if [[ ! -f "src/Game.Godot/addons/gdUnit4/bin/GdUnitCmdTool.gd" ]]; then
+if [[ ! -f "src/GameGodot/addons/gdUnit4/bin/GdUnitCmdTool.gd" ]]; then
     echo "🎮 Installing GDUnit4..."
     GDUNIT_VERSION="v6.1.3"
     TMP_GDUNIT_DIR=$(mktemp -d -t gdunit4-XXXXXXXX)
 
     git clone --branch "$GDUNIT_VERSION" --depth 1 https://github.com/MikeSchulze/gdUnit4.git "$TMP_GDUNIT_DIR" || { echo "Failed to clone GDUnit4 repository."; exit 1; }
 
-    rm -rf src/Game.Godot/addons/gdUnit4
-    mkdir -p src/Game.Godot/addons/gdUnit4
+    rm -rf src/GameGodot/addons/gdUnit4
+    mkdir -p src/GameGodot/addons/gdUnit4
 
     if [[ -d "$TMP_GDUNIT_DIR/addons/gdUnit4" ]]; then
-        cp -r "$TMP_GDUNIT_DIR/addons/gdUnit4/." src/Game.Godot/addons/gdUnit4/
-        cp "$TMP_GDUNIT_DIR/gdUnit4.csproj" src/Game.Godot/addons/gdUnit4/ 2>/dev/null || true
+        cp -r "$TMP_GDUNIT_DIR/addons/gdUnit4/." src/GameGodot/addons/gdUnit4/
+        cp "$TMP_GDUNIT_DIR/gdUnit4.csproj" src/GameGodot/addons/gdUnit4/ 2>/dev/null || true
 
-        sed -i "s|Sdk=\"Godot.NET.Sdk/[^\"]*\"|Sdk=\"Godot.NET.Sdk/$GODOT_SDK_VERSION\"|" src/Game.Godot/addons/gdUnit4/gdUnit4.csproj
-        grep -q "<ImplicitUsings>" src/Game.Godot/addons/gdUnit4/gdUnit4.csproj || sed -i '/<LangVersion>13.0<\/LangVersion>/a \    <ImplicitUsings>enable</ImplicitUsings>' src/Game.Godot/addons/gdUnit4/gdUnit4.csproj
-        sed -i '/<\/PropertyGroup>/i \    <NoWarn>$(NoWarn);CS9057;CS0436;CS0579;NU1605</NoWarn>' src/Game.Godot/addons/gdUnit4/gdUnit4.csproj | head -n 1
+        sed -i "s|Sdk=\"Godot.NET.Sdk/[^\"]*\"|Sdk=\"Godot.NET.Sdk/$GODOT_SDK_VERSION\"|" src/GameGodot/addons/gdUnit4/gdUnit4.csproj
+        # Alinhar o TargetFramework do gdUnit4.csproj ao do projeto Godot (ex.: net8.0)
+        # para que ele possa ser referenciado sem erro de incompatibilidade de TFM.
+        GAME_TFM=$(grep -oP '(?<=<TargetFramework>)[^<]+' src/GameGodot/GameGodot.csproj | head -n 1 || echo "net8.0")
+        sed -i "s|<TargetFramework>[^<]*</TargetFramework>|<TargetFramework>$GAME_TFM</TargetFramework>|" src/GameGodot/addons/gdUnit4/gdUnit4.csproj
+        grep -q "<ImplicitUsings>" src/GameGodot/addons/gdUnit4/gdUnit4.csproj || sed -i '/<LangVersion>13.0<\/LangVersion>/a \    <ImplicitUsings>enable</ImplicitUsings>' src/GameGodot/addons/gdUnit4/gdUnit4.csproj
+        sed -i '/<\/PropertyGroup>/i \    <NoWarn>$(NoWarn);CS9057;CS0436;CS0579;NU1605</NoWarn>' src/GameGodot/addons/gdUnit4/gdUnit4.csproj | head -n 1
 
-        if [ -f "src/Game.Godot/addons/gdUnit4/test/dotnet/GdUnit4CSharpApiTest.cs" ]; then
-            grep -q "using System.Linq;" src/Game.Godot/addons/gdUnit4/test/dotnet/GdUnit4CSharpApiTest.cs || sed -i '/using Godot.Collections;/a using System.Linq;' src/Game.Godot/addons/gdUnit4/test/dotnet/GdUnit4CSharpApiTest.cs
+        if [ -f "src/GameGodot/addons/gdUnit4/test/dotnet/GdUnit4CSharpApiTest.cs" ]; then
+            grep -q "using System.Linq;" src/GameGodot/addons/gdUnit4/test/dotnet/GdUnit4CSharpApiTest.cs || sed -i '/using Godot.Collections;/a using System.Linq;' src/GameGodot/addons/gdUnit4/test/dotnet/GdUnit4CSharpApiTest.cs
         fi
-        echo "Installed GDUnit4 addon files to src/Game.Godot/addons/gdUnit4"
+        echo "Installed GDUnit4 addon files to src/GameGodot/addons/gdUnit4"
     else
         echo "Error: 'addons/gdUnit4' not found in cloned repository."
         exit 1
@@ -172,30 +89,23 @@ fi
 
 # Importação crucial para o Godot indexar os novos arquivos .cs e o plugin
 echo "📦 Importing project resources..."
-godot --headless --path src/Game.Godot --import --quit || true
+godot --headless --path src/GameGodot --import --quit || true
 
-if [ -f "src/Game.Godot/addons/gdUnit4/gdUnit4.csproj" ]; then
-    dotnet sln "$SLN_PATH" add src/Game.Godot/addons/gdUnit4/gdUnit4.csproj 2>/dev/null || true
-else
-    echo "❌ Error: 'src/Game.Godot/addons/gdUnit4/gdUnit4.csproj' not found after GDUnit4 installation."
+# Garantir que o plugin GdUnit4 esteja ativado no project.godot
+# (sem [editor_plugins] o addon não é carregado pelo Godot)
+if [ -f "src/GameGodot/project.godot" ] && ! grep -q 'addons/gdUnit4/plugin.cfg' src/GameGodot/project.godot; then
+    echo "🔌 Enabling GdUnit4 plugin in project.godot..."
+    if grep -q '^\[editor_plugins\]' src/GameGodot/project.godot; then
+        # Já existe a seção: ajusta somente a 1ª linha "enabled=" dela
+        awk 'BEGIN{once=0} /^\[editor_plugins\]/{ins=1} ins&&/^enabled=/{if(!once){$0="enabled=PackedStringArray(\"res://addons/gdUnit4/plugin.cfg\")";once=1}} {print}' src/GameGodot/project.godot > src/GameGodot/project.godot.tmp && mv src/GameGodot/project.godot.tmp src/GameGodot/project.godot
+    else
+        printf '\n[editor_plugins]\n\nenabled=PackedStringArray("res://addons/gdUnit4/plugin.cfg")\n' >> src/GameGodot/project.godot
+    fi
 fi
 
-# =========================
-# 🧪 Initial sample test
-# =========================
-
-cat <<EOF > src/xunitTests/Game.Core.Tests/SampleTest.cs
-using Xunit;
-
-public class SampleTest
-{
-    [Fact]
-    public void Should_Pass()
-    {
-        Assert.True(true);
-    }
-}
-EOF
+# O gdUnit4.csproj NÃO é adicionado à solução: ele é referenciado pelo GameGodot.csproj
+# via <ProjectReference>. Adicioná-lo recorrendo a `dotnet sln add` com caminho aninhado
+# criava solution folders duplicados chamados "GameGodot", quebrando o build (MSB5004).
 
 # =========================
 # 📦 RESTORE

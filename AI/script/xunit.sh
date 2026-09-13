@@ -16,6 +16,11 @@ if [ -z "$GODOT_BIN" ]; then
     export GODOT_BIN=$(which godot 2>/dev/null)
 fi
 
+# --- CRITICAL: .NET 8 -> 10 RUNTIME COMPATIBILITY ---
+# Os projetos compilam para net8.0, mas apenas o runtime .NET 10 está instalado.
+# O testhost do VSTest só roda se o RollForward permitir major upgrade.
+export DOTNET_ROLL_FORWARD=Major
+
 echo "🧪 Running xUnit tests..." | tee "$LOG_FILE"
 echo "📄 Log File: $LOG_FILE" | tee -a "$LOG_FILE"
 
@@ -29,7 +34,7 @@ fi
 
 # Focamos no projeto específico de testes para evitar falhas de build de outros 
 # projetos irrelevantes (como os testes internos do GDUnit4)
-TEST_PROJECT="$PROJECT_ROOT/src/xunitTests/Game.Core.Tests/Game.Core.Tests.csproj"
+TEST_PROJECT="$PROJECT_ROOT/src/GameLogic.Tests/GameLogic.Tests.csproj"
 
 # Run dotnet test pointing to the solution
 # Usamos um filtro para rodar apenas os testes do projeto (Game.Core.Tests) 

@@ -23,24 +23,28 @@ You are working inside a devcontainer with the following known structure:
 ```
 .devcontainer/
 ├── devcontainer.json
-├── Dockerfile          # Fedora 41 base, Godot mono, .NET SDK, Vulkan
+├── Dockerfile          # Fedora 41 base, Godot mono 4.6.2, .NET 10 SDK, Vulkan
 ├── postCreate.sh       # Project scaffolding, solution setup, GdUnit4 install
-├── run_post_create.sh
-├── gdunit.sh           # GdUnit4 headless test runner
+├── run_post_create.sh  # Wraps postCreate.sh with bash -x → tmp/postCreate.log
+├── gdunit.sh           # Legacy GdUnit4 runner (kept; paths point to src/)
 ├── tests/              # Shell-based validation scripts
-├── tmp/
+├── tmp/                # postCreate.log captured here
 └── old/
 
-game/                   # Godot project root (created by postCreate.sh)
-├── project.godot
-├── Game.csproj         # Main project referencing Game.Core + GdUnit4
-├── GameSolution.sln
-├── Game.Core/          # Base C# class library
-├── addons/gdUnit4/     # GdUnit4 addon (cloned from master)
-└── tests/              # Godot-side test files
-
-tests/
-└── Game.Core.Tests/    # xUnit test project
+src/                    # .NET / Godot solution root (gitignored; seeded by postCreate.sh)
+├── Game.sln            # Solution: GameGodot + GameLogic + GameLogic.Tests (classic .sln)
+├── GameGodot/          # Godot project root
+│   ├── project.godot   # Features "4.6 / C# / GL Compatibility"; gdUnit4 plugin enabled
+│   ├── GameGodot.csproj# Godot.NET.Sdk/4.6.2, net8.0 (android→net9.0); refs GameLogic + gdUnit4
+│   ├── addons/gdUnit4/ # GdUnit4 addon (v6.1.3, cloned from tag; gdUnit4.csproj TFM=net8.0)
+│   ├── tests/          # Godot-side GdUnit4 tests (GodotIntegrationTest.cs)
+│   ├── scenes/         # Main.cs, Player.cs, Hud.cs, Mob.cs, GameState.cs, etc.
+│   └── reports/        # GdUnit4 HTML/XML report output (report_1/)
+├── GameLogic/          # Decoupled C# class library (net8.0, no Godot dependency)
+│   ├── Interfaces/     # IPlayerMovementService, IMobService, IHudService
+│   ├── Models/ Rules/ Services/   # GameState, MobSpawnRules, GameSession, etc.
+├── GameLogic.Tests/    # xUnit project (net8.0; xUnit 2.5.3) — logic tests (38)
+└── Properties/
 
 AI/
 ├── logs/               # Test execution logs
@@ -48,9 +52,23 @@ AI/
 │   ├── last_gdunit_test.log
 │   └── dotnet_host_trace.log
 └── script/
-    ├── xunit.sh        # xUnit test runner with logging
-    └── gdunit.sh       # GdUnit4 test runner with logging
+    ├── xunit.sh        # xUnit runner for src/GameLogic.Tests (sets DOTNET_ROLL_FORWARD=Major)
+    └── gdunit.sh       # GdUnit4 headless runner for src/GameGodot (sets DOTNET_ROLL_FORWARD=Major) — ACTIVE
 ```
+
+**Verified baseline (from last audit):**
+- Godot binary: `4.6.2.stable.mono` at `/usr/local/bin/godot`
+- .NET SDK / runtime: `10.0.100` (only the .NET 10 runtime is installed; `global.json` pins `10.0.100`)
+- Project TFMs: `net8.0` for `GameLogic`, `GameLogic.Tests`, `GameGodot`; `net9.0` only for Godot android builds
+- GdUnit4: `v6.1.3` cloned from tag; `gdUnit4.csproj` TFM forced to `net8.0`
+- xUnit packages: `Microsoft.NET.Test.Sdk 17.8.0`, `xunit 2.5.3`, `xunit.runner.visualstudio 2.5.3`
+
+**Known environment gotchas (check FIRST):**
+- All shell scripts MUST be LF (no CRLF). CRLF silently breaks `set -e`, pollutes variables with `\r`, and makes heredocs fail with `syntax error: unexpected end of file`.
+- Projects target `net8.0` but only the .NET 10 runtime is installed → export `DOTNET_ROLL_FORWARD=Major` when running tests (both runners already do this).
+- GdUnit4 is wired via `<ProjectReference>` in `GameGodot.csproj` plus `<Compile Remove="addons\gdUnit4\test\**\*.cs">` (the addon's `src/**` bridge must be compiled into the game assembly; only its example `test/**` fixtures are excluded). Do NOT `dotnet sln add` gdUnit4.csproj — it creates duplicate solution folders named "GameGodot" → `MSB5004`.
+- The GdUnit4 plugin must be enabled in `project.godot` under `[editor_plugins]`.
+- `src/Game.sln` is gitignored; regenerate via `dotnet new sln -n Game --format sln` if missing.
 
 **IMPORTANT:** This is a condensed summary. The actual environment state may differ. You MUST request and read the relevant files before diagnosing any issue. Never assume versions, paths, or configurations — always verify against the real files.
 
@@ -180,20 +198,22 @@ If any check fails, fix the issue before presenting the report.
 
 - Classify the error layer immediately: Docker / .NET SDK / Godot / GdUnit4 / Project Config / Unknown
 - If the error involves assembly loading or DLL resolution, request:
-  - `game/Game.csproj`
-  - `game/GameSolution.sln`
-  - `game/addons/gdUnit4/gdUnit4.csproj`
+  - `src/GameGodot/GameGodot.csproj`
+  - `src/Game.sln`
+  - `src/GameGodot/addons/gdUnit4/gdUnit4.csproj`
   - The full error log from `AI/logs/`
 - If the error involves test execution, request:
   - The relevant test script (`AI/script/xunit.sh` or `AI/script/gdunit.sh`)
   - The test log output
 - Common error patterns to check (in order of likelihood):
-  1. .NET SDK version mismatch between host Godot binary and project TargetFramework
-  2. GdUnit4 Godot.NET.Sdk version not matching the installed Godot version
-  3. Missing or incorrect `GODOT_BIN` environment variable
-  4. DLL path/naming inconsistencies (assembly name vs. project name)
-  5. Missing `DOTNET_ROLL_FORWARD=Major` for cross-version compatibility
-  6. Stale `.godot/mono/` cache causing outdated assembly references
+  1. Shell scripts saved with CRLF line endings (breaks `set -e` and heredocs → `syntax error: unexpected end of file`)
+  2. .NET runtime mismatch: projects target `net8.0` but only the .NET 10 runtime is installed (requires `DOTNET_ROLL_FORWARD=Major`)
+  3. GdUnit4 Godot.NET.Sdk / TFM version not matching the installed Godot version and game project
+  4. Missing or incorrect `GODOT_BIN` environment variable
+  5. DLL path/naming inconsistencies (assembly name vs. project name)
+  6. Solution containing duplicate project names (e.g., gdUnit4.csproj added via `dotnet sln add` → `MSB5004`)
+  7. GdUnit4 plugin not enabled in `project.godot` (`[editor_plugins]`)
+  8. Stale `.godot/mono/` cache causing outdated assembly references
 
 ### Mode 2: UPGRADE / MIGRATE — Additional Instructions
 
@@ -213,9 +233,10 @@ If any check fails, fix the issue before presenting the report.
   godot --version
   dotnet --info
   dotnet --list-sdks
-  ls -la game/addons/gdUnit4/
-  cat game/Game.csproj
-  cat game/addons/gdUnit4/gdUnit4.csproj
+  ls -la src/GameGodot/addons/gdUnit4/
+  cat src/GameGodot/GameGodot.csproj
+  cat src/GameGodot/addons/gdUnit4/gdUnit4.csproj
+  cat src/GameLogic.Tests/GameLogic.Tests.csproj
   ```
 - Check for:
   - Version alignment between Godot binary, Godot.NET.Sdk in .csproj files, and GdUnit4

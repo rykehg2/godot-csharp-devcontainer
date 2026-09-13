@@ -28,10 +28,69 @@ Before starting, ensure you have the following installed on your host machine:
 ### 🧪 Initial Validation
 Inside the container terminal, run:
 ```bash
-dotnet test && bash AI/script/validate.sh
+dotnet test src/Game.sln && bash AI/script/validate.sh
 ```
 
 * IDEs errors like "GDScript server not connected" are expected.
+
+---
+
+# 🧯 Troubleshooting (known issues when starting/running)
+
+## 1. `dotnet test` at the workspace root fails (MSB1003)
+The solution lives in `src/` — there is no `.sln` at the root. Run `dotnet test src/Game.sln` (see Initial Validation) or `cd src && dotnet test`.
+
+## 2. `$'\r': command not found` in `.devcontainer/tmp/postCreate.log` (Windows CRLF)
+The shell scripts must stay LF; a Windows checkout can silently convert them to CRLF and `bash` breaks (`$'\r': command not found`, `syntax error: unexpected end of file`), aborting the postCreate step. Fix once, then reopen the container:
+
+```bash
+git config core.autocrlf input
+printf '* text=auto\n*.sh text eol=lf\n' > .gitattributes
+git add --renormalize .
+```
+
+The current working tree already ships LF scripts.
+
+## 3. GDUnit4 C# tests fail to compile: `CS0246 'TestSuiteAttribute' / 'TestCaseAttribute' could not be found`
+`GameGodot.csproj` must reference the addon C# project — it brings the `gdUnit4.api` NuGet package that defines the C# test API (and builds `GdUnit4.dll`):
+
+```xml
+<ProjectReference Include="addons\gdUnit4\gdUnit4.csproj" />
+```
+
+The seed (`examples/godot/godot-csharp-decoupled`) already includes this reference; re-add it only if `src/` is re-seeded manually.
+
+## 4. `GdUnit0501` analyzer error, or `IPlayerMovementService` not found
+Godot-using tests require `[RequireGodotRuntime]`, and the game interfaces namespace must be imported:
+
+```csharp
+using GameLogic.Interfaces;
+
+[RequireGodotRuntime]
+[TestCase]
+public void Should_Instantiate_Main_Scene_And_Nodes() { ... }
+```
+
+The seeded test already ships both fixes.
+
+## 5. postCreate prints "Environment ready" even when Godot tests failed
+By design `postCreate.sh` runs the Godot suite with `|| true` so the container startup never blocks on test failures. Confirm the real state with:
+
+```bash
+tail -n 30 .devcontainer/tmp/postCreate.log
+tail -n 30 AI/logs/last_gdunit_test.log
+bash AI/script/validate.sh   # build + xUnit + GDUnit4 — fails loudly on error
+```
+
+## 6. OpenCode CLI works but there is no reachable model
+The repo `opencode.json` points at a placeholder local endpoint (`localllm` → `http://192.168.15.10:11434/v1`, model `seu-modelo-aqui`) that is not reachable from the container. Zero-config alternative: the free OpenCode Zen models (no credentials required at the moment — `opencode providers list` reports 0 credentials and `opencode run` still works):
+
+```bash
+opencode run --model opencode/nemotron-3.5-lightning-free "your prompt"
+opencode models   # catalog — the *-free / big-pickle entries cost $0 (limited time; may use prompts for training)
+```
+
+Or point `opencode.json` at a reachable OpenAI-compatible server, or login with your own key (`opencode providers login`).
 
 ---
 
@@ -77,13 +136,13 @@ No agent is authorized to write implementation code unless:
 
 ```
 .devcontainer/   → Reproducible environment (Docker)
-game/            → Godot project (created postCreate, IA and Dev work here)
-tests/           → .NET tests (created postCreate, IA and Dev work here)
+src/             → Game + .NET solution (seeded at postCreate from examples/godot/godot-csharp-decoupled)
+                  — src/GameGodot, src/GameLogic, src/GameLogic.Tests + src/Game.sln
 AI/              → AI system (agents, context, tasks, specialized states, scripts)
 
 design/          → Game rules (source of truth, Dev work here)
 docs/            → APIs and architecture
-examples/        → Reusable references for IA or Dev
+examples/        → Reusable references for IA or Dev (seed source for src/)
 ```
 
 ---
@@ -166,19 +225,12 @@ Environment:
 
 ## 🚀 Automatic initialization
 
-When starting the container:
+When starting the container, the `postCreateCommand` runs `.devcontainer/run_post_create.sh` (→ `postCreate.sh`, log in `.devcontainer/tmp/postCreate.log`) which:
 
-```bash
-bash AI/script/validate.sh
-```
-
-Automatically creates:
-
-* Godot project
-* C# Solution
-* Main project (Game.Core)
-* Test project (xUnit)
-* GDUnit4 integration
+* Seeds the project into `src/` from `examples/godot/godot-csharp-decoupled/` (only if `src/GameGodot/project.godot` is missing)
+* Builds the C# Solution `src/Game.sln`: `GameLogic` (core), `GameGodot` (Godot), `GameLogic.Tests` (xUnit)
+* Installs GDUnit4 (addon v6.1.3) and wires it as a `ProjectReference` of `GameGodot.csproj`
+* Imports Godot resources, restores NuGet, then runs the test suites (xUnit + GDUnit4)
 
 ---
 

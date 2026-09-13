@@ -50,18 +50,18 @@ export COREHOST_TRACEFILE="$LOG_DIR/dotnet_host_trace.log"
 
 # --- DIAGNOSTIC START ---
 echo "🔍 [DEBUG] Checking project.godot for GdUnit4 activation..." | tee -a "$LOG_FILE"
-grep -H "gdUnit4" "$PROJECT_ROOT/src/Game.Godot/project.godot" >> "$LOG_FILE" 2>&1 || echo "⚠️ GdUnit4 not mentioned in project.godot" | tee -a "$LOG_FILE"
+grep -H "gdUnit4" "$PROJECT_ROOT/src/GameGodot/project.godot" >> "$LOG_FILE" 2>&1 || echo "⚠️ GdUnit4 not mentioned in project.godot" | tee -a "$LOG_FILE"
 
-echo "📂 [DEBUG] Listing test files in src/Game.Godot/tests/:" | tee -a "$LOG_FILE"
-ls -la "$PROJECT_ROOT/src/Game.Godot/tests/" >> "$LOG_FILE" 2>&1
+echo "📂 [DEBUG] Listing test files in src/GameGodot/tests/:" | tee -a "$LOG_FILE"
+ls -la "$PROJECT_ROOT/src/GameGodot/tests/" >> "$LOG_FILE" 2>&1
 # --- DIAGNOSTIC END ---
 
 # Garante que o Godot importe os recursos e sincronize os metadados do C# antes da compilação
 echo "🔍 Initializing Godot project metadata..." | tee -a "$LOG_FILE"
-"$GODOT_BIN" --headless --path src/Game.Godot --import --quit >> "$LOG_FILE" 2>&1 || true
+"$GODOT_BIN" --headless --path src/GameGodot --import --quit >> "$LOG_FILE" 2>&1 || true
 
 # 1. Compile C#
-if [ -f "$PROJECT_ROOT/src/Game.Godot/GameGodot.csproj" ]; then
+if [ -f "$PROJECT_ROOT/src/GameGodot/GameGodot.csproj" ]; then
     echo "📦 Cleaning and Compiling .NET Solution..." | tee -a "$LOG_FILE"
     SLN_PATH=$(find "$PROJECT_ROOT/src" -maxdepth 1 \( -name "*.sln" -o -name "*.slnx" \) | head -n 1)
      
@@ -70,7 +70,7 @@ if [ -f "$PROJECT_ROOT/src/Game.Godot/GameGodot.csproj" ]; then
         dotnet build "$SLN_PATH" --debug -c Debug >> "$LOG_FILE" 2>&1
     else
         # Fallback para o projeto se a solução não for encontrada
-        dotnet build "$PROJECT_ROOT/src/Game.Godot/GameGodot.csproj" --debug -c Debug >> "$LOG_FILE" 2>&1
+        dotnet build "$PROJECT_ROOT/src/GameGodot/GameGodot.csproj" --debug -c Debug >> "$LOG_FILE" 2>&1
     fi
 fi
 
@@ -80,7 +80,7 @@ if [ $? -ne 0 ]; then
 fi
 
 # Debugging: Check if Game.dll exists
-GAME_DLL_PATH="$PROJECT_ROOT/src/Game.Godot/.godot/mono/temp/bin/Debug/GameGodot.dll"
+GAME_DLL_PATH="$PROJECT_ROOT/src/GameGodot/.godot/mono/temp/bin/Debug/GameGodot.dll"
 if [ -f "$GAME_DLL_PATH" ]; then
     echo "✅ GameGodot.dll found at: $GAME_DLL_PATH" | tee -a "$LOG_FILE"
 else
@@ -92,7 +92,7 @@ fi
 # Debugging: Sincronização de DLLs de dependências (Addons e Subprojetos)
 # Garante que todas as dependências estejam na mesma pasta da Game.dll para evitar falha de carregamento
 echo "🔄 Syncing all dependency assemblies..." >> "$LOG_FILE"
-TEMP_BIN_DIR="$PROJECT_ROOT/src/Game.Godot/.godot/mono/temp/bin/Debug"
+TEMP_BIN_DIR="$PROJECT_ROOT/src/GameGodot/.godot/mono/temp/bin/Debug"
 
 # CRITICAL: Godot 4.6 loads the project assembly from .godot/mono/temp/bin/<config>/
 # The AssemblyDependencyResolver uses the deps.json to resolve dependencies.
@@ -106,12 +106,12 @@ echo "🔍 Syncing C# classes to Godot..." | tee -a "$LOG_FILE"
 
 # Primeiro importamos, depois usamos o editor para gerar metadados de scripts
 export GODOT_SILENCE_ROOT_WARNING=1
-"$GODOT_BIN" --headless --path src/Game.Godot --import --quit >> "$LOG_FILE" 2>&1 || true
+"$GODOT_BIN" --headless --path src/GameGodot --import --quit >> "$LOG_FILE" 2>&1 || true
 # O passo --editor foi removido pois o dotnet build + --import já são suficientes e mais estáveis aqui
 
 # 3. Run Tests
 # Adicionamos explicitamente a verbosidade e garantimos que o Godot veja as variáveis de ambiente
-"$GODOT_BIN" --headless --path src/Game.Godot -v -d -s res://addons/gdUnit4/bin/GdUnitCmdTool.gd --ignoreHeadlessMode $FILTERED_ARGS 2>&1 | tee -a "$LOG_FILE"
+"$GODOT_BIN" --headless --path src/GameGodot -v -d -s res://addons/gdUnit4/bin/GdUnitCmdTool.gd --ignoreHeadlessMode $FILTERED_ARGS 2>&1 | tee -a "$LOG_FILE"
 EXIT_CODE=$?
 
 # Limpa as variáveis de trace para não afetar outros comandos
