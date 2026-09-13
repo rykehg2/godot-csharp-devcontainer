@@ -83,7 +83,7 @@ bash AI/script/validate.sh   # build + xUnit + GDUnit4 — fails loudly on error
 ```
 
 ## 6. OpenCode CLI works but there is no reachable model
-The repo `opencode.json` points at a placeholder local endpoint (`localllm` → `http://192.168.15.10:11434/v1`, model `seu-modelo-aqui`) that is not reachable from the container. Zero-config alternative: the free OpenCode Zen models (no credentials required at the moment — `opencode providers list` reports 0 credentials and `opencode run` still works):
+Use free OpenCode Zen models (no credentials required at the moment — `opencode providers list` reports 0 credentials and `opencode run` still works):
 
 ```bash
 opencode run --model opencode/nemotron-3.5-lightning-free "your prompt"
